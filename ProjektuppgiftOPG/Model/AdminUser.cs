@@ -4,13 +4,13 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ProjektuppgiftOPG.Classes
+namespace ProjektuppgiftOPG.Model
 {
     public class AdminUser : User
     {
         //Konstruktor
-        public AdminUser (string username, string password, string country, string securityQuestion, 
-            string securityAnswer) : base (username, password, country, securityQuestion, securityAnswer)
+        public AdminUser(string username, string password, string country, string securityQuestion,
+            string securityAnswer) : base(username, password, country, securityQuestion, securityAnswer)
         {
 
         }

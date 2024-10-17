@@ -5,7 +5,7 @@ using System.Security.Policy;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ProjektuppgiftOPG.Classes
+namespace ProjektuppgiftOPG.Model
 {
     public abstract class Workout
     {
@@ -17,7 +17,7 @@ namespace ProjektuppgiftOPG.Classes
         public string Notes { get; set; }
 
         //Konstruktor
-        public Workout (DateTime date, string type, TimeSpan duration, int caloriesBurned,
+        public Workout(DateTime date, string type, TimeSpan duration, int caloriesBurned,
             string notes)
         {
             Date = date;

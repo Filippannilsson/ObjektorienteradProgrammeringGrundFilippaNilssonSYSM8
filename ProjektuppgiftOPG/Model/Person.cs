@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ProjektuppgiftOPG.Classes
+namespace ProjektuppgiftOPG.Model
 {
     public abstract class Person
     {
@@ -13,7 +13,7 @@ namespace ProjektuppgiftOPG.Classes
         public string Password { get; set; }
 
         //Konstruktor
-        public Person (string username, string password)
+        public Person(string username, string password)
         {
             Username = username;
             Password = password;

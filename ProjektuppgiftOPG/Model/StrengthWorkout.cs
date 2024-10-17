@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ProjektuppgiftOPG.Classes
+namespace ProjektuppgiftOPG.Model
 {
     public class StrengthWorkout : Workout
     {
@@ -13,7 +13,7 @@ namespace ProjektuppgiftOPG.Classes
 
         //Konstruktor
         public StrengthWorkout(DateTime date, string type, TimeSpan duration, int caloriesBurned,
-            string notes, int repetitions) : base (date, type, duration, caloriesBurned, notes)
+            string notes, int repetitions) : base(date, type, duration, caloriesBurned, notes)
         {
 
         }

@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ProjektuppgiftOPG.Classes
+namespace ProjektuppgiftOPG.Model
 {
     public class User : Person
     {
@@ -14,7 +14,7 @@ namespace ProjektuppgiftOPG.Classes
         public string SecurityAnswer { get; set; }
 
         //Konstruktor
-        public User (string username, string password, string country, string securityQuestion, string securityAnswer) : base (username, password)
+        public User(string username, string password, string country, string securityQuestion, string securityAnswer) : base(username, password)
         {
             Country = country;
             SecurityQuestion = securityQuestion;
