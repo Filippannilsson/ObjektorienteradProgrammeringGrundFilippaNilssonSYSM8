@@ -11,9 +11,7 @@ using System.Windows.Shapes;
 
 namespace ProjektuppgiftOPG
 {
-    /// <summary>
-    /// Interaction logic for MainWindow.xaml
-    /// </summary>
+    //Test
     public partial class MainWindow : Window
     {
         public MainWindow()
