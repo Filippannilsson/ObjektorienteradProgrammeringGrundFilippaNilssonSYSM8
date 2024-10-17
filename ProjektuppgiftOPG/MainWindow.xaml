@@ -5,9 +5,73 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:ProjektuppgiftOPG"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
+        Title="MainWindow" Height="450" Width="800"
+        SnapsToDevicePixels="True" UseLayoutRounding="True">
     <Grid>
-        
+        <Grid.RowDefinitions>
+            <RowDefinition Height="20*"/>
+            <RowDefinition Height="80*"/>
+        </Grid.RowDefinitions>
+
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="15*"/>
+            <ColumnDefinition Width="85*"/>
+        </Grid.ColumnDefinitions>
+
+        <!-- Skapar rektanglar för att fylla i färg -->
+        <Rectangle Grid.Row="1" Grid.Column="0" Fill="#DC143C"/>
+        <Rectangle Grid.Row="0" Grid.Column="0" Fill="#FF6F0A1E"/>
+        <Rectangle Grid.Row="0" Grid.Column="1" Fill="#FFA00B29"/>
+        <Rectangle Grid.Row="1" Grid.Column="1" Fill="#D3D3D3"/>
+
+
+        <Grid Grid.Row="1" Grid.Column="1">
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="25*"/>
+                    <RowDefinition Height="50*"/>
+                    <RowDefinition Height="25*"/>
+                </Grid.RowDefinitions>
+
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                </Grid.ColumnDefinitions>
+                
+                <Label Grid.ColumnSpan="3"
+                       x:Name="lblFitTrack" Content="Fit-Track"
+                       FontSize="50" FontFamily="Arial"
+                       Foreground="#DC143C" FontStyle="Italic"
+                       VerticalAlignment="Center" HorizontalAlignment="Center" FontWeight="Bold"/>
+                <StackPanel Grid.Row="1" Grid.Column="1"
+                            VerticalAlignment="Center">
+                    <Label x:Name="lblUsername" Content="Username:" 
+                           VerticalAlignment="Center" HorizontalAlignment="Center"
+                           />
+                    <TextBox x:Name="txtboxUsername" Width="120"/>
+                    <Label x:Name="lblPassword" Content="Password:" 
+                           VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                    <TextBox x:Name="txtboxPassword" Width="120"/>
+                    <StackPanel Orientation="Horizontal"
+                                HorizontalAlignment="Center" VerticalAlignment="Center">
+                        <Button x:Name="btnSignIn" Content="Sign In"
+                                Margin="10" Width="55" Height="25"
+                                Background="#FFAAACAA"
+                                Command="{Binding SignInCommand}"/>
+                        <Button x:Name="btnRegister" Content="Register"
+                                Margin="10" Width="60" Height="25"
+                                Background="#FFAAACAA"
+                                Command="{Binding RegisterCommand}"/>
+                    </StackPanel>
+                    
+
+                </StackPanel>
+                
+
+            </Grid>
+            
+        </Grid>
 
     </Grid>
 </Window>
