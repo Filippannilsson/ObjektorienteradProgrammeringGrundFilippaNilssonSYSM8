@@ -69,8 +69,7 @@ namespace ProjektuppgiftOPG.ViewModel
             foreach (var user in users)
             {
                 //Jämför användarnamn och lösenord med inmatad text
-                if (user.Username.Equals(Username, StringComparison.OrdinalIgnoreCase) &&
-                    user.Password == Password)
+                if (user.Username == Username && user.Password == Password)
                 {
                     //Anropar SignIn-metod från User-klassen
                     user.SignIn();
@@ -82,7 +81,6 @@ namespace ProjektuppgiftOPG.ViewModel
 
                     //Stänger ner MainWindow
                     Application.Current.MainWindow.Close();
-
                 }
             }
 
