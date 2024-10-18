@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
 
 namespace ProjektuppgiftOPG.Model
 {
@@ -24,12 +25,13 @@ namespace ProjektuppgiftOPG.Model
         //Metoder
         public override void SignIn()
         {
-
+                
         }
 
-        public void ResetPassword(string securityAnser)
+        public void ResetPassword(string securityAnwser)
         {
-
+            
         }
+
     }
 }

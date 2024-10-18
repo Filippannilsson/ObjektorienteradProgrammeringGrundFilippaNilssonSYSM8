@@ -9,13 +9,13 @@ namespace ProjektuppgiftOPG.MVVM
 {
     public class RelayCommand : ICommand
     {
-        //Fält för att hålla referenser till metoder som definierar vad som ska göras (Exacute)
+        //Fält för att lagra metoder som definierar kommandots logik
         private Action<object> execute;
 
-        //Kollar om kommandot kan köras
+        //Fält för att avgöra om kommandot kan köras
         private Func<object, bool> canExecute;
         
-        //Event som signalerar när kommandots möjlighet att köras har ändrats
+        //Event som signalerar när kommandots körbarhet har ändrats
         public event EventHandler? CanExecuteChanged;
 
         //Konstruktor
@@ -25,13 +25,13 @@ namespace ProjektuppgiftOPG.MVVM
             this.canExecute = canExecute;
         }
 
-        //Bestämmer om objektet kan köras eller ej
+        //Kontrollerar om kommandot kan köras
         public bool CanExecute(object? parameter)
         {
             return canExecute == null || canExecute(parameter);
         }
 
-        //Kör den logik som tilldelats via execute-metoden
+        //Kör den logik som tilldelats för kommandot
         public void Execute(object? parameter)
         {
             execute(parameter);
