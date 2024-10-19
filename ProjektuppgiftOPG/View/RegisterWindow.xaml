@@ -5,8 +5,81 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:ProjektuppgiftOPG.Windows"
         mc:Ignorable="d"
-        Title="RegisterWindow" Height="450" Width="800">
+        Title="RegisterWindow" Height="450" Width="800"
+                SnapsToDevicePixels="True" UseLayoutRounding="True">
     <Grid>
-        
+        <Grid.RowDefinitions>
+            <RowDefinition Height="15*"/>
+            <RowDefinition Height="85*"/>
+        </Grid.RowDefinitions>
+
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="15*"/>
+            <ColumnDefinition Width="85*"/>
+        </Grid.ColumnDefinitions>
+
+        <!-- Skapar rektanglar för att fylla i färg -->
+        <Rectangle Grid.Row="1" Grid.Column="0" Fill="#DC143C"/>
+        <Rectangle Grid.Row="0" Grid.Column="0" Fill="#FF6F0A1E"/>
+        <Rectangle Grid.Row="0" Grid.Column="1" Fill="#FFA00B29"/>
+        <Rectangle Grid.Row="1" Grid.Column="1" Fill="#D3D3D3"/>
+
+        <!-- Skapar fler rader och columner för att kunna anpassa designen bättre -->
+        <Grid Grid.Row="1" Grid.Column="1">
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="25*"/>
+                    <RowDefinition Height="65*"/>
+                    <RowDefinition Height="10*"/>
+                </Grid.RowDefinitions>
+
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="37*"/>
+                    <ColumnDefinition Width="26*"/>
+                    <ColumnDefinition Width="37*"/>
+                </Grid.ColumnDefinitions>
+
+                <Label x:Name="lblCreateAccount" Content="Create account"
+                       Grid.ColumnSpan="3" 
+                       FontSize="30" FontFamily="Arial"
+                       Foreground="#DC143C" FontWeight="DemiBold"
+                       VerticalAlignment="Center" HorizontalAlignment="Center"/>
+
+                <Rectangle Grid.Row="1" Grid.Column="1" Fill="#FFAAACAA"/>
+                
+               
+                <StackPanel Grid.Row="1" Grid.Column="1"
+                            VerticalAlignment="Center">
+                    <Label x:Name="lblUsername" Content="Create a username:"
+                           FontSize="14"
+                           VerticalAlignment="Center" HorizontalAlignment="Center"
+                           />
+                    <TextBox x:Name="txtboxUsername" Width="130" Height="25"/>
+                    <!-- Lägg till text binding -->
+
+                    <Label x:Name="lblPassword" Content="Create a password:"
+                           FontSize="14"
+                           VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                    <TextBox x:Name="txtboxPassword" Width="130" Height="25"
+                             Margin="0,0,0,5"/> <!-- Lägg till text binding -->
+                    <Label x:Name="lblCountry" Content="Select your country"
+                           FontSize="14"
+                           VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                    <ComboBox x:Name="cbCountry"
+                              Width="130"
+                              VerticalAlignment="Center"
+                              HorizontalAlignment="Center"
+                              ItemsSource="{Binding Country}" 
+                              SelectedItem="{Binding SelectedCountry}"
+                              Margin="5"/>
+
+                    <Button x:Name="btnRegister" Content="Register"
+                            Margin="5" Width="100" Height="25"
+                            Background="#D3D3D3" FontWeight="DemiBold"/> <!-- Lägg till command! -->
+
+                </StackPanel>
+            </Grid>
+        </Grid>
     </Grid>
 </Window>
+    
