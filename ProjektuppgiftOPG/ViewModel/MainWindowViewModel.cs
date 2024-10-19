@@ -39,7 +39,7 @@ namespace ProjektuppgiftOPG.ViewModel
         }
 
         //Lista över registrerade användare
-        private List<User> users;
+        public static List<User> users;
 
         //Kommando för knapparna
         public RelayCommand SignInCommand => new RelayCommand(SignIn);
@@ -66,7 +66,7 @@ namespace ProjektuppgiftOPG.ViewModel
 
             bool loginSuccessful = false;
 
-            foreach (var user in users)
+            foreach (User user in users)
             {
                 //Jämför användarnamn och lösenord med inmatad text
                 if (user.Username == Username && user.Password == Password)

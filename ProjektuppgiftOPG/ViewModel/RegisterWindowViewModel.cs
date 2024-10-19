@@ -50,9 +50,6 @@ namespace ProjektuppgiftOPG.ViewModel
             }
         }
 
-        //Lista över registrerade användare
-        private List<User> users;
-
         //Kommando för knapparna
         public RelayCommand RegisterCommand => new RelayCommand(RegisterNewUser);
 
@@ -61,23 +58,19 @@ namespace ProjektuppgiftOPG.ViewModel
         public RegisterWindowViewModel(RegisterWindow window)
         {
             registerWindow = window;
-
-            //Användare skapad på förhand
-            users = new List<User>
-            {
-                new User("user", "password", "Sweden", "What is your favorie color?", "Red")
-            };
-
+            
         }
 
         //Metod för att registera ny användare
         public void RegisterNewUser(object parameter)
         {
-            foreach (User user in users)
+            foreach (User user in MainWindowViewModel.users) //Hämtar lista från MainWindowViewModel
             {
                 if (usernameInput == user.Username)
                 {
                     MessageBox.Show("The username is already taken, try again");
+                    //Avbryt registrering om användarnamn är upptaget
+                    return;
                 }
             }
 
@@ -87,7 +80,7 @@ namespace ProjektuppgiftOPG.ViewModel
             User newUser = new User(usernameInput, passwordInput, countryComboBox, "What is your favorite color?", "Blue");
             
             //Lägg till ny användare i användarlistan
-            users.Add(newUser);
+            MainWindowViewModel.users.Add(newUser);
 
             MessageBox.Show("Registration successfull");
 
