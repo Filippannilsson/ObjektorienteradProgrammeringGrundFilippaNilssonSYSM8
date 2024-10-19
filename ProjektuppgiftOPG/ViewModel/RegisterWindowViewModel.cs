@@ -4,6 +4,7 @@ using ProjektuppgiftOPG.MVVM;
 using ProjektuppgiftOPG.Windows;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -50,6 +51,9 @@ namespace ProjektuppgiftOPG.ViewModel
             }
         }
 
+        public ObservableCollection<string> Countries { get; set; }
+
+        
         //Kommando för knapparna
         public RelayCommand RegisterCommand => new RelayCommand(RegisterNewUser);
 
@@ -58,7 +62,9 @@ namespace ProjektuppgiftOPG.ViewModel
         public RegisterWindowViewModel(RegisterWindow window)
         {
             registerWindow = window;
-            
+
+            //Skapa länder till comboboxen
+            Countries = new ObservableCollection<string> { "Sweden", "Norway", "Denmark", "Finland", "Iceland" };
         }
 
         //Metod för att registera ny användare

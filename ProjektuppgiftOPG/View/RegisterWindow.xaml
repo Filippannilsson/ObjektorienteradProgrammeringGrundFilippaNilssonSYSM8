@@ -69,7 +69,7 @@
                               Width="130"
                               VerticalAlignment="Center"
                               HorizontalAlignment="Center"
-                              ItemsSource="{Binding Country}" 
+                              ItemsSource="{Binding Countries}" 
                               SelectedItem="{Binding SelectedCountry}"
                               Margin="5"/>
 
