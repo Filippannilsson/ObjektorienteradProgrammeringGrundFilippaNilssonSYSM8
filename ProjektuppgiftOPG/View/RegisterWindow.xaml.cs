@@ -20,7 +20,7 @@ namespace ProjektuppgiftOPG.Windows
         public RegisterWindow()
         {
             InitializeComponent();
-            DataContext = new RegisterWindowViewModel();
+            DataContext = new RegisterWindowViewModel(this);
         }
     }
 }

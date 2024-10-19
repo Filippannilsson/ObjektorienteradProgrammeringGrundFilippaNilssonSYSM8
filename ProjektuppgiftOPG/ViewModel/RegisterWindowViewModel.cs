@@ -13,6 +13,9 @@ namespace ProjektuppgiftOPG.ViewModel
 {
     public class RegisterWindowViewModel : ViewModelBase
     {
+        //Variabel för RegisterWindow
+        private RegisterWindow registerWindow;
+
         //Egenskaper
         private string usernameInput;
         public string UsernameInput
@@ -55,8 +58,9 @@ namespace ProjektuppgiftOPG.ViewModel
 
 
         //Konstruktor
-        public RegisterWindowViewModel()
+        public RegisterWindowViewModel(RegisterWindow window)
         {
+            registerWindow = window;
 
             //Användare skapad på förhand
             users = new List<User>
@@ -87,12 +91,8 @@ namespace ProjektuppgiftOPG.ViewModel
 
             MessageBox.Show("Registration successfull");
 
-            //Öppnar WorkoutsWindow
-            MainWindow mainWindow = new MainWindow();
-            mainWindow.Show();
-
-            //Stänger ner MainWindow
-            Application.Current.MainWindow.Close();
+            //Stänger ner RegisterWindow
+            registerWindow.Close();
 
         }
     }
