@@ -75,7 +75,8 @@
 
                     <Button x:Name="btnRegister" Content="Register"
                             Margin="5" Width="100" Height="25"
-                            Background="#D3D3D3" FontWeight="DemiBold"/> <!-- Lägg till command! -->
+                            Background="#D3D3D3" FontWeight="DemiBold"
+                            Command="{Binding RegisterCommand}"/> <!-- Lägg till command! -->
 
                 </StackPanel>
             </Grid>
