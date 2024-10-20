@@ -42,36 +42,36 @@
                 <Rectangle Grid.Row="1" Grid.Column="1" Fill="#FFAAACAA"/>
 
                 <Label Grid.ColumnSpan="3"
-                       x:Name="lblFitTrack" Content="Fit-Track"
+                       Content="Fit-Track"
                        FontSize="50" FontFamily="Arial"
                        Foreground="#DC143C" FontStyle="Italic"
                        VerticalAlignment="Center" HorizontalAlignment="Center" FontWeight="Bold"/>
                 <StackPanel Grid.Row="1" Grid.Column="1"
                             VerticalAlignment="Center">
-                    <Label x:Name="lblUsername" Content="Username:"
+                    <Label Content="Username:"
                            FontSize="14"
                            VerticalAlignment="Center" HorizontalAlignment="Center"
                            />
-                    <TextBox x:Name="txtboxUsername" Width="130" Height="25"
+                    <TextBox Width="130" Height="25"
                              Text="{Binding Username, UpdateSourceTrigger=PropertyChanged}"/>
-                    <Label x:Name="lblPassword" Content="Password:"
+                    <Label Content="Password:"
                            FontSize="14"
                            VerticalAlignment="Center" HorizontalAlignment="Center"/>
-                    <TextBox x:Name="txtboxPassword" Width="130" Height="25"
+                    <TextBox Width="130" Height="25"
                              Margin="0,0,0,5"
                              Text="{Binding Password, UpdateSourceTrigger=PropertyChanged}"/>
                     <StackPanel Orientation="Horizontal"
                                 HorizontalAlignment="Center" VerticalAlignment="Center">
-                        <Button x:Name="btnSignIn" Content="Sign In"
+                        <Button Content="Sign In"
                                 Margin="5" Width="55" Height="25"
                                 Background="#D3D3D3" FontWeight="DemiBold"
                                 Command="{Binding SignInCommand}"/>
-                        <Button x:Name="btnRegister" Content="Register"
+                        <Button Content="Register"
                                 Margin="5" Width="60" Height="25"
                                 Background="#D3D3D3" FontWeight="DemiBold"
                                 Command="{Binding RegisterCommand}"/>
                     </StackPanel>
-                    <Button x:Name="btnResetPassword" Content="Reset password"
+                    <Button Content="Reset password"
                             Margin="5" Width="100" Height="25"
                             Background="#D3D3D3" FontWeight="DemiBold"
                             Command="{Binding ResetCommand}"/>

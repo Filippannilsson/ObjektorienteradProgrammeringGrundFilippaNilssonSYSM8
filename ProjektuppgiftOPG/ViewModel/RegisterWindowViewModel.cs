@@ -40,20 +40,45 @@ namespace ProjektuppgiftOPG.ViewModel
             }
         }
 
-        private string countryComboBox;
-        public string CountryComboBox
+        private string selectedCountry;
+        public string SelectedCountry
         {
-            get { return countryComboBox; }
+            get { return selectedCountry; }
             set
             {
-                countryComboBox = value;
+                selectedCountry = value;
                 OnPropertyChanged();
             }
         }
 
+        private string selectedQuestion;
+        public string SelectedQuestion
+        {
+            get { return selectedQuestion; }
+            set
+            {
+                selectedQuestion = value;
+                OnPropertyChanged();
+            }
+        }
+
+        private string answerInput;
+        public string AnswerInput
+        {
+            get { return answerInput; }
+            set
+            {
+                answerInput = value;
+                OnPropertyChanged();
+            }
+        }
+
+        //Lista för länder att välja mellan
         public ObservableCollection<string> Countries { get; set; }
 
-        
+        //Lista för säkerhetsfrågor att välja mellan
+        public ObservableCollection<string> Questions { get; set; }
+
         //Kommando för knapparna
         public RelayCommand RegisterCommand => new RelayCommand(RegisterNewUser);
 
@@ -65,11 +90,19 @@ namespace ProjektuppgiftOPG.ViewModel
 
             //Skapa länder till comboboxen
             Countries = new ObservableCollection<string> { "Sweden", "Norway", "Denmark", "Finland", "Iceland" };
+
+            //Skapa frågor till comboboxen
+            Questions = new ObservableCollection<string> 
+            { 
+                "What is your favorite color?", 
+                "What is the name of your first pet?" 
+            };
         }
 
         //Metod för att registera ny användare
         public void RegisterNewUser(object parameter)
         {
+            //Kontrollera om användarnamnet är upptaget
             foreach (User user in MainWindowViewModel.users) //Hämtar lista från MainWindowViewModel
             {
                 if (usernameInput == user.Username)
@@ -83,7 +116,7 @@ namespace ProjektuppgiftOPG.ViewModel
             //FIXA MED SÄKERHETSFRÅGAN SEN
 
             //Skapar en ny användare
-            User newUser = new User(usernameInput, passwordInput, countryComboBox, "What is your favorite color?", "Blue");
+            User newUser = new User(usernameInput, passwordInput, selectedCountry, "What is your favorite color?", "Blue");
             
             //Lägg till ny användare i användarlistan
             MainWindowViewModel.users.Add(newUser);

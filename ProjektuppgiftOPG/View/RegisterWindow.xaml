@@ -36,48 +36,63 @@
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="37*"/>
                     <ColumnDefinition Width="26*"/>
-                    <ColumnDefinition Width="37*"/>
                 </Grid.ColumnDefinitions>
 
-                <Label x:Name="lblCreateAccount" Content="Create account"
+                <Label Content="Create account"
                        Grid.ColumnSpan="3" 
                        FontSize="30" FontFamily="Arial"
                        Foreground="#DC143C" FontWeight="DemiBold"
                        VerticalAlignment="Center" HorizontalAlignment="Center"/>
 
                 <Rectangle Grid.Row="1" Grid.Column="1" Fill="#FFAAACAA"/>
+                <Rectangle Grid.Row="1" Grid.Column="0" Fill="#FFAAACAA"/>
                 
                
-                <StackPanel Grid.Row="1" Grid.Column="1"
+                <StackPanel Grid.Row="1"
                             VerticalAlignment="Center">
-                    <Label x:Name="lblUsername" Content="Create a username:"
+                    <Label Content="Create a username:"
                            FontSize="14"
                            VerticalAlignment="Center" HorizontalAlignment="Center"
                            />
-                    <TextBox x:Name="txtboxUsername" Width="130" Height="25"/>
-                    <!-- Lägg till text binding -->
-
-                    <Label x:Name="lblPassword" Content="Create a password:"
+                    <TextBox Text="{Binding UsernameInput, UpdateSourceTrigger=PropertyChanged}"
+                             Width="130" Height="25"/>
+                    <Label Content="Create a password:"
                            FontSize="14"
                            VerticalAlignment="Center" HorizontalAlignment="Center"/>
-                    <TextBox x:Name="txtboxPassword" Width="130" Height="25"
-                             Margin="0,0,0,5"/> <!-- Lägg till text binding -->
-                    <Label x:Name="lblCountry" Content="Select your country"
+                    <TextBox Text="{Binding PasswordInput, UpdateSourceTrigger=PropertyChanged}"
+                             Width="130" Height="25"
+                             Margin="0,0,0,5"/>
+                    <Label Content="Select your country"
                            FontSize="14"
                            VerticalAlignment="Center" HorizontalAlignment="Center"/>
-                    <ComboBox x:Name="cbCountry"
-                              Width="130"
+                    <ComboBox Width="130"
                               VerticalAlignment="Center"
                               HorizontalAlignment="Center"
                               ItemsSource="{Binding Countries}" 
                               SelectedItem="{Binding SelectedCountry}"
                               Margin="5"/>
-
-                    <Button x:Name="btnRegister" Content="Register"
-                            Margin="5" Width="100" Height="25"
+                </StackPanel>
+                
+                <StackPanel Grid.Row=" 1" Grid.Column="2"
+                            VerticalAlignment="Center">
+                    <Label Content="Select a security question:"
+                           FontSize="14"
+                           VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                    <ComboBox Width="180"
+                              VerticalAlignment="Center"
+                              HorizontalAlignment="Center"
+                              ItemsSource="{Binding Questions}" 
+                              SelectedItem="{Binding SelectedQuestion}"
+                              Margin="5"/>
+                    <Label Content="Answer:"
+                           FontSize="14"
+                           VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                    <TextBox Text="{Binding AnswerInput, UpdateSourceTrigger=PropertyChanged}"
+                             Width="180" Height="25"/>
+                    <Button Content="Register"
+                            Margin="20" Width="100" Height="25"
                             Background="#D3D3D3" FontWeight="DemiBold"
-                            Command="{Binding RegisterCommand}"/> <!-- Lägg till command! -->
-
+                            Command="{Binding RegisterCommand}"/>
                 </StackPanel>
             </Grid>
         </Grid>
