@@ -37,6 +37,17 @@ namespace ProjektuppgiftOPG.ViewModel
             }
         }
 
+        private string repeatedPasswordInput;
+        public string RepeatedPasswordInput
+        {
+            get { return repeatedPasswordInput; }
+            set
+            {
+                repeatedPasswordInput = value;
+                OnPropertyChanged();
+            }
+        }
+
         private string selectedCountry;
         public string SelectedCountry
         {
@@ -110,7 +121,7 @@ namespace ProjektuppgiftOPG.ViewModel
 
             if (passwordInput.Length < 8)
             {
-                MessageBox.Show("Lösenordet måste vara minst 8 tecken");
+                MessageBox.Show("The password must be at least 8 characters long");
                 return;
             }
 
@@ -132,12 +143,19 @@ namespace ProjektuppgiftOPG.ViewModel
 
             if (!hasDigit)
             {
-                MessageBox.Show("Lösenordet måste innehålla minst en siffra");
+                MessageBox.Show("The password must contain at least one digit");
                 return;
             }
             if (!hasSpecialchar)
             {
-                MessageBox.Show("Lösenordet måste innehålla minst ett specialtecken");
+                MessageBox.Show("The password must contain at least one special character");
+                return;
+            }
+
+            //Kontrollera om lösenorden matchar
+            if (passwordInput != repeatedPasswordInput)
+            {
+                MessageBox.Show("The passwords do not match");
                 return;
             }
 

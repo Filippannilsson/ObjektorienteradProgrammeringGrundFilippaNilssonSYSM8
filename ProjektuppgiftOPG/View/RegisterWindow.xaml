@@ -59,19 +59,25 @@
                     <TextBox Text="{Binding PasswordInput, UpdateSourceTrigger=PropertyChanged}"
                              Width="130" Height="25"
                              Margin="0,0,0,5"/>
-                    <Label Content="Select your country:"
+                    <Label Content="Repeat password:"
                            FontSize="14"
                            VerticalAlignment="Center" HorizontalAlignment="Center"/>
-                    <ComboBox Width="130"
-                              VerticalAlignment="Center"
-                              HorizontalAlignment="Center"
-                              ItemsSource="{Binding Countries}" 
-                              SelectedItem="{Binding SelectedCountry}"
-                              Margin="5"/>
+                    <TextBox Text="{Binding RepeatedPasswordInput, UpdateSourceTrigger=PropertyChanged}"
+                             Width="130" Height="25"
+                             Margin="0,0,0,5"/>
                 </StackPanel>
                 
                 <StackPanel Grid.Row=" 1" Grid.Column="1"
                             VerticalAlignment="Center">
+                    <Label Content="Select your country:"
+       FontSize="14"
+       VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                    <ComboBox Width="130"
+          VerticalAlignment="Center"
+          HorizontalAlignment="Center"
+          ItemsSource="{Binding Countries}" 
+          SelectedItem="{Binding SelectedCountry}"
+          Margin="5"/>
                     <Label Content="Select a security question:"
                            FontSize="14"
                            VerticalAlignment="Center" HorizontalAlignment="Center"/>

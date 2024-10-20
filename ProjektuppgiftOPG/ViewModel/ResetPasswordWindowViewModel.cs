@@ -92,6 +92,40 @@ namespace ProjektuppgiftOPG.ViewModel
                     if (selectedSecurityQuestion == user.SecurityQuestion &&
                         securityAnswerInput == user.SecurityAnswer)
                     {
+                        // Kontrollera om det nya lösenordet är giltigt
+                        if (newPasswordInput.Length < 8)
+                        {
+                            MessageBox.Show("The password must be at least 8 characters long");
+                            return;
+                        }
+
+                        bool hasDigit = false;
+                        bool hasSpecialChar = false;
+
+                        // Kontrollera om det finns minst en siffra och ett specialtecken
+                        foreach (char c in newPasswordInput)
+                        {
+                            if (char.IsDigit(c))
+                            {
+                                hasDigit = true;
+                            }
+                            else if (!char.IsLetterOrDigit(c))
+                            {
+                                hasSpecialChar = true;
+                            }
+                        }
+
+                        if (!hasDigit)
+                        {
+                            MessageBox.Show("The password must contain at least one digit");
+                            return;
+                        }
+                        if (!hasSpecialChar)
+                        {
+                            MessageBox.Show("The password must contain at least one special character");
+                            return;
+                        }
+
                         //Kontrollera om lösenorden matchar
                         if (newPasswordInput == repeatedPasswordInput)
                         {
@@ -103,7 +137,7 @@ namespace ProjektuppgiftOPG.ViewModel
                         }
                         else
                         {
-                            MessageBox.Show("The passwords are not matching, try again");
+                            MessageBox.Show("The passwords do not match, try again");
                         }
                     }
                     else
