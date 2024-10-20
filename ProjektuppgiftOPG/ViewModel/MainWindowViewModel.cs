@@ -55,7 +55,7 @@ namespace ProjektuppgiftOPG.ViewModel
             //Användare skapad på förhand
             users = new List<User> 
             {
-                new User("user", "password", "Sweden", "What is your favorie color?", "Red")
+                new User("user", "password", "Sweden", "What is your favorite color?", "Red")
             };
 
         }

@@ -74,7 +74,11 @@ namespace ProjektuppgiftOPG.ViewModel
         public static ObservableCollection<string> Countries { get; set; }
 
         //Lista för säkerhetsfrågor att välja mellan
-        public static ObservableCollection<string> Questions { get; set; }
+        public static ObservableCollection<string> Questions { get; } = new ObservableCollection<string>
+        {
+            "What is your favorite color?",
+            "What is the name of your first pet?"
+        };
 
         //Kommando för knapparna
         public RelayCommand RegisterCommand => new RelayCommand(RegisterNewUser);
@@ -86,12 +90,6 @@ namespace ProjektuppgiftOPG.ViewModel
             //Skapa länder till comboboxen
             Countries = new ObservableCollection<string> { "Sweden", "Norway", "Denmark", "Finland", "Iceland" };
 
-            //Skapa frågor till comboboxen
-            Questions = new ObservableCollection<string> 
-            { 
-                "What is your favorite color?", 
-                "What is the name of your first pet?" 
-            };
         }
 
         //Metod för att registera ny användare
