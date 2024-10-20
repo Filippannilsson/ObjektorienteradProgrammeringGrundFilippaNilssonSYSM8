@@ -1,5 +1,7 @@
 ﻿using ProjektuppgiftOPG.Model;
 using ProjektuppgiftOPG.MVVM;
+using ProjektuppgiftOPG.View;
+using ProjektuppgiftOPG.Windows;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -95,6 +97,9 @@ namespace ProjektuppgiftOPG.ViewModel
                         {
                             user.Password = newPasswordInput;
                             MessageBox.Show("Password changed successfully");
+
+                            //Stänger ner ResetPasswordWindow
+                            Application.Current.Windows.OfType<ResetPasswordWindow>().FirstOrDefault()?.Close();
                         }
                         else
                         {
@@ -109,6 +114,7 @@ namespace ProjektuppgiftOPG.ViewModel
                 }
             }
 
+            //Meddelande om användaren inte är registrerad
             if (!userExists)
             {
                 MessageBox.Show("The user does not exist");

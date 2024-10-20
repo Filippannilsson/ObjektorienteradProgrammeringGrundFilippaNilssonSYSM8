@@ -106,9 +106,44 @@ namespace ProjektuppgiftOPG.ViewModel
                 }
             }
 
-            //Skapar en ny användare
+            //Kontrollera om lösenordet är giltigt
+
+            if (passwordInput.Length < 8)
+            {
+                MessageBox.Show("Lösenordet måste vara minst 8 tecken");
+                return;
+            }
+
+            bool hasDigit = false;
+            bool hasSpecialchar = false;
+
+            //Kontrollera om det finns minst en siffra och ett specialtecken
+            foreach (char c in passwordInput)
+            {
+                if (char.IsDigit(c))
+                {
+                    hasDigit = true;
+                }
+                else if (!char.IsLetterOrDigit(c))
+                {
+                    hasSpecialchar = true;
+                }
+            }
+
+            if (!hasDigit)
+            {
+                MessageBox.Show("Lösenordet måste innehålla minst en siffra");
+                return;
+            }
+            if (!hasSpecialchar)
+            {
+                MessageBox.Show("Lösenordet måste innehålla minst ett specialtecken");
+                return;
+            }
+
+            //Skapar en ny användare om lösenord är korrekt
             User newUser = new User(usernameInput, passwordInput, selectedCountry, selectedQuestion, answerInput);
-            
+
             //Lägg till ny användare i användarlistan
             MainWindowViewModel.users.Add(newUser);
 
@@ -116,7 +151,6 @@ namespace ProjektuppgiftOPG.ViewModel
 
             //Stänger ner RegisterWindow
             Application.Current.Windows.OfType<RegisterWindow>().FirstOrDefault()?.Close();
-
         }
     }
 }
