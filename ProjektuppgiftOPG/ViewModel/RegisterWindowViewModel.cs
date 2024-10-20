@@ -71,10 +71,10 @@ namespace ProjektuppgiftOPG.ViewModel
         }
 
         //Lista för länder att välja mellan
-        public ObservableCollection<string> Countries { get; set; }
+        public static ObservableCollection<string> Countries { get; set; }
 
         //Lista för säkerhetsfrågor att välja mellan
-        public ObservableCollection<string> Questions { get; set; }
+        public static ObservableCollection<string> Questions { get; set; }
 
         //Kommando för knapparna
         public RelayCommand RegisterCommand => new RelayCommand(RegisterNewUser);
@@ -107,8 +107,6 @@ namespace ProjektuppgiftOPG.ViewModel
                     return;
                 }
             }
-
-            //FIXA MED SÄKERHETSFRÅGAN SEN
 
             //Skapar en ny användare
             User newUser = new User(usernameInput, passwordInput, selectedCountry, selectedQuestion, answerInput);
