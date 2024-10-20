@@ -9,6 +9,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Input;
+using ProjektuppgiftOPG.View;
 
 namespace ProjektuppgiftOPG.ViewModel
 {
@@ -98,8 +99,8 @@ namespace ProjektuppgiftOPG.ViewModel
 
         public void Reset (object parameter)
         {
-            //Glömt lösenord-logik
-            MessageBox.Show("Här ska man svara på säkerhetsfråga");
+            ResetPasswordWindow resetPasswordWindow = new ResetPasswordWindow();
+            resetPasswordWindow.Show();
         }
     }
 }

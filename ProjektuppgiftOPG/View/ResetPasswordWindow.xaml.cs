@@ -13,14 +13,14 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 
-namespace ProjektuppgiftOPG.Windows
+namespace ProjektuppgiftOPG.View
 {
-    public partial class RegisterWindow : Window
+    public partial class ResetPasswordWindow : Window
     {
-        public RegisterWindow()
+        public ResetPasswordWindow()
         {
             InitializeComponent();
-            DataContext = new RegisterWindowViewModel();
+            DataContext = new ResetPasswordWindowViewModel();
         }
     }
 }

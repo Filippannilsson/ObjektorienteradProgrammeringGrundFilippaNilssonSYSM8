@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:ProjektuppgiftOPG.Windows"
         mc:Ignorable="d"
         Title="RegisterWindow" Height="450" Width="800"
-                SnapsToDevicePixels="True" UseLayoutRounding="True">
+        SnapsToDevicePixels="True" UseLayoutRounding="True">
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="15*"/>
@@ -34,8 +34,8 @@
                 </Grid.RowDefinitions>
 
                 <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="37*"/>
-                    <ColumnDefinition Width="26*"/>
+                    <ColumnDefinition Width="50*"/>
+                    <ColumnDefinition Width="50*"/>
                 </Grid.ColumnDefinitions>
 
                 <Label Content="Create account"
@@ -44,9 +44,6 @@
                        Foreground="#DC143C" FontWeight="DemiBold"
                        VerticalAlignment="Center" HorizontalAlignment="Center"/>
 
-                <Rectangle Grid.Row="1" Grid.Column="1" Fill="#FFAAACAA"/>
-                <Rectangle Grid.Row="1" Grid.Column="0" Fill="#FFAAACAA"/>
-                
                
                 <StackPanel Grid.Row="1"
                             VerticalAlignment="Center">
@@ -62,7 +59,7 @@
                     <TextBox Text="{Binding PasswordInput, UpdateSourceTrigger=PropertyChanged}"
                              Width="130" Height="25"
                              Margin="0,0,0,5"/>
-                    <Label Content="Select your country"
+                    <Label Content="Select your country:"
                            FontSize="14"
                            VerticalAlignment="Center" HorizontalAlignment="Center"/>
                     <ComboBox Width="130"
@@ -73,7 +70,7 @@
                               Margin="5"/>
                 </StackPanel>
                 
-                <StackPanel Grid.Row=" 1" Grid.Column="2"
+                <StackPanel Grid.Row=" 1" Grid.Column="1"
                             VerticalAlignment="Center">
                     <Label Content="Select a security question:"
                            FontSize="14"
@@ -90,7 +87,8 @@
                     <TextBox Text="{Binding AnswerInput, UpdateSourceTrigger=PropertyChanged}"
                              Width="180" Height="25"/>
                     <Button Content="Register"
-                            Margin="20" Width="100" Height="25"
+                            FontSize="15"
+                            Margin="20" Width="100" Height="30"
                             Background="#D3D3D3" FontWeight="DemiBold"
                             Command="{Binding RegisterCommand}"/>
                 </StackPanel>

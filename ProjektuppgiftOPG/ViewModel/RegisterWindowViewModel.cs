@@ -14,9 +14,6 @@ namespace ProjektuppgiftOPG.ViewModel
 {
     public class RegisterWindowViewModel : ViewModelBase
     {
-        //Variabel för RegisterWindow
-        private RegisterWindow registerWindow;
-
         //Egenskaper
         private string usernameInput;
         public string UsernameInput
@@ -84,10 +81,8 @@ namespace ProjektuppgiftOPG.ViewModel
 
 
         //Konstruktor
-        public RegisterWindowViewModel(RegisterWindow window)
+        public RegisterWindowViewModel()
         {
-            registerWindow = window;
-
             //Skapa länder till comboboxen
             Countries = new ObservableCollection<string> { "Sweden", "Norway", "Denmark", "Finland", "Iceland" };
 
@@ -116,7 +111,7 @@ namespace ProjektuppgiftOPG.ViewModel
             //FIXA MED SÄKERHETSFRÅGAN SEN
 
             //Skapar en ny användare
-            User newUser = new User(usernameInput, passwordInput, selectedCountry, "What is your favorite color?", "Blue");
+            User newUser = new User(usernameInput, passwordInput, selectedCountry, selectedQuestion, answerInput);
             
             //Lägg till ny användare i användarlistan
             MainWindowViewModel.users.Add(newUser);
@@ -124,7 +119,7 @@ namespace ProjektuppgiftOPG.ViewModel
             MessageBox.Show("Registration successfull");
 
             //Stänger ner RegisterWindow
-            registerWindow.Close();
+            Application.Current.Windows.OfType<RegisterWindow>().FirstOrDefault()?.Close();
 
         }
     }
