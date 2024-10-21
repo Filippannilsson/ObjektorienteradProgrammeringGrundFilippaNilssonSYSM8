@@ -17,10 +17,13 @@ namespace ProjektuppgiftOPG.Windows
 {
     public partial class WorkoutsWindow : Window
     {
-        public WorkoutsWindow()
+        public WorkoutsWindow(string username)
         {
             InitializeComponent();
-            DataContext = new WorkoutDetailWindowViewModel();
+            DataContext = new WorkoutWindowViewModel
+            {
+                Username = username
+            };
         }
     }
 }

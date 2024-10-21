@@ -76,8 +76,8 @@ namespace ProjektuppgiftOPG.ViewModel
                     user.SignIn();
                     loginSuccessful = true;
 
-                    //Öppnar WorkoutsWindow
-                    WorkoutsWindow workoutsWindow = new WorkoutsWindow();
+                    //Öppnar WorkoutsWindow och skicka med användarnamn
+                    WorkoutsWindow workoutsWindow = new WorkoutsWindow(user.Username);
                     workoutsWindow.Show();
 
                     //Stänger ner MainWindow
