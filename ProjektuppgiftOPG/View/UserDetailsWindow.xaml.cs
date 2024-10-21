@@ -1,4 +1,5 @@
-﻿using System;
+﻿using ProjektuppgiftOPG.ViewModel;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -14,14 +15,12 @@ using System.Windows.Shapes;
 
 namespace ProjektuppgiftOPG.Windows
 {
-    /// <summary>
-    /// Interaction logic for UserDetailsWindow.xaml
-    /// </summary>
     public partial class UserDetailsWindow : Window
     {
         public UserDetailsWindow()
         {
             InitializeComponent();
+            DataContext = new UserDetailsWindowViewModel();
         }
     }
 }

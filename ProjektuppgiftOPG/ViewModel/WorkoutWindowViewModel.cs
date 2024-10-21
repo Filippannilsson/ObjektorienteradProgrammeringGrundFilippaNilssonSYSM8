@@ -41,12 +41,12 @@ namespace ProjektuppgiftOPG.ViewModel
         public ObservableCollection<Workout> WorkoutList { get; set; }
 
         //Kommando för knapparna
-        public RelayCommand SignOutCommand => new RelayCommand(SignOut);
         public RelayCommand UserCommand => new RelayCommand(OpenUserWindow);
         public RelayCommand AddWorkoutCommand => new RelayCommand(AddWorkOut);
         public RelayCommand DetailsCommand => new RelayCommand(OpenDetails);
         public RelayCommand RemoveCommand => new RelayCommand(RemoveWorkOut);
         public RelayCommand InfoCommand => new RelayCommand(ShowInfo);
+        public RelayCommand SignOutCommand => new RelayCommand(SignOut);
 
         //Konstruktor
         public WorkoutWindowViewModel()
@@ -55,10 +55,27 @@ namespace ProjektuppgiftOPG.ViewModel
             
         }
 
+
+        //Metod för att öppna UserDetailsWindow
+        public void OpenUserWindow(object parameter)
+        {
+            //Öppnar UserDetailsWindow
+            UserDetailsWindow userDetailsWindow = new UserDetailsWindow();
+            userDetailsWindow.Show();
+        }
+
         //Metod för att öppna AddWorkoutWindow
         public void AddWorkOut(object parameter)
         {
-            MessageBox.Show("Här öppnas AddWorkoutWindow");
+            //MessageBox.Show("Här öppnas AddWorkoutWindow");
+            AddWorkoutWindow addWorkoutWindow = new AddWorkoutWindow();
+            addWorkoutWindow.Show();
+        }
+
+        //Metod för att öppna WorkoutDetailsWindow
+        public void OpenDetails(object parameter) //OBS ÄNDRA TILLBAKA TILL (Workout workout), ändrat nu för att det inte går att köra kod annars
+        {
+            MessageBox.Show("Här öppnas WorkoutDetailWindow");
         }
 
         //Metod för att ta bort ett träningspass
@@ -67,10 +84,10 @@ namespace ProjektuppgiftOPG.ViewModel
             MessageBox.Show("Här tar man bort träningspass");
         }
 
-        //Metod för att öppna WorkoutDetailsWindow
-        public void OpenDetails(object parameter) //OBS ÄNDRA TILLBAKA TILL (Workout workout), ändrat nu för att det inte går att köra kod annars
+        //Metod för att visa info om företaget
+        public void ShowInfo(object parameter)
         {
-                MessageBox.Show("Här öppnas WorkoutDetailWindow");
+            MessageBox.Show("Här står lite info om Fit-track");
         }
 
         //Metod för att logga ut
@@ -83,20 +100,5 @@ namespace ProjektuppgiftOPG.ViewModel
             //Stänger ner WorkoutsWindow
             Application.Current.Windows.OfType<WorkoutsWindow>().FirstOrDefault()?.Close();
         }
-
-        //Metod för att öppna UserDetailsWindow
-        public void OpenUserWindow(object parameter)
-        {
-            MessageBox.Show("Här öppnas UserDetailsWindow");
-        }
-
-        //Metod för att visa info om företaget
-        public void ShowInfo(object parameter)
-        {
-            MessageBox.Show("Här står lite info om Fit-track");
-        }
-
-
-
     }
 }
