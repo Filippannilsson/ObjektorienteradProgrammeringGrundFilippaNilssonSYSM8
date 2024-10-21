@@ -68,7 +68,7 @@ namespace ProjektuppgiftOPG.ViewModel
         }
 
         //Metod för att öppna WorkoutDetailsWindow
-        public void OpenDetails(Workout workout)
+        public void OpenDetails(object parameter) //OBS ÄNDRA TILLBAKA TILL (Workout workout), ändrat nu för att det inte går att köra kod annars
         {
                 MessageBox.Show("Här öppnas WorkoutDetailWindow");
         }
@@ -76,7 +76,12 @@ namespace ProjektuppgiftOPG.ViewModel
         //Metod för att logga ut
         public void SignOut(object parameter)
         {
-            MessageBox.Show("Logga ut och stäng fönster");
+            //Stänger WorkoutWindow och går tillbaka till MainWindow
+            MainWindow mainWindow = new MainWindow();
+            mainWindow.Show();
+
+            //Stänger ner WorkoutsWindow
+            Application.Current.Windows.OfType<WorkoutsWindow>().FirstOrDefault()?.Close();
         }
 
         //Metod för att öppna UserDetailsWindow
@@ -90,6 +95,8 @@ namespace ProjektuppgiftOPG.ViewModel
         {
             MessageBox.Show("Här står lite info om Fit-track");
         }
+
+
 
     }
 }
