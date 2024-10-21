@@ -46,7 +46,7 @@
 
                
                 <StackPanel Grid.Row="1"
-                            VerticalAlignment="Center">
+                            VerticalAlignment="Top" HorizontalAlignment="Center">
                     <Label Content="Create a username:"
                            FontSize="14"
                            VerticalAlignment="Center" HorizontalAlignment="Center"
@@ -68,16 +68,16 @@
                 </StackPanel>
                 
                 <StackPanel Grid.Row=" 1" Grid.Column="1"
-                            VerticalAlignment="Center">
+                            VerticalAlignment="Top" HorizontalAlignment="Center">
                     <Label Content="Select your country:"
-       FontSize="14"
-       VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                           FontSize="14"
+                           VerticalAlignment="Center" HorizontalAlignment="Center"/>
                     <ComboBox Width="130"
-          VerticalAlignment="Center"
-          HorizontalAlignment="Center"
-          ItemsSource="{Binding Countries}" 
-          SelectedItem="{Binding SelectedCountry}"
-          Margin="5"/>
+                              VerticalAlignment="Center"
+                              HorizontalAlignment="Center"
+                              ItemsSource="{Binding Countries}" 
+                              SelectedItem="{Binding SelectedCountry}"
+                              Margin="5"/>
                     <Label Content="Select a security question:"
                            FontSize="14"
                            VerticalAlignment="Center" HorizontalAlignment="Center"/>

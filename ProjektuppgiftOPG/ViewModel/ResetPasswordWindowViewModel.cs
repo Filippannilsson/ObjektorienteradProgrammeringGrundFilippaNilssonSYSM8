@@ -76,6 +76,7 @@ namespace ProjektuppgiftOPG.ViewModel
         //Kommando för att återställa lösenordet
         public RelayCommand ResetCommand => new RelayCommand(ResetPassword);
 
+        //Metod för att återställa lösenord
         private void ResetPassword(object parameter)
         {
             //Skapa variabel för att se om användare finns
