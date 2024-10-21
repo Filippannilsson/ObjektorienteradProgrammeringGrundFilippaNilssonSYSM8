@@ -1,11 +1,14 @@
 ﻿using ProjektuppgiftOPG.Model;
 using ProjektuppgiftOPG.MVVM;
+using ProjektuppgiftOPG.Windows;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
+using System.Windows.Input;
 
 namespace ProjektuppgiftOPG.ViewModel
 {
@@ -23,8 +26,8 @@ namespace ProjektuppgiftOPG.ViewModel
             }
         }
 
-        private string selectedWorkout;
-        public string SelectedWorkout
+        private Workout selectedWorkout;
+        public Workout SelectedWorkout
         {
             get { return selectedWorkout; }
             set
@@ -52,43 +55,41 @@ namespace ProjektuppgiftOPG.ViewModel
             
         }
 
-        //Metod för att lägga till nytt träningspass
+        //Metod för att öppna AddWorkoutWindow
         public void AddWorkOut(object parameter)
         {
-
+            MessageBox.Show("Här öppnas AddWorkoutWindow");
         }
 
         //Metod för att ta bort ett träningspass
         public void RemoveWorkOut(object parameter)
         {
-
+            MessageBox.Show("Här tar man bort träningspass");
         }
 
         //Metod för att öppna WorkoutDetailsWindow
         public void OpenDetails(Workout workout)
         {
-
+                MessageBox.Show("Här öppnas WorkoutDetailWindow");
         }
 
         //Metod för att logga ut
         public void SignOut(object parameter)
         {
-
+            MessageBox.Show("Logga ut och stäng fönster");
         }
 
         //Metod för att öppna UserDetailsWindow
         public void OpenUserWindow(object parameter)
         {
-
+            MessageBox.Show("Här öppnas UserDetailsWindow");
         }
 
         //Metod för att visa info om företaget
         public void ShowInfo(object parameter)
         {
-
+            MessageBox.Show("Här står lite info om Fit-track");
         }
-
-
 
     }
 }

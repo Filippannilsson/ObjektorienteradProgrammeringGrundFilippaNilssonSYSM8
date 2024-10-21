@@ -15,7 +15,6 @@ namespace ProjektuppgiftOPG.MVVM
 
         //Fält för att avgöra om kommandot kan köras
         private Func<object, bool> canExecute;
-        private Action<Workout> openDetails;
 
         //Event som signalerar när kommandots körbarhet har ändrats
         public event EventHandler? CanExecuteChanged;
@@ -25,11 +24,6 @@ namespace ProjektuppgiftOPG.MVVM
         {
             this.execute = execute;
             this.canExecute = canExecute;
-        }
-
-        public RelayCommand(Action<Workout> openDetails)
-        {
-            this.openDetails = openDetails;
         }
 
         //Kontrollerar om kommandot kan köras

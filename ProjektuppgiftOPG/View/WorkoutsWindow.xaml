@@ -40,7 +40,7 @@
             <Button Content="Add Workout"
                     HorizontalAlignment="Center"
                     FontSize="16" Margin="10" Height="30" Width="110"
-                    Command="{Binding AddWorkOutCommand}"/>
+                    Command="{Binding AddWorkoutCommand}"/>
         </StackPanel>
 
         <StackPanel Grid.Row="1" Grid.Column="1" Margin="10">
@@ -50,7 +50,7 @@
                 VerticalAlignment="Top" 
                 Margin="5"
                 ItemsSource="{Binding WorkoutList}"
-                SelectedItem="{Binding SelectedWorkout}"
+                SelectedItem="{Binding SelectedWorkout, Mode=TwoWay}"
                 AutoGenerateColumns="False">
 
                 <!-- För en snyggare design utan autogenererad column -->
