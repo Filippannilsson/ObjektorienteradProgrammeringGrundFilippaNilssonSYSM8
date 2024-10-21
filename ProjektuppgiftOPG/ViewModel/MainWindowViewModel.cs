@@ -45,7 +45,7 @@ namespace ProjektuppgiftOPG.ViewModel
         //Kommando för knapparna
         public RelayCommand SignInCommand => new RelayCommand(SignIn);
         public RelayCommand RegisterCommand => new RelayCommand(Register);
-        public RelayCommand ResetCommand => new RelayCommand(Reset);
+        public RelayCommand ResetCommand => new RelayCommand(ResetPassword);
 
 
         //Konstruktor
@@ -55,7 +55,8 @@ namespace ProjektuppgiftOPG.ViewModel
             //Användare skapad på förhand
             users = new List<User> 
             {
-                new User("user", "password", "Sweden", "What is your favorite color?", "Red")
+                new User("user", "password", "Sweden", "What is your favorite color?", "Red"),
+                new AdminUser("admin", "password", "Sweden", "What is your favorite color?", "Red")
             };
 
         }
@@ -82,6 +83,7 @@ namespace ProjektuppgiftOPG.ViewModel
 
                     //Stänger ner MainWindow
                     Application.Current.MainWindow.Close();
+                    break; //Bryt loopen om inloggning lyckas
                 }
             }
 
@@ -97,7 +99,7 @@ namespace ProjektuppgiftOPG.ViewModel
             registerWindow.Show();
         }
 
-        public void Reset (object parameter)
+        public void ResetPassword (object parameter)
         {
             ResetPasswordWindow resetPasswordWindow = new ResetPasswordWindow();
             resetPasswordWindow.Show();

@@ -52,9 +52,14 @@ namespace ProjektuppgiftOPG.ViewModel
         public WorkoutWindowViewModel()
         {
             //Skapa träningspass till datagrid
-            
-        }
+            WorkoutList = new ObservableCollection<Workout>();
 
+            //ÄNDRA SÅ ATT DET BARA FINNS PÅ ANVÄNDAREN USER
+
+            //Lägg till förinställt träningspass
+            WorkoutList.Add(new CardioWorkout(DateTime.Now, "Running", TimeSpan.FromMinutes(30), 300, "Morning run", 5));
+
+        }
 
         //Metod för att öppna UserDetailsWindow
         public void OpenUserWindow(object parameter)
@@ -81,7 +86,17 @@ namespace ProjektuppgiftOPG.ViewModel
         //Metod för att ta bort ett träningspass
         public void RemoveWorkOut(object parameter)
         {
-            MessageBox.Show("Här tar man bort träningspass");
+            //Om ett träningspass är valt i listan, ta bort det
+            if (SelectedWorkout != null)
+            {
+                WorkoutList.Remove(SelectedWorkout);
+                SelectedWorkout = null;
+            }
+            else
+            {
+                MessageBox.Show("Please select a workout to remove");
+            }
+            
         }
 
         //Metod för att visa info om företaget
