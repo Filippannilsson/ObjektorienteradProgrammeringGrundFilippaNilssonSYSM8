@@ -24,7 +24,7 @@
         <Rectangle Grid.Row="0" Grid.Column="1" Fill="#FFA00B29"/>
         <Rectangle Grid.Row="1" Grid.Column="1" Fill="#D3D3D3"/>
 
-        <Label Content="{Binding Username}"
+        <Label Content="{Binding Username, UpdateSourceTrigger=PropertyChanged}"
                VerticalAlignment="Center" HorizontalAlignment="Center"
                FontSize="16" Foreground="#D3D3D3"/>
         <Button Grid.Column="1" Content="Sign out"
