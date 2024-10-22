@@ -57,7 +57,10 @@ namespace ProjektuppgiftOPG.ViewModel
         {
             bool loginSuccessful = false;
 
-            foreach (User user in UserManager.Users)
+            //Hämta lista över användare
+            List<User> users = UserManager.GetUsers();
+
+            foreach (User user in users)
             {
                 //Jämför användarnamn och lösenord med inmatad text
                 if (user.Username == Username && user.Password == Password)
@@ -65,7 +68,7 @@ namespace ProjektuppgiftOPG.ViewModel
                     loginSuccessful = true;
 
                     //Öppnar WorkoutsWindow och skicka med användarnamn
-                    WorkoutsWindow workoutsWindow = new WorkoutsWindow(user);
+                    WorkoutsWindow workoutsWindow = new WorkoutsWindow(UserManager, user.Workouts);
                     workoutsWindow.Show();
 
                     //Döljer MainWindow och rensar textboxarna

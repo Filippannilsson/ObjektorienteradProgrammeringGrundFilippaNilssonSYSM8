@@ -37,6 +37,17 @@ namespace ProjektuppgiftOPG.ViewModel
             }
         }
 
+        private ObservableCollection<Workout> workoutList;
+        public ObservableCollection<Workout> WorkoutList
+        {
+            get { return workoutList; }
+            set
+            {
+                workoutList = value;
+                OnPropertyChanged();
+            }
+        }
+
         //Kommando för knapparna
         public RelayCommand UserCommand => new RelayCommand(OpenUserWindow);
         public RelayCommand AddWorkoutCommand => new RelayCommand(AddWorkOut);
@@ -45,14 +56,13 @@ namespace ProjektuppgiftOPG.ViewModel
         public RelayCommand InfoCommand => new RelayCommand(ShowInfo);
         public RelayCommand SignOutCommand => new RelayCommand(SignOut);
 
-
+        public UserManager UserManager { get; set; }
         public WorkoutManager WorkoutManager { get; set; }
         //Konstruktor
-        public WorkoutWindowViewModel(User user)
+        public WorkoutWindowViewModel(UserManager userManager, ObservableCollection<Workout> workouts)
         {
-            WorkoutManager = new WorkoutManager(user.Workouts);
-         
-            Username = user.Username;
+            UserManager = userManager;
+            WorkoutList = workouts;
         }
 
         //Metod för att öppna UserDetailsWindow

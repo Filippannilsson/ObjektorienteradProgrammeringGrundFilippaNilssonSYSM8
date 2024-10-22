@@ -13,7 +13,7 @@ namespace ProjektuppgiftOPG.Model
         public static List<User> Users { get; set; }
 
         //Konstruktor för att initialisera användarlista
-        static UserManager()
+        public UserManager()
         {
             Users = new List<User>
             {
@@ -28,7 +28,11 @@ namespace ProjektuppgiftOPG.Model
             };
         }
 
-
+        //Skapa metod som returnar listan
+        public List<User> GetUsers()
+        {
+            return Users;
+        }
     }
 
 }
