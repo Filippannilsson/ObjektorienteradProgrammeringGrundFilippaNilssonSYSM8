@@ -97,15 +97,10 @@ namespace ProjektuppgiftOPG.ViewModel
                     MessageBox.Show("Please select a workout");
                 }
             }
-            else
-            {
-                MessageBox.Show("WorkoutManager or workout list is not initialized.");
-            }
         }
 
 
         //Metod för att ta bort ett träningspass
-
         public void RemoveWorkOut(object parameter)
         {
             // Om ett träningspass är valt i listan, ta bort det
@@ -119,36 +114,13 @@ namespace ProjektuppgiftOPG.ViewModel
                         WorkoutManager.Workouts.Remove(SelectedWorkout);
                         SelectedWorkout = null; // Återställ vald träning
                     }
-                    else
-                    {
-                        MessageBox.Show("Workout not found in the list.");
-                    }
                 }
                 else
                 {
-                    MessageBox.Show("WorkoutManager or Workout list is not initialized.");
+                    MessageBox.Show("Please select a workout to remove.");
                 }
             }
-            else
-            {
-                MessageBox.Show("Please select a workout to remove.");
-            }
         }
-
-        //public void RemoveWorkOut(object parameter)
-        //{
-        //    //Om ett träningspass är valt i listan, ta bort det
-        //    if (SelectedWorkout != null)
-        //    {
-        //        WorkoutManager.Workouts.Remove(SelectedWorkout);
-        //        SelectedWorkout = null;
-        //    }
-        //    else
-        //    {
-        //        MessageBox.Show("Please select a workout to remove");
-        //    }
-
-        //}
 
         //Metod för att visa info om företaget
         public void ShowInfo(object parameter)
