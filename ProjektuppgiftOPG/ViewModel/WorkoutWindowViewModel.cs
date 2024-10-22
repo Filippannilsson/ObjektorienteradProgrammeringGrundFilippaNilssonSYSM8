@@ -59,10 +59,11 @@ namespace ProjektuppgiftOPG.ViewModel
         public UserManager UserManager { get; set; }
         public WorkoutManager WorkoutManager { get; set; }
         //Konstruktor
-        public WorkoutWindowViewModel(UserManager userManager, ObservableCollection<Workout> workouts)
+        public WorkoutWindowViewModel(UserManager userManager, ObservableCollection<Workout> workouts, string username)
         {
             UserManager = userManager;
             WorkoutList = workouts;
+            Username = username;
             WorkoutManager = new WorkoutManager(workouts);
         }
 
