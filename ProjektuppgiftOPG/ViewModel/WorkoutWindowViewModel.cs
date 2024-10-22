@@ -37,9 +37,6 @@ namespace ProjektuppgiftOPG.ViewModel
             }
         }
 
-        //Lista över genomförda träningspass
-        public ObservableCollection<Workout> WorkoutList { get; set; }
-
         //Kommando för knapparna
         public RelayCommand UserCommand => new RelayCommand(OpenUserWindow);
         public RelayCommand AddWorkoutCommand => new RelayCommand(AddWorkOut);
@@ -48,17 +45,14 @@ namespace ProjektuppgiftOPG.ViewModel
         public RelayCommand InfoCommand => new RelayCommand(ShowInfo);
         public RelayCommand SignOutCommand => new RelayCommand(SignOut);
 
+
+        public WorkoutManager WorkoutManager { get; set; }
         //Konstruktor
-        public WorkoutWindowViewModel()
+        public WorkoutWindowViewModel(User user)
         {
-            ////Skapa träningspass till datagrid
-            //WorkoutList = new ObservableCollection<Workout>();
-
-            ////ÄNDRA SÅ ATT DET BARA FINNS PÅ ANVÄNDAREN USER
-
-            ////Lägg till förinställt träningspass
-            //WorkoutList.Add(new CardioWorkout(DateTime.Now, "Running", TimeSpan.FromMinutes(30), 300, "Morning run", 5));
-
+            WorkoutManager = new WorkoutManager(user.Workouts);
+         
+            Username = user.Username;
         }
 
         //Metod för att öppna UserDetailsWindow
@@ -80,7 +74,15 @@ namespace ProjektuppgiftOPG.ViewModel
         //Metod för att öppna WorkoutDetailsWindow
         public void OpenDetails(object parameter) //OBS ÄNDRA TILLBAKA TILL (Workout workout), ändrat nu för att det inte går att köra kod annars
         {
-            MessageBox.Show("Här öppnas WorkoutDetailWindow");
+            if (SelectedWorkout != null)
+            {
+                WorkoutDetailsWindow workoutDetailsWindow = new WorkoutDetailsWindow();
+                workoutDetailsWindow.Show();
+            }
+            else
+            {
+                MessageBox.Show("Select a workout to remove");
+            }
         }
 
         //Metod för att ta bort ett träningspass
@@ -89,7 +91,7 @@ namespace ProjektuppgiftOPG.ViewModel
             //Om ett träningspass är valt i listan, ta bort det
             if (SelectedWorkout != null)
             {
-                WorkoutList.Remove(SelectedWorkout);
+                WorkoutManager.Workouts.Remove(SelectedWorkout);
                 SelectedWorkout = null;
             }
             else

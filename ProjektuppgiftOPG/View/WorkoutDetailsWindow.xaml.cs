@@ -14,14 +14,12 @@ using System.Windows.Shapes;
 
 namespace ProjektuppgiftOPG.Windows
 {
-    /// <summary>
-    /// Interaction logic for WorkoutDetailsWindow.xaml
-    /// </summary>
     public partial class WorkoutDetailsWindow : Window
     {
         public WorkoutDetailsWindow()
         {
             InitializeComponent();
+            DataContext = new WorkoutDetailsWindow();
         }
     }
 }

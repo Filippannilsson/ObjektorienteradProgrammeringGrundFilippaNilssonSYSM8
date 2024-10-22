@@ -83,7 +83,7 @@ namespace ProjektuppgiftOPG.ViewModel
             bool userExists = false;
 
             //Kontrollera om användarnamnet finns
-            foreach (User user in MainWindowViewModel.users)
+            foreach (User user in UserManager.Users)
             {
                 if (usernameResetInput == user.Username)
                 {

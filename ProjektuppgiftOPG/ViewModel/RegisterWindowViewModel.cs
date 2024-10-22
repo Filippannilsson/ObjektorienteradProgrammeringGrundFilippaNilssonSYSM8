@@ -107,7 +107,7 @@ namespace ProjektuppgiftOPG.ViewModel
         public void RegisterNewUser(object parameter)
         {
             //Kontrollera om användarnamnet är upptaget
-            foreach (User user in MainWindowViewModel.users) //Hämtar lista från MainWindowViewModel
+            foreach (User user in UserManager.Users) //Hämtar lista från MainWindowViewModel
             {
                 if (usernameInput == user.Username)
                 {
@@ -163,7 +163,7 @@ namespace ProjektuppgiftOPG.ViewModel
             User newUser = new User(usernameInput, passwordInput, selectedCountry, selectedQuestion, answerInput);
 
             //Lägg till ny användare i användarlistan
-            MainWindowViewModel.users.Add(newUser);
+            UserManager.Users.Add(newUser);
 
             MessageBox.Show("Registration successfull");
 

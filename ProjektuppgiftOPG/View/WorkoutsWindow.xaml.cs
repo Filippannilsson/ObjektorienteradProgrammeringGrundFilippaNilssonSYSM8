@@ -19,14 +19,10 @@ namespace ProjektuppgiftOPG.Windows
 {
     public partial class WorkoutsWindow : Window
     {
-        public WorkoutsWindow(string username, ObservableCollection<Workout> workouts)
+        public WorkoutsWindow(User user)
         {
             InitializeComponent();
-            DataContext = new WorkoutWindowViewModel
-            {
-                Username = username,
-                WorkoutList = workouts
-            };
+            DataContext = new WorkoutWindowViewModel(user);
         }
     }
 }

@@ -14,9 +14,8 @@ namespace ProjektuppgiftOPG.Model
         public string Country { get; set; }
         public string SecurityQuestion { get; set; }
         public string SecurityAnswer { get; set; }
+        public ObservableCollection<Workout> Workouts { get; internal set; }
 
-        //Lista över träningspass
-        public ObservableCollection<Workout> Workouts { get; set; }
 
         //Konstruktor
         public User(string username, string password, string country, string securityQuestion, string securityAnswer) : base(username, password)

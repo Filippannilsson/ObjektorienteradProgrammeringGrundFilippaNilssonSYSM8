@@ -16,7 +16,6 @@ namespace ProjektuppgiftOPG.ViewModel
 {
     public class MainWindowViewModel : ViewModelBase
     {
-        
         //Egenskaper
         private string username;
         public string Username 
@@ -40,52 +39,33 @@ namespace ProjektuppgiftOPG.ViewModel
             }
         }
 
-        //Lista över registrerade användare
-        public static List<User> users;
-
         //Kommando för knapparna
         public RelayCommand SignInCommand => new RelayCommand(SignIn);
         public RelayCommand RegisterCommand => new RelayCommand(Register);
         public RelayCommand ResetCommand => new RelayCommand(ResetPassword);
 
 
-        //Konstruktor
+        public UserManager UserManager; 
+        // Konstruktor
         public MainWindowViewModel()
         {
-            
-            //Användare skapad på förhand
-            users = new List<User> 
-            {
-                new User("user", "password", "Sweden", "What is your favorite color?", "Red")
-                {
-                    Workouts = new ObservableCollection<Workout>
-                    {
-                        new CardioWorkout(DateTime.Now, "Running", TimeSpan.FromMinutes(30), 300, "Morning run", 5)
-                    }
-                },
-                new AdminUser("admin", "password", "Sweden", "What is your favorite color?", "Red")
-            };
-
+            UserManager = new UserManager(); 
         }
 
         //Metoder
-
         public void SignIn(object parameter)
         {
-
             bool loginSuccessful = false;
 
-            foreach (User user in users)
+            foreach (User user in UserManager.Users)
             {
                 //Jämför användarnamn och lösenord med inmatad text
                 if (user.Username == Username && user.Password == Password)
                 {
-                    //Anropar SignIn-metod från User-klassen
-                    user.SignIn();
                     loginSuccessful = true;
 
                     //Öppnar WorkoutsWindow och skicka med användarnamn
-                    WorkoutsWindow workoutsWindow = new WorkoutsWindow(user.Username, user.Workouts);
+                    WorkoutsWindow workoutsWindow = new WorkoutsWindow(user);
                     workoutsWindow.Show();
 
                     //Döljer MainWindow och rensar textboxarna
