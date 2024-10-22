@@ -10,6 +10,7 @@ using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Input;
 using ProjektuppgiftOPG.View;
+using System.Collections.ObjectModel;
 
 namespace ProjektuppgiftOPG.ViewModel
 {
@@ -55,7 +56,13 @@ namespace ProjektuppgiftOPG.ViewModel
             //Användare skapad på förhand
             users = new List<User> 
             {
-                new User("user", "password", "Sweden", "What is your favorite color?", "Red"),
+                new User("user", "password", "Sweden", "What is your favorite color?", "Red")
+                {
+                    Workouts = new ObservableCollection<Workout>
+                    {
+                        new CardioWorkout(DateTime.Now, "Running", TimeSpan.FromMinutes(30), 300, "Morning run", 5)
+                    }
+                },
                 new AdminUser("admin", "password", "Sweden", "What is your favorite color?", "Red")
             };
 
@@ -78,18 +85,21 @@ namespace ProjektuppgiftOPG.ViewModel
                     loginSuccessful = true;
 
                     //Öppnar WorkoutsWindow och skicka med användarnamn
-                    WorkoutsWindow workoutsWindow = new WorkoutsWindow(user.Username);
+                    WorkoutsWindow workoutsWindow = new WorkoutsWindow(user.Username, user.Workouts);
                     workoutsWindow.Show();
 
-                    //Stänger ner MainWindow
-                    Application.Current.MainWindow.Close();
+                    //Döljer MainWindow och rensar textboxarna
+                    Application.Current.MainWindow.Hide();
+                    Username = string.Empty;
+                    Password = string.Empty;
+
                     break; //Bryt loopen om inloggning lyckas
                 }
             }
 
             if (!loginSuccessful)
             {
-                MessageBox.Show("Inloggningen misslyckades, försök igen");
+                MessageBox.Show("Login failed, try again");
             }
         }
 

@@ -29,17 +29,17 @@
                FontSize="16" Foreground="#D3D3D3"/>
         <Button Grid.Column="1" Content="Sign out"
                VerticalAlignment="Center" HorizontalAlignment="Right"
-               FontSize="16" Margin="10" Height="30" Width="70"
+               FontSize="14" Margin="10" Height="30" Width="70"
                Command="{Binding SignOutCommand}"/>
 
         <StackPanel Grid.Row="1" Margin="10">
             <Button Content="User"
                     HorizontalAlignment="Center"
-                    FontSize="16" Margin="10" Height="30" Width="110"
+                    FontSize="14" Margin="10" Height="30" Width="110"
                     Command="{Binding UserCommand}"/>
             <Button Content="Add Workout"
                     HorizontalAlignment="Center"
-                    FontSize="16" Margin="10" Height="30" Width="110"
+                    FontSize="14" Margin="10" Height="30" Width="110"
                     Command="{Binding AddWorkoutCommand}"/>
         </StackPanel>
 
@@ -63,11 +63,11 @@
             <StackPanel Orientation="Horizontal">
                 <Button Content="Details"
                         HorizontalAlignment="Left"
-                        FontSize="16" Margin="10" Height="30" Width="110"
+                        FontSize="14" Margin="10" Height="30" Width="110"
                         Command="{Binding DetailsCommand}"/>
                 <Button Content="Remove" Margin="5"
                         HorizontalAlignment="Left"
-                        FontSize="16" Height="30" Width="110"
+                        FontSize="14" Height="30" Width="110"
                         Command="{Binding RemoveCommand}"/>
 
             </StackPanel>
@@ -80,7 +80,7 @@
 
             <Button Grid.Row="1" Content="Info"
                     HorizontalAlignment="Center"
-                    FontSize="16" Margin="10" Height="30" Width="60"
+                    FontSize="14" Margin="10" Height="30" Width="60"
                     Command="{Binding InfoCommand}"/>
         </Grid>
     </Grid>

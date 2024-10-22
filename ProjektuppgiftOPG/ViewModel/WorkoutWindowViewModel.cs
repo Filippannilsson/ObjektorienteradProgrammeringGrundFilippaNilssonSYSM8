@@ -51,13 +51,13 @@ namespace ProjektuppgiftOPG.ViewModel
         //Konstruktor
         public WorkoutWindowViewModel()
         {
-            //Skapa träningspass till datagrid
-            WorkoutList = new ObservableCollection<Workout>();
+            ////Skapa träningspass till datagrid
+            //WorkoutList = new ObservableCollection<Workout>();
 
-            //ÄNDRA SÅ ATT DET BARA FINNS PÅ ANVÄNDAREN USER
+            ////ÄNDRA SÅ ATT DET BARA FINNS PÅ ANVÄNDAREN USER
 
-            //Lägg till förinställt träningspass
-            WorkoutList.Add(new CardioWorkout(DateTime.Now, "Running", TimeSpan.FromMinutes(30), 300, "Morning run", 5));
+            ////Lägg till förinställt träningspass
+            //WorkoutList.Add(new CardioWorkout(DateTime.Now, "Running", TimeSpan.FromMinutes(30), 300, "Morning run", 5));
 
         }
 
@@ -109,8 +109,12 @@ namespace ProjektuppgiftOPG.ViewModel
         public void SignOut(object parameter)
         {
             //Stänger WorkoutWindow och går tillbaka till MainWindow
-            MainWindow mainWindow = new MainWindow();
-            mainWindow.Show();
+            MainWindow mainWindow = Application.Current.Windows.OfType<MainWindow>().FirstOrDefault();
+
+            if (mainWindow != null)
+            {
+                mainWindow.Show(); //Visa MainWindow igen
+            }
 
             //Stänger ner WorkoutsWindow
             Application.Current.Windows.OfType<WorkoutsWindow>().FirstOrDefault()?.Close();

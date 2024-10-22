@@ -1,6 +1,8 @@
-﻿using ProjektuppgiftOPG.ViewModel;
+﻿using ProjektuppgiftOPG.Model;
+using ProjektuppgiftOPG.ViewModel;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -17,12 +19,13 @@ namespace ProjektuppgiftOPG.Windows
 {
     public partial class WorkoutsWindow : Window
     {
-        public WorkoutsWindow(string username)
+        public WorkoutsWindow(string username, ObservableCollection<Workout> workouts)
         {
             InitializeComponent();
             DataContext = new WorkoutWindowViewModel
             {
-                Username = username
+                Username = username,
+                WorkoutList = workouts
             };
         }
     }
