@@ -51,7 +51,7 @@ namespace ProjektuppgiftOPG.ViewModel
         //Kommando för knapparna
         public RelayCommand UserCommand => new RelayCommand(OpenUserWindow);
         public RelayCommand AddWorkoutCommand => new RelayCommand(AddWorkOut);
-        public RelayCommand DetailsCommand => new RelayCommand(OpenDetails);
+        public RelayCommand DetailsCommand => new RelayCommand(param => OpenDetails(SelectedWorkout));
         public RelayCommand RemoveCommand => new RelayCommand(RemoveWorkOut);
         public RelayCommand InfoCommand => new RelayCommand(ShowInfo);
         public RelayCommand SignOutCommand => new RelayCommand(SignOut);
@@ -82,14 +82,14 @@ namespace ProjektuppgiftOPG.ViewModel
             addWorkoutWindow.Show();
         }
 
-        public void OpenDetails(object parameter)
+        public void OpenDetails(Workout workout)
         {
             // Kontrollera att WorkoutManager och Workouts inte är null
             if (WorkoutManager != null && WorkoutManager.Workouts != null)
             {
-                if (SelectedWorkout != null)
+                if (workout != null)
                 {
-                    WorkoutDetailsWindow workoutDetailsWindow = new WorkoutDetailsWindow(SelectedWorkout);
+                    WorkoutDetailsWindow workoutDetailsWindow = new WorkoutDetailsWindow(workout);
                     workoutDetailsWindow.Show();
                 }
                 else

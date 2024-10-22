@@ -18,6 +18,7 @@ namespace ProjektuppgiftOPG.Windows
     {
         public WorkoutDetailsWindow()
         {
+            InitializeComponent();
         }
 
         public WorkoutDetailsWindow(Model.Workout selectedWorkout)
