@@ -63,6 +63,7 @@ namespace ProjektuppgiftOPG.ViewModel
         {
             UserManager = userManager;
             WorkoutList = workouts;
+            WorkoutManager = new WorkoutManager(workouts);
         }
 
         //Metod för att öppna UserDetailsWindow
@@ -81,35 +82,73 @@ namespace ProjektuppgiftOPG.ViewModel
             addWorkoutWindow.Show();
         }
 
-        //Metod för att öppna WorkoutDetailsWindow
-        public void OpenDetails(object parameter) //OBS ÄNDRA TILLBAKA TILL (Workout workout), ändrat nu för att det inte går att köra kod annars
+        public void OpenDetails(object parameter)
         {
-            if (SelectedWorkout != null)
+            // Kontrollera att WorkoutManager och Workouts inte är null
+            if (WorkoutManager != null && WorkoutManager.Workouts != null)
             {
-                WorkoutDetailsWindow workoutDetailsWindow = new WorkoutDetailsWindow();
-                workoutDetailsWindow.Show();
+                if (SelectedWorkout != null)
+                {
+                    WorkoutDetailsWindow workoutDetailsWindow = new WorkoutDetailsWindow(SelectedWorkout);
+                    workoutDetailsWindow.Show();
+                }
+                else
+                {
+                    MessageBox.Show("Please select a workout");
+                }
             }
             else
             {
-                MessageBox.Show("Select a workout to remove");
+                MessageBox.Show("WorkoutManager or workout list is not initialized.");
             }
         }
 
+
         //Metod för att ta bort ett träningspass
+
         public void RemoveWorkOut(object parameter)
         {
-            //Om ett träningspass är valt i listan, ta bort det
+            // Om ett träningspass är valt i listan, ta bort det
             if (SelectedWorkout != null)
             {
-                WorkoutManager.Workouts.Remove(SelectedWorkout);
-                SelectedWorkout = null;
+                // Kontrollera att WorkoutManager och Workouts inte är null
+                if (WorkoutManager != null && WorkoutManager.Workouts != null)
+                {
+                    if (WorkoutManager.Workouts.Contains(SelectedWorkout))
+                    {
+                        WorkoutManager.Workouts.Remove(SelectedWorkout);
+                        SelectedWorkout = null; // Återställ vald träning
+                    }
+                    else
+                    {
+                        MessageBox.Show("Workout not found in the list.");
+                    }
+                }
+                else
+                {
+                    MessageBox.Show("WorkoutManager or Workout list is not initialized.");
+                }
             }
             else
             {
-                MessageBox.Show("Please select a workout to remove");
+                MessageBox.Show("Please select a workout to remove.");
             }
-            
         }
+
+        //public void RemoveWorkOut(object parameter)
+        //{
+        //    //Om ett träningspass är valt i listan, ta bort det
+        //    if (SelectedWorkout != null)
+        //    {
+        //        WorkoutManager.Workouts.Remove(SelectedWorkout);
+        //        SelectedWorkout = null;
+        //    }
+        //    else
+        //    {
+        //        MessageBox.Show("Please select a workout to remove");
+        //    }
+
+        //}
 
         //Metod för att visa info om företaget
         public void ShowInfo(object parameter)
