@@ -101,12 +101,8 @@ namespace ProjektuppgiftOPG.ViewModel
             // Kontrollera om träningspass är markerat
             if (workout != null)
             {
-                // Kontrollera att WorkoutManager och Workouts inte är null
-                if (WorkoutManager != null && WorkoutManager.Workouts != null)
-                {
                     WorkoutDetailsWindow workoutDetailsWindow = new WorkoutDetailsWindow(workout);
                     workoutDetailsWindow.Show();
-                }
             }
             else
             {
