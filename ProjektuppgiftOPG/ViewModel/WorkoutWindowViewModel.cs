@@ -85,18 +85,20 @@ namespace ProjektuppgiftOPG.ViewModel
 
         public void OpenDetails(Workout workout)
         {
-            // Kontrollera att WorkoutManager och Workouts inte är null
-            if (WorkoutManager != null && WorkoutManager.Workouts != null)
+            // Kontrollera om träningspass är markerat
+            if (workout != null)
             {
-                if (workout != null)
+                // Kontrollera att WorkoutManager och Workouts inte är null
+                if (WorkoutManager != null && WorkoutManager.Workouts != null)
                 {
                     WorkoutDetailsWindow workoutDetailsWindow = new WorkoutDetailsWindow(workout);
                     workoutDetailsWindow.Show();
                 }
-                else
-                {
-                    MessageBox.Show("Please select a workout");
-                }
+            }
+            else
+            {
+                // Om inget träningspass är markerat, visa varningsmeddelande
+                MessageBox.Show("Please select a workout");
             }
         }
 
@@ -116,10 +118,10 @@ namespace ProjektuppgiftOPG.ViewModel
                         SelectedWorkout = null; // Återställ vald träning
                     }
                 }
-                else
-                {
-                    MessageBox.Show("Please select a workout to remove.");
-                }
+            }
+            else
+            {
+                MessageBox.Show("Please select a workout to remove.");
             }
         }
 
