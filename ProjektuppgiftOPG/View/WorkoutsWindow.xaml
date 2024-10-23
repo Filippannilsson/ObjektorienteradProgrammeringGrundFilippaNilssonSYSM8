@@ -43,35 +43,59 @@
                     Command="{Binding AddWorkoutCommand}"/>
         </StackPanel>
 
-        <StackPanel Grid.Row="1" Grid.Column="1" Margin="10">
-            <DataGrid
-                Height="150" Width="300" 
-                HorizontalAlignment="Left" 
-                VerticalAlignment="Top" 
-                Margin="5"
-                ItemsSource="{Binding WorkoutList}"
-                SelectedItem="{Binding SelectedWorkout, Mode=TwoWay}"
-                AutoGenerateColumns="False">
+        <Grid Grid.Row="1" Grid.Column="1" Margin="10">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="2*"/>
+                <ColumnDefinition Width="2*"/>
+            </Grid.ColumnDefinitions>
 
-                <!-- För en snyggare design utan autogenererad column -->
-                <DataGrid.Columns>
-                    <DataGridTextColumn Header="Workout Type" Binding="{Binding Type}" Width="5*"/>
-                    <DataGridTextColumn Header="Date" Binding="{Binding Date}" Width="5*"/>
-                </DataGrid.Columns>
-            </DataGrid>
-            
-            <StackPanel Orientation="Horizontal">
-                <Button Content="Details"
-                        HorizontalAlignment="Left"
-                        FontSize="14" Margin="10" Height="30" Width="110"
-                        Command="{Binding DetailsCommand}"/>
-                <Button Content="Remove" Margin="5"
-                        HorizontalAlignment="Left"
-                        FontSize="14" Height="30" Width="110"
-                        Command="{Binding RemoveCommand}"/>
+            <!-- DataGrid och knappar -->
+            <StackPanel Grid.Column="0">
+                <DataGrid
+                    Height="150" Width="300"
+                    HorizontalAlignment="Left"
+                    VerticalAlignment="Top"
+                    Margin="5"
+                    ItemsSource="{Binding WorkoutList}"
+                    SelectedItem="{Binding SelectedWorkout, Mode=TwoWay}"
+                    AutoGenerateColumns="False">
+
+                    <!-- För en snyggare design utan autogenererad column -->
+                    <DataGrid.Columns>
+                        <DataGridTextColumn Header="Workout Type" Binding="{Binding Type}" Width="5*"/>
+                        <DataGridTextColumn Header="Date" Binding="{Binding Date}" Width="5*"/>
+                    </DataGrid.Columns>
+                </DataGrid>
+
+                <!-- Knappar under DataGrid -->
+                <StackPanel Orientation="Horizontal">
+                    <Button Content="Details"
+                            HorizontalAlignment="Left"
+                            FontSize="14" Margin="10" Height="30" Width="110"
+                            Command="{Binding DetailsCommand}"/>
+                    <Button Content="Remove" Margin="5"
+                            HorizontalAlignment="Left"
+                            FontSize="14" Height="30" Width="110"
+                            Command="{Binding RemoveCommand}"/>
+                </StackPanel>
+                
+            </StackPanel>
+
+            <!-- Filtersektion -->
+            <StackPanel Grid.Column="1" Margin="10">
+                <TextBlock Text="Filter workout list"/>
+                <DatePicker SelectedDate="{Binding SelectedDate}"/>
+
+                <TextBlock Text="Workout type:"/>
+                <ComboBox ItemsSource="{Binding AvailableWorkoutTypes}"
+                          SelectedItem="{Binding SelectedWorkoutType}"/>
+                <TextBlock Text="Workout duration:"/>
+                <ComboBox ItemsSource="{Binding AvailableDurations}"
+                          SelectedItem="{Binding SelectedDuration}"/>
 
             </StackPanel>
-        </StackPanel>
+        </Grid>
+
         <Grid Grid.Row="1">
             <Grid.RowDefinitions>
                 <RowDefinition Height="85*"/>
@@ -85,4 +109,3 @@
         </Grid>
     </Grid>
 </Window>
-    

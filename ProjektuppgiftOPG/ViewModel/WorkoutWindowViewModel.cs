@@ -48,6 +48,47 @@ namespace ProjektuppgiftOPG.ViewModel
             }
         }
 
+
+        // Tillgängliga val för träningspass
+        public ObservableCollection<string> AvailableWorkoutTypes { get; set; }
+        public ObservableCollection<string> AvailableDurations { get; set; }
+
+        private DateTime? selectedDate;
+        public DateTime? SelectedDate
+        {
+            get { return selectedDate; }
+            set
+            {
+                selectedDate = value;
+                OnPropertyChanged();
+                FilterWorkouts();
+            }
+        }
+
+        private string selectedWorkoutType;
+        public string SelectedWorkoutType
+        {
+            get { return selectedWorkoutType; }
+            set
+            {
+                selectedWorkoutType = value;
+                OnPropertyChanged();
+                FilterWorkouts();
+            }
+        }
+
+        private string selectedDuration;
+        public string SelectedDuration
+        {
+            get { return selectedDuration; }
+            set
+            {
+                selectedDuration = value;
+                OnPropertyChanged();
+                FilterWorkouts();
+            }
+        }
+
         //Kommando för knapparna
         public RelayCommand UserCommand => new RelayCommand(OpenUserWindow);
         public RelayCommand AddWorkoutCommand => new RelayCommand(AddWorkOut);
@@ -58,12 +99,17 @@ namespace ProjektuppgiftOPG.ViewModel
 
         public UserManager UserManager { get; set; }
         public WorkoutManager WorkoutManager { get; set; }
+
         //Konstruktor
         public WorkoutWindowViewModel(UserManager userManager, ObservableCollection<Workout> workouts, string username)
         {
             UserManager = userManager;
             Username = username;
             WorkoutManager = new WorkoutManager(workouts);
+
+            AvailableWorkoutTypes = new ObservableCollection<string> { "All workouts", "Cardio", "Strength" };
+
+            AvailableDurations = new ObservableCollection<string> { "All durations", "0-30 min", "31-60 min", "> 60 min" };
 
             // Kontrollera om användaren är admin
             var currentUser = UserManager.GetUsers().FirstOrDefault(u => u.Username == username);
@@ -99,66 +145,66 @@ namespace ProjektuppgiftOPG.ViewModel
         public void OpenDetails(Workout workout)
         {
             // Kontrollera om träningspass är markerat
-            if (workout != null)
-            {
-                    WorkoutDetailsWindow workoutDetailsWindow = new WorkoutDetailsWindow(workout);
-                    workoutDetailsWindow.Show();
-            }
-            else
+            if (workout == null)
             {
                 // Om inget träningspass är markerat, visa varningsmeddelande
                 MessageBox.Show("Please select a workout");
+                return;
             }
-        }
 
+            //Om träningspass är markerat, öppna OpenDetails
+            WorkoutDetailsWindow workoutDetailsWindow = new WorkoutDetailsWindow(workout);
+            workoutDetailsWindow.Show();
+
+        }
 
         //Metod för att ta bort ett träningspass
         public void RemoveWorkOut(object parameter)
         {
-            // Om ett träningspass är valt i listan
-            if (SelectedWorkout != null)
+            // Kontrollera om ett träningspass är valt
+            if (SelectedWorkout == null)
             {
-                // Kontrollera om användaren är en admin
-                var currentUser = UserManager.GetUsers().FirstOrDefault(u => u.Username == Username);
+                MessageBox.Show("Please select a workout to remove");
+                return;
+            }
 
-                if (currentUser is AdminUser adminUser)
-                {
-                    // Ta bort träningspasset
-                    adminUser.ManageAllWorkOuts(WorkoutManager, SelectedWorkout);
+            // Kontrollera om användaren är admin
+            var currentUser = UserManager.GetUsers().FirstOrDefault(u => u.Username == Username);
 
-                    // Ta bort träningspasset från användarens lista
-                    foreach (var user in UserManager.Users)
-                    {
-                        if (user.Workouts.Contains(SelectedWorkout))
-                        {
-                            user.Workouts.Remove(SelectedWorkout);
-                            break; // Bryt loopen när träningspasset är borttaget
-                        }
-                    }
-                }
-                else
+            if (currentUser is AdminUser adminUser)
+            {
+                // Admin tar bort träningspasset globalt
+                adminUser.ManageAllWorkOuts(WorkoutManager, SelectedWorkout);
+
+                // Ta bort träningspasset från användarens lista
+                foreach (var user in UserManager.Users)
                 {
-                    // För vanliga användare, ta bort deras träningspass
-                    if (WorkoutManager.Workouts.Contains(SelectedWorkout))
+                    if (user.Workouts.Contains(SelectedWorkout))
                     {
-                        WorkoutManager.Workouts.Remove(SelectedWorkout);
-                    }
-                    else
-                    {
-                        MessageBox.Show("You can only remove your own workouts.");
-                        return;
+                        user.Workouts.Remove(SelectedWorkout);
+                        break; // Bryt loopen när träningspasset är borttaget
                     }
                 }
 
-                // Uppdatera WorkoutList för att reflektera ändringen
-                WorkoutList = new ObservableCollection<Workout>(WorkoutManager.Workouts);
-                SelectedWorkout = null; // Återställ vald träning
+                // Uppdatera listan med alla användares träningspass
+                WorkoutList = new ObservableCollection<Workout>(
+                    UserManager.Users.SelectMany(u => u.Workouts));
             }
             else
             {
-                MessageBox.Show("Please select a workout to remove.");
+                // För vanliga användare, ta bort deras träningspass
+                if (WorkoutManager.Workouts.Contains(SelectedWorkout))
+                {
+                    WorkoutManager.Workouts.Remove(SelectedWorkout);
+
+                    // Uppdatera listan med endast användarens träningspass
+                    WorkoutList = new ObservableCollection<Workout>(WorkoutManager.Workouts);
+                }
             }
+
+            SelectedWorkout = null; // Återställ vald träning
         }
+
 
         //Metod för att visa info om företaget
         public void ShowInfo(object parameter)
@@ -179,6 +225,45 @@ namespace ProjektuppgiftOPG.ViewModel
 
             //Stänger ner WorkoutsWindow
             Application.Current.Windows.OfType<WorkoutsWindow>().FirstOrDefault()?.Close();
+        }
+
+        public void FilterWorkouts()
+        {
+            var filteredWorkouts = WorkoutManager.Workouts.AsEnumerable();
+
+            
+            //Filtrera efter datum
+            if (SelectedDate.HasValue)
+            {
+                filteredWorkouts = filteredWorkouts.Where(w => w.Date.Date == SelectedDate.Value.Date);
+            }
+
+            // Filtrera efter typ av träningspass, ignorera om "All workouts" är valt
+            if (!string.IsNullOrEmpty(SelectedWorkoutType) && SelectedWorkoutType != "All workouts")
+            {
+                filteredWorkouts = filteredWorkouts.Where(w => w.Type == SelectedWorkoutType);
+
+            }
+
+            // Filtrera efter varaktighet
+            if (SelectedDuration != null)
+            {
+                switch (SelectedDuration)
+                {
+                    case "0-30 min":
+                        filteredWorkouts = filteredWorkouts.Where(w => w.Duration.TotalMinutes >= 0 && w.Duration.TotalMinutes <= 30);
+                        break;
+                    case "31-60 min":
+                        filteredWorkouts = filteredWorkouts.Where(w => w.Duration.TotalMinutes > 30 && w.Duration.TotalMinutes <= 60);
+                        break;
+                    case "> 60 min":
+                        filteredWorkouts = filteredWorkouts.Where(w => w.Duration.TotalMinutes > 60);
+                        break;
+                }
+            }
+
+            //Uppdatera listan
+            WorkoutList = new ObservableCollection<Workout>(filteredWorkouts.ToList());
         }
     }
 }
