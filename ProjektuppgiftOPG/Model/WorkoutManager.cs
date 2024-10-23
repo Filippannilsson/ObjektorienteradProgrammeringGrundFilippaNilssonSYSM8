@@ -17,5 +17,6 @@ namespace ProjektuppgiftOPG.Model
         {
             Workouts = workouts;
         }
+
     }
 }

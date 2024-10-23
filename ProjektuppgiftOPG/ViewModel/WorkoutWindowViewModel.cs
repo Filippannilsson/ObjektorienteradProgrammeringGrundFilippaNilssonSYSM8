@@ -62,10 +62,22 @@ namespace ProjektuppgiftOPG.ViewModel
         public WorkoutWindowViewModel(UserManager userManager, ObservableCollection<Workout> workouts, string username)
         {
             UserManager = userManager;
-            WorkoutList = workouts;
             Username = username;
+            WorkoutManager = new WorkoutManager(workouts);
 
-            
+            // Kontrollera om användaren är admin
+            var currentUser = UserManager.GetUsers().FirstOrDefault(u => u.Username == username);
+            if (currentUser is AdminUser)
+            {
+                // Hämta alla träningspass från alla användare
+                WorkoutList = new ObservableCollection<Workout>(
+                    UserManager.Users.SelectMany(u => u.Workouts));
+            }
+            else
+            {
+                // Om inte admin, använd den specifika användarens träningspass
+                WorkoutList = workouts;
+            }
         }
 
         //Metod för att öppna UserDetailsWindow
@@ -107,18 +119,44 @@ namespace ProjektuppgiftOPG.ViewModel
         //Metod för att ta bort ett träningspass
         public void RemoveWorkOut(object parameter)
         {
-            // Om ett träningspass är valt i listan, ta bort det
+            // Om ett träningspass är valt i listan
             if (SelectedWorkout != null)
             {
-                // Kontrollera att WorkoutManager och Workouts inte är null
-                if (WorkoutManager != null && WorkoutManager.Workouts != null)
+                // Kontrollera om användaren är en admin
+                var currentUser = UserManager.GetUsers().FirstOrDefault(u => u.Username == Username);
+
+                if (currentUser is AdminUser adminUser)
                 {
+                    // Ta bort träningspasset
+                    adminUser.ManageAllWorkOuts(WorkoutManager, SelectedWorkout);
+
+                    // Ta bort träningspasset från användarens lista
+                    foreach (var user in UserManager.Users)
+                    {
+                        if (user.Workouts.Contains(SelectedWorkout))
+                        {
+                            user.Workouts.Remove(SelectedWorkout);
+                            break; // Bryt loopen när träningspasset är borttaget
+                        }
+                    }
+                }
+                else
+                {
+                    // För vanliga användare, ta bort deras träningspass
                     if (WorkoutManager.Workouts.Contains(SelectedWorkout))
                     {
                         WorkoutManager.Workouts.Remove(SelectedWorkout);
-                        SelectedWorkout = null; // Återställ vald träning
+                    }
+                    else
+                    {
+                        MessageBox.Show("You can only remove your own workouts.");
+                        return;
                     }
                 }
+
+                // Uppdatera WorkoutList för att reflektera ändringen
+                WorkoutList = new ObservableCollection<Workout>(WorkoutManager.Workouts);
+                SelectedWorkout = null; // Återställ vald träning
             }
             else
             {
