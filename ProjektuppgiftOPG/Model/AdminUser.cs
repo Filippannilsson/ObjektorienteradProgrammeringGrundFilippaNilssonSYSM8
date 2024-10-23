@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -16,9 +17,17 @@ namespace ProjektuppgiftOPG.Model
         }
 
         //Metod
-        public void ManageAllWorkOuts()
+        public void ManageAllWorkOuts(WorkoutManager workoutManager, Workout workoutToRemove = null)
         {
+            //Hämta alla träningspass
+            ObservableCollection<Workout> allWorkouts = workoutManager.Workouts;
 
+            //Om träningspass ska tas bort
+            if (workoutToRemove != null && allWorkouts.Contains(workoutToRemove))
+            {
+                //Ta bort valt träningspass
+                allWorkouts.Remove(workoutToRemove);
+            }
         }
     }
 }

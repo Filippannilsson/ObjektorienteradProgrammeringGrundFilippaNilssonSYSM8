@@ -64,7 +64,8 @@ namespace ProjektuppgiftOPG.ViewModel
             UserManager = userManager;
             WorkoutList = workouts;
             Username = username;
-            WorkoutManager = new WorkoutManager(workouts);
+
+            
         }
 
         //Metod för att öppna UserDetailsWindow
