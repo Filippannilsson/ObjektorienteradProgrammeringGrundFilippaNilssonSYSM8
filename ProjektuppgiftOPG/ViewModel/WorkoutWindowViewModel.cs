@@ -229,19 +229,33 @@ namespace ProjektuppgiftOPG.ViewModel
 
         public void FilterWorkouts()
         {
-            var filteredWorkouts = WorkoutManager.Workouts.AsEnumerable();
+            // Kontrollera om den inloggade användaren är admin
+            var currentUser = UserManager.GetUsers().FirstOrDefault(u => u.Username == Username);
 
-            
+            //Skapa en lista för filtrering
+            List<Workout> filteredWorkouts;
+
+            if (currentUser is AdminUser)
+            {
+                // Om admin, hämta alla användares träningspass
+                filteredWorkouts = UserManager.Users.SelectMany(u => u.Workouts).ToList();
+            }
+            else
+            {
+                // Om inte admin, filtrera endast användarens träningspass
+                filteredWorkouts = WorkoutManager.Workouts.ToList();
+            }
+
             //Filtrera efter datum
             if (SelectedDate.HasValue)
             {
-                filteredWorkouts = filteredWorkouts.Where(w => w.Date.Date == SelectedDate.Value.Date);
+                filteredWorkouts = filteredWorkouts.Where(w => w.Date.Date == SelectedDate.Value.Date).ToList();
             }
 
             // Filtrera efter typ av träningspass, ignorera om "All workouts" är valt
             if (!string.IsNullOrEmpty(SelectedWorkoutType) && SelectedWorkoutType != "All workouts")
             {
-                filteredWorkouts = filteredWorkouts.Where(w => w.Type == SelectedWorkoutType);
+                filteredWorkouts = filteredWorkouts.Where(w => w.Type == SelectedWorkoutType).ToList();
 
             }
 
@@ -251,13 +265,13 @@ namespace ProjektuppgiftOPG.ViewModel
                 switch (SelectedDuration)
                 {
                     case "0-30 min":
-                        filteredWorkouts = filteredWorkouts.Where(w => w.Duration.TotalMinutes >= 0 && w.Duration.TotalMinutes <= 30);
+                        filteredWorkouts = filteredWorkouts.Where(w => w.Duration.TotalMinutes >= 0 && w.Duration.TotalMinutes <= 30).ToList();
                         break;
                     case "31-60 min":
-                        filteredWorkouts = filteredWorkouts.Where(w => w.Duration.TotalMinutes > 30 && w.Duration.TotalMinutes <= 60);
+                        filteredWorkouts = filteredWorkouts.Where(w => w.Duration.TotalMinutes > 30 && w.Duration.TotalMinutes <= 60).ToList();
                         break;
                     case "> 60 min":
-                        filteredWorkouts = filteredWorkouts.Where(w => w.Duration.TotalMinutes > 60);
+                        filteredWorkouts = filteredWorkouts.Where(w => w.Duration.TotalMinutes > 60).ToList();
                         break;
                 }
             }
