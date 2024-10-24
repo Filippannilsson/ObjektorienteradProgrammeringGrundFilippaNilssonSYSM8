@@ -61,22 +61,51 @@
                               VerticalAlignment="Center"
                               HorizontalAlignment="Center"
                               ItemsSource="{Binding WorkoutTypes}" 
-                              SelectedItem="{Binding SelectedType}"
+                              SelectedItem="{Binding SelectedType, UpdateSourceTrigger=PropertyChanged}"
                               Margin="5"/>
+                    <!-- Fält som visas om cardio väljs -->
+                    <StackPanel Visibility="Collapsed">
+                        <TextBlock Text="Distance:" />
+                        <TextBox Text="{Binding DistanceInput}" />
+                        <StackPanel.Style>
+                            <Style TargetType="StackPanel">
+                                <Style.Triggers>
+                                    <DataTrigger Binding="{Binding SelectedType}" Value="Cardio">
+                                        <Setter Property="Visibility" Value="Visible"/>
+                                    </DataTrigger>
+                                </Style.Triggers>
+                            </Style>
+                        </StackPanel.Style>
+                    </StackPanel>
+                    
+                    <!-- Fält som visas om strength väljs -->
+                    <StackPanel Visibility="Collapsed">
+                        <TextBlock Text="Repetitions:" />
+                        <TextBox Text="{Binding RepetitionsInput}" />
+                        <StackPanel.Style>
+                            <Style TargetType="StackPanel">
+                                <Style.Triggers>
+                                    <DataTrigger Binding="{Binding SelectedType}" Value="Strength">
+                                        <Setter Property="Visibility" Value="Visible"/>
+                                    </DataTrigger>
+                                </Style.Triggers>
+                            </Style>
+                        </StackPanel.Style>
+                    </StackPanel>
+                </StackPanel>
+
+                <StackPanel Grid.Row=" 1" Grid.Column="2"
+                            VerticalAlignment="Top" HorizontalAlignment="Left">
                     <Label Content="Duration (min):"
                            FontSize="14"
                            VerticalAlignment="Center" HorizontalAlignment="Center"/>
                     <TextBox Text="{Binding DurationInputString, UpdateSourceTrigger=PropertyChanged}"
                              Width="130" Height="25"
                              Margin="0,0,0,5"/>
-                </StackPanel>
-
-                <StackPanel Grid.Row=" 1" Grid.Column="2"
-                            VerticalAlignment="Top" HorizontalAlignment="Left">
                     <Label Content="Calories burned:"
                            FontSize="14"
                            VerticalAlignment="Center" HorizontalAlignment="Center"/>
-                    <TextBox Text="{Binding CaloriesInput, UpdateSourceTrigger=PropertyChanged}"
+                    <TextBox Text="{Binding CalculatedCalories, Mode=OneWay}"
                              Width="130" Height="25"
                              Margin="0,0,0,5"/>
                     <Label Content="Notes:"

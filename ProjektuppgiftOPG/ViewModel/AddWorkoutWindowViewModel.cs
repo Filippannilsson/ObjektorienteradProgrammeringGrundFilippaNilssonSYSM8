@@ -33,8 +33,38 @@ namespace ProjektuppgiftOPG.ViewModel
             {
                 selectedType = value;
                 OnPropertyChanged();
+                //MessageBox.Show("Selected Type: " + selectedType); // Kontroll för felsökning
+
+                UpdateCalculatedCalories();
             }
         }
+
+        private double distanceInput;
+        public double DistanceInput
+        {
+            get { return distanceInput; }
+            set
+            {
+                distanceInput = value;
+                OnPropertyChanged();
+
+                UpdateCalculatedCalories();
+            }
+        }
+
+        private int repetitionsInput;
+        public int RepetitionsInput
+        {
+            get { return repetitionsInput; }
+            set
+            {
+                repetitionsInput = value;
+                OnPropertyChanged();
+
+                UpdateCalculatedCalories();
+            }
+        }
+
 
         private TimeSpan durationInput;
         public TimeSpan DurationInput
@@ -44,6 +74,8 @@ namespace ProjektuppgiftOPG.ViewModel
             {
                 durationInput = value;
                 OnPropertyChanged();
+
+                UpdateCalculatedCalories();
             }
         }
 
@@ -61,13 +93,13 @@ namespace ProjektuppgiftOPG.ViewModel
             }
         }
 
-        private string caloriesInput;
-        public string CaloriesInput
+        private int calculatedCalories;
+        public int CalculatedCalories
         {
-            get { return caloriesInput; }
+            get { return calculatedCalories; }
             set
             {
-                caloriesInput = value;
+                calculatedCalories = value;
                 OnPropertyChanged();
             }
         }
@@ -109,14 +141,18 @@ namespace ProjektuppgiftOPG.ViewModel
         public void SaveWorkout(object parameter)
         {
             // Skapa ett nytt träningspass
-            var newWorkout = new Workout
+            Workout newWorkout = null;
+
+            if (SelectedType == "Cardio")
             {
-                Date = DateInput,
-                Type = SelectedType,
-                Duration = DurationInput,
-                CaloriesBurned = int.TryParse(CaloriesInput, out int calories) ? calories : 0,
-                Notes = NotesInput
-            };
+                newWorkout = new CardioWorkout(DateInput, SelectedType, DurationInput,
+                    CalculatedCalories, NotesInput, DistanceInput);
+            }
+            else if (SelectedType == "Strength")
+            {
+                newWorkout = new StrengthWorkout(DateInput, SelectedType, DurationInput,
+                    CalculatedCalories, NotesInput, RepetitionsInput);
+            }
 
             // Lägg till träningspasset i WorkoutManager
             WorkoutManager.AddWorkout(newWorkout);
@@ -136,6 +172,27 @@ namespace ProjektuppgiftOPG.ViewModel
             {
                 //Vid ogiltig inmatning, sätt till 0
                 DurationInput = TimeSpan.Zero;
+            }
+        }
+
+        private void UpdateCalculatedCalories()
+        {
+            Workout newWorkout = null;
+
+            // Skapa ett CardioWorkout eller StrengthWorkout baserat på vald typ
+            if (SelectedType == "Cardio")
+            {
+                newWorkout = new CardioWorkout(DateInput, SelectedType, DurationInput, 0, NotesInput, DistanceInput);
+            }
+            else if (SelectedType == "Strength")
+            {
+                newWorkout = new StrengthWorkout(DateInput, SelectedType, DurationInput, 0, NotesInput, RepetitionsInput);
+            }
+
+            if (newWorkout != null)
+            {
+                // Beräkna kalorier och sätt värdet
+                CalculatedCalories = newWorkout.CalculateCaloriesBurned();
             }
         }
 
