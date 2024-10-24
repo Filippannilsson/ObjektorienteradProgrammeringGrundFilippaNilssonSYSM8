@@ -34,8 +34,9 @@
                 </Grid.RowDefinitions>
 
                 <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="50*"/>
-                    <ColumnDefinition Width="50*"/>
+                    <ColumnDefinition Width="45*"/>
+                    <ColumnDefinition Width="10*"/>
+                    <ColumnDefinition Width="45*"/>
                 </Grid.ColumnDefinitions>
 
                 <Label Content="Create account"
@@ -46,7 +47,7 @@
 
                
                 <StackPanel Grid.Row="1"
-                            VerticalAlignment="Top" HorizontalAlignment="Center">
+                            VerticalAlignment="Top" HorizontalAlignment="Right">
                     <Label Content="Create a username:"
                            FontSize="14"
                            VerticalAlignment="Center" HorizontalAlignment="Center"
@@ -67,12 +68,12 @@
                              Margin="0,0,0,5"/>
                 </StackPanel>
                 
-                <StackPanel Grid.Row=" 1" Grid.Column="1"
-                            VerticalAlignment="Top" HorizontalAlignment="Center">
+                <StackPanel Grid.Row=" 1" Grid.Column="2"
+                            VerticalAlignment="Top" HorizontalAlignment="Left">
                     <Label Content="Select your country:"
                            FontSize="14"
                            VerticalAlignment="Center" HorizontalAlignment="Center"/>
-                    <ComboBox Width="130"
+                    <ComboBox Width="180"
                               VerticalAlignment="Center"
                               HorizontalAlignment="Center"
                               ItemsSource="{Binding Countries}" 
@@ -85,8 +86,7 @@
                               VerticalAlignment="Center"
                               HorizontalAlignment="Center"
                               ItemsSource="{Binding Questions}" 
-                              SelectedItem="{Binding SelectedQuestion}"
-                              Margin="5"/>
+                              SelectedItem="{Binding SelectedQuestion}"/>
                     <Label Content="Answer:"
                            FontSize="14"
                            VerticalAlignment="Center" HorizontalAlignment="Center"/>

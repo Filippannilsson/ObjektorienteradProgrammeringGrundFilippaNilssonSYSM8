@@ -34,8 +34,9 @@
                 </Grid.RowDefinitions>
 
                 <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="50*"/>
-                    <ColumnDefinition Width="50*"/>
+                    <ColumnDefinition Width="45*"/>
+                    <ColumnDefinition Width="10*"/>
+                    <ColumnDefinition Width="45*"/>
                 </Grid.ColumnDefinitions>
 
                 <Label Content="Add workout"
@@ -46,7 +47,7 @@
 
 
                 <StackPanel Grid.Row="1"
-                            VerticalAlignment="Top" HorizontalAlignment="Center">
+                            VerticalAlignment="Top" HorizontalAlignment="Right">
                     <Label Content="Select date:"
                            FontSize="14"
                            VerticalAlignment="Center" HorizontalAlignment="Center"
@@ -59,10 +60,10 @@
                     <ComboBox Width="130"
                               VerticalAlignment="Center"
                               HorizontalAlignment="Center"
-                              ItemsSource="{Binding TypeInput}" 
+                              ItemsSource="{Binding Type}" 
                               SelectedItem="{Binding SelectedType}"
                               Margin="5"/>
-                    <Label Content="Duration:"
+                    <Label Content="Duration (min):"
                            FontSize="14"
                            VerticalAlignment="Center" HorizontalAlignment="Center"/>
                     <TextBox Text="{Binding DurationInput, UpdateSourceTrigger=PropertyChanged}"
@@ -70,8 +71,8 @@
                              Margin="0,0,0,5"/>
                 </StackPanel>
 
-                <StackPanel Grid.Row=" 1" Grid.Column="1"
-                            VerticalAlignment="Top" HorizontalAlignment="Center">
+                <StackPanel Grid.Row=" 1" Grid.Column="2"
+                            VerticalAlignment="Top" HorizontalAlignment="Left">
                     <Label Content="Calories burned:"
                            FontSize="14"
                            VerticalAlignment="Center" HorizontalAlignment="Center"/>
@@ -81,7 +82,7 @@
                     <Label Content="Notes:"
                            FontSize="14"
                            VerticalAlignment="Center" HorizontalAlignment="Center"/>
-                    <TextBox Text="{Binding AnswerInput, UpdateSourceTrigger=PropertyChanged}"
+                    <TextBox Text="{Binding NotesInput, UpdateSourceTrigger=PropertyChanged}"
                              Width="130" Height="50"/>
                     <Button Content="Add workout"
                             FontSize="15"
