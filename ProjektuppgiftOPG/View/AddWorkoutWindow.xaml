@@ -60,13 +60,13 @@
                     <ComboBox Width="130"
                               VerticalAlignment="Center"
                               HorizontalAlignment="Center"
-                              ItemsSource="{Binding Type}" 
+                              ItemsSource="{Binding WorkoutTypes}" 
                               SelectedItem="{Binding SelectedType}"
                               Margin="5"/>
                     <Label Content="Duration (min):"
                            FontSize="14"
                            VerticalAlignment="Center" HorizontalAlignment="Center"/>
-                    <TextBox Text="{Binding DurationInput, UpdateSourceTrigger=PropertyChanged}"
+                    <TextBox Text="{Binding DurationInputString, UpdateSourceTrigger=PropertyChanged}"
                              Width="130" Height="25"
                              Margin="0,0,0,5"/>
                 </StackPanel>

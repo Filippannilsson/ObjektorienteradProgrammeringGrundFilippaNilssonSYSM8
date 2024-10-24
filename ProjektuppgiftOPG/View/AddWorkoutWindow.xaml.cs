@@ -1,4 +1,5 @@
-﻿using ProjektuppgiftOPG.ViewModel;
+﻿using ProjektuppgiftOPG.Model;
+using ProjektuppgiftOPG.ViewModel;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -17,10 +18,10 @@ namespace ProjektuppgiftOPG.Windows
 {
     public partial class AddWorkoutWindow : Window
     {
-        public AddWorkoutWindow()
+        public AddWorkoutWindow(WorkoutManager workoutManager)
         {
             InitializeComponent();
-            DataContext = new AddWorkoutWindowViewModel();
+            DataContext = new AddWorkoutWindowViewModel(workoutManager);
         }
     }
 }

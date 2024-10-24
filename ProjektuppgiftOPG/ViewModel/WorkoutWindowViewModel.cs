@@ -138,7 +138,7 @@ namespace ProjektuppgiftOPG.ViewModel
         public void AddWorkOut(object parameter)
         {
             //MessageBox.Show("Här öppnas AddWorkoutWindow");
-            AddWorkoutWindow addWorkoutWindow = new AddWorkoutWindow();
+            AddWorkoutWindow addWorkoutWindow = new AddWorkoutWindow(WorkoutManager);
             addWorkoutWindow.Show();
         }
 

@@ -18,5 +18,10 @@ namespace ProjektuppgiftOPG.Model
             Workouts = workouts;
         }
 
+        //Metod för att lägga till träningspass
+        public void AddWorkout(Workout workout)
+        {
+            Workouts.Add(workout);
+        }
     }
 }
