@@ -63,35 +63,22 @@
                               ItemsSource="{Binding WorkoutTypes}" 
                               SelectedItem="{Binding SelectedType, UpdateSourceTrigger=PropertyChanged}"
                               Margin="5"/>
-                    <!-- Fält som visas om cardio väljs -->
-                    <StackPanel Visibility="Collapsed">
+                    <!-- Fält för Distance, inaktiverad tills "Cardio" är vald -->
+                    <StackPanel>
                         <TextBlock Text="Distance:" />
-                        <TextBox Text="{Binding DistanceInput}" />
-                        <StackPanel.Style>
-                            <Style TargetType="StackPanel">
-                                <Style.Triggers>
-                                    <DataTrigger Binding="{Binding SelectedType}" Value="Cardio">
-                                        <Setter Property="Visibility" Value="Visible"/>
-                                    </DataTrigger>
-                                </Style.Triggers>
-                            </Style>
-                        </StackPanel.Style>
+                        <TextBox Text="{Binding DistanceInput, UpdateSourceTrigger=PropertyChanged}" 
+                                 IsEnabled="{Binding IsDistanceEnabled}" />
                     </StackPanel>
-                    
-                    <!-- Fält som visas om strength väljs -->
-                    <StackPanel Visibility="Collapsed">
+
+                    <!-- Fält för Repetitions, inaktiverad tills "Strength" är vald -->
+                    <StackPanel>
                         <TextBlock Text="Repetitions:" />
-                        <TextBox Text="{Binding RepetitionsInput}" />
-                        <StackPanel.Style>
-                            <Style TargetType="StackPanel">
-                                <Style.Triggers>
-                                    <DataTrigger Binding="{Binding SelectedType}" Value="Strength">
-                                        <Setter Property="Visibility" Value="Visible"/>
-                                    </DataTrigger>
-                                </Style.Triggers>
-                            </Style>
-                        </StackPanel.Style>
+                        <TextBox Text="{Binding RepetitionsInput, UpdateSourceTrigger=PropertyChanged}" 
+                                 IsEnabled="{Binding IsRepetitionsEnabled}" />
                     </StackPanel>
+
+
+
                 </StackPanel>
 
                 <StackPanel Grid.Row=" 1" Grid.Column="2"

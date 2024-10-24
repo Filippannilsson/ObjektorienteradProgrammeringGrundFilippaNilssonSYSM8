@@ -33,9 +33,13 @@ namespace ProjektuppgiftOPG.ViewModel
             {
                 selectedType = value;
                 OnPropertyChanged();
-                //MessageBox.Show("Selected Type: " + selectedType); // Kontroll för felsökning
-
                 UpdateCalculatedCalories();
+
+                // Aktivera distance om Cardio är vald, annars inaktivera
+                IsDistanceEnabled = selectedType == "Cardio";
+
+                // Aktivera repetitions om Strength är vald, annars inaktivera
+                IsRepetitionsEnabled = selectedType == "Strength";
             }
         }
 
@@ -52,6 +56,17 @@ namespace ProjektuppgiftOPG.ViewModel
             }
         }
 
+        private bool isDistanceEnabled;
+        public bool IsDistanceEnabled
+        {
+            get { return isDistanceEnabled; }
+            set
+            {
+                isDistanceEnabled = value;
+                OnPropertyChanged();
+            }
+        }
+
         private int repetitionsInput;
         public int RepetitionsInput
         {
@@ -62,6 +77,17 @@ namespace ProjektuppgiftOPG.ViewModel
                 OnPropertyChanged();
 
                 UpdateCalculatedCalories();
+            }
+        }
+
+        private bool isRepetitionsEnabled;
+        public bool IsRepetitionsEnabled
+        {
+            get { return isRepetitionsEnabled; }
+            set
+            {
+                isRepetitionsEnabled = value;
+                OnPropertyChanged();
             }
         }
 
