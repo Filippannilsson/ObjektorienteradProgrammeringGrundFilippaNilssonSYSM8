@@ -277,7 +277,7 @@ namespace ProjektuppgiftOPG.ViewModel
             }
 
             //Uppdatera listan
-            WorkoutList = new ObservableCollection<Workout>(filteredWorkouts.ToList());
+            WorkoutList = new ObservableCollection<Workout>(filteredWorkouts);
         }
     }
 }

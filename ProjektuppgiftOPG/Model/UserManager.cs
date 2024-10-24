@@ -22,7 +22,8 @@ namespace ProjektuppgiftOPG.Model
                     Workouts = new ObservableCollection<Workout>
                     {
                         new CardioWorkout(DateTime.Now, "Cardio", TimeSpan.FromMinutes(30), 300, "Morning run", 5),
-                        new StrengthWorkout(DateTime.Now, "Strength", TimeSpan.FromMinutes(40), 250, "Gym", 1)
+                        new StrengthWorkout(DateTime.Now, "Strength", TimeSpan.FromMinutes(40), 250, "Gym", 1),
+                        new CardioWorkout(DateTime.Now, "Cardio", TimeSpan.FromMinutes(70), 500, "Morning run", 11)
                     }
                 },
                 new AdminUser("admin", "password", "Sweden", "What is your favorite color?", "Red")
