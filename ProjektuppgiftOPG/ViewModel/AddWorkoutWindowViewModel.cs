@@ -255,8 +255,9 @@ namespace ProjektuppgiftOPG.ViewModel
             }
             else if (SelectedType == "Strength")
             {
-                // Försök göra om RepetitionsInput till int när mågot matats in
-                if (!string.IsNullOrWhiteSpace(RepetitionsInput) && int.TryParse(RepetitionsInput, out int repetitions))
+                // Försök göra om RepetitionsInput och DUrationInput till int när mågot matats in
+                if (!string.IsNullOrWhiteSpace(RepetitionsInput) && int.TryParse(RepetitionsInput, out int repetitions)
+                    && (!string.IsNullOrWhiteSpace(DurationInput) && int.TryParse(DurationInput, out int duration)))
                 {
                     newWorkout = new StrengthWorkout(DateInput, SelectedType, DurationInput,
                         CalculatedCalories, NotesInput, repetitions);
