@@ -35,20 +35,35 @@ namespace ProjektuppgiftOPG.ViewModel
                 OnPropertyChanged();
                 UpdateCalculatedCalories();
 
-                // Aktivera distance om Cardio är vald, annars inaktivera
-                IsDistanceEnabled = selectedType == "Cardio";
-
-                // Aktivera repetitions om Strength är vald, annars inaktivera
-                IsRepetitionsEnabled = selectedType == "Strength";
+                // Aktivera och återställ inaktiva fält beroende på träningstyp
+                if (selectedType == "Cardio")
+                {
+                    IsDistanceEnabled = true;
+                    IsRepetitionsEnabled = false;
+                    RepetitionsInput = 0; 
+                }
+                else if (selectedType == "Strength")
+                {
+                    IsDistanceEnabled = false;
+                    DistanceInput = 0;
+                    IsRepetitionsEnabled = true;
+                }
             }
         }
 
-        private double distanceInput;
-        public double DistanceInput
+        private int distanceInput;
+        public int DistanceInput
         {
             get { return distanceInput; }
             set
             {
+                //Validera inmatningen
+                if (value < 0)
+                {
+                    MessageBox.Show("Distance can not be negative");
+                    return;
+                }
+
                 distanceInput = value;
                 OnPropertyChanged();
 

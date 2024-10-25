@@ -9,11 +9,11 @@ namespace ProjektuppgiftOPG.Model
     public class CardioWorkout : Workout
     {
         //Egenskaper
-        public double Distance { get; set; }
+        public int Distance { get; set; }
 
         //Konstruktor
         public CardioWorkout(DateTime date, string type, TimeSpan duration, int caloriesBurned,
-            string notes, double distance) : base(date, type, duration, caloriesBurned, notes)
+            string notes, int distance) : base(date, type, duration, caloriesBurned, notes)
         {
             Distance = distance;
         }
@@ -22,7 +22,8 @@ namespace ProjektuppgiftOPG.Model
         public override int CalculateCaloriesBurned()
         {
             // Kaloriberäkning för Cardio
-            return (int)(Duration.TotalMinutes * Distance);
+            int caloriesPerKm = 80; //Uppskattat antal kcal/km
+            return (int)(Distance * caloriesPerKm);
         }
     }
 }

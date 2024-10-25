@@ -39,7 +39,7 @@
                     <ColumnDefinition Width="45*"/>
                 </Grid.ColumnDefinitions>
 
-                <Label Content="Add workout"
+                <Label Content="Add new workout"
                        Grid.ColumnSpan="3" 
                        FontSize="30" FontFamily="Arial"
                        Foreground="#DC143C" FontWeight="DemiBold"
@@ -63,7 +63,8 @@
                     <!-- Fält för Distance, inaktiverad tills "Cardio" är vald -->
                     <StackPanel>
                         <TextBlock Text="Distance (km):"
-                                   FontSize="14"/>
+                                   FontSize="14"
+                                   />
                         <TextBox Text="{Binding DistanceInput, UpdateSourceTrigger=PropertyChanged}" 
                                  IsEnabled="{Binding IsDistanceEnabled}" />
                     </StackPanel>
@@ -100,7 +101,7 @@
                         VerticalAlignment="Bottom"
                         FontSize="15"
                         Margin="10" Width="100" Height="30"
-                        Background="#D3D3D3" FontWeight="DemiBold"
+                        Background="#FFAAACAA" FontWeight="DemiBold"
                         Command="{Binding AddWorkoutCommand}"/>
             </Grid>
         </Grid>

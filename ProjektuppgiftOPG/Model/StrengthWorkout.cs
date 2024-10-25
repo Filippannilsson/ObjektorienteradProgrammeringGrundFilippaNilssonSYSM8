@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
 
 namespace ProjektuppgiftOPG.Model
 {
@@ -21,8 +22,9 @@ namespace ProjektuppgiftOPG.Model
         //Metod
         public override int CalculateCaloriesBurned()
         {
-            // Kaloriberäkning för Styrketräning
-            return (int)(Duration.TotalMinutes * Repetitions * 0.3);
+            //Kaloriberäkning för styrketräning
+            double caloriesPerMinute = 5; //Uppskattat antal kalorier brända per minut
+            return (int)(caloriesPerMinute * Duration.TotalMinutes);
         }
     }
 }
