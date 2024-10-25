@@ -63,7 +63,7 @@
                     <!-- För en snyggare design utan autogenererad column -->
                     <DataGrid.Columns>
                         <DataGridTextColumn Header="Workout Type" Binding="{Binding Type}" Width="5*"/>
-                        <DataGridTextColumn Header="Date" Binding="{Binding Date}" Width="5*"/>
+                        <DataGridTextColumn Header="Date" Binding="{Binding Date, StringFormat=d}" Width="5*"/>
                     </DataGrid.Columns>
                 </DataGrid>
 

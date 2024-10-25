@@ -21,8 +21,8 @@ namespace ProjektuppgiftOPG.Model
         //Metod
         public override int CalculateCaloriesBurned()
         {
-            // Kaloriberäkning för Cardio
-            return (int)(Duration.TotalMinutes * Repetitions * 0.1);
+            // Kaloriberäkning för Styrketräning
+            return (int)(Duration.TotalMinutes * Repetitions * 0.3);
         }
     }
 }

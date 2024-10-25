@@ -156,7 +156,7 @@ namespace ProjektuppgiftOPG.ViewModel
             WorkoutManager = workoutManager;
 
             //Skapa alternativ till comboboxen
-            WorkoutTypes = new ObservableCollection<string> { "Cardio", "Strength", "Other" };
+            WorkoutTypes = new ObservableCollection<string> { "Cardio", "Strength"};
 
             //Sätter dagens datum som standardvärde
             DateInput = DateTime.Now;
@@ -166,6 +166,12 @@ namespace ProjektuppgiftOPG.ViewModel
         //Metod för att lägga till träningspass
         public void SaveWorkout(object parameter)
         {
+            if (!CanSaveWorkout())
+            {
+                MessageBox.Show("Please fill in all information");
+                return;
+            }
+
             // Skapa ett nytt träningspass
             Workout newWorkout = null;
 
@@ -201,11 +207,12 @@ namespace ProjektuppgiftOPG.ViewModel
             }
         }
 
+        //Metod för att uppdatera antal brända kcal 
         private void UpdateCalculatedCalories()
         {
             Workout newWorkout = null;
 
-            // Skapa ett CardioWorkout eller StrengthWorkout baserat på vald typ
+            // Skapa en CardioWorkout eller StrengthWorkout baserat på vald typ
             if (SelectedType == "Cardio")
             {
                 newWorkout = new CardioWorkout(DateInput, SelectedType, DurationInput, 0, NotesInput, DistanceInput);
@@ -220,6 +227,34 @@ namespace ProjektuppgiftOPG.ViewModel
                 // Beräkna kalorier och sätt värdet
                 CalculatedCalories = newWorkout.CalculateCaloriesBurned();
             }
+        }
+
+        //Metod för att kontrollera om alla fält är ifyllda
+        private bool CanSaveWorkout()
+        {
+            // Kontrollera om fält är ifyllda korrekt
+            if (DateInput == default)
+                return false;
+
+            if (string.IsNullOrWhiteSpace(SelectedType))
+                return false;
+
+            if (DurationInput == TimeSpan.Zero)
+                return false;
+
+            if (string.IsNullOrWhiteSpace(NotesInput))
+                return false;
+            
+            // Om det är ett Cardio-pass, kontrollera att distans är större än 0
+            if (SelectedType == "Cardio" && DistanceInput <= 0)
+                return false;
+
+            // Om det är ett Strength-pass, kontrollera att repetitions är större än 0
+            if (SelectedType == "Strength" && RepetitionsInput <= 0)
+                return false;
+
+            // Om alla fält är giltiga
+            return true;
         }
 
     }

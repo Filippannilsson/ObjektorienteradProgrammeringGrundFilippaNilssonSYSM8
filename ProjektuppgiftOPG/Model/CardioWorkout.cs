@@ -22,7 +22,7 @@ namespace ProjektuppgiftOPG.Model
         public override int CalculateCaloriesBurned()
         {
             // Kaloriberäkning för Cardio
-            return (int)(Duration.TotalMinutes * Distance * 0.1);
+            return (int)(Duration.TotalMinutes * Distance);
         }
     }
 }
