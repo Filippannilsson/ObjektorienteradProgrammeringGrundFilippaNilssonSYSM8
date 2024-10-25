@@ -137,7 +137,16 @@ namespace ProjektuppgiftOPG.ViewModel
         //Metod för att öppna AddWorkoutWindow
         public void AddWorkOut(object parameter)
         {
-            //MessageBox.Show("Här öppnas AddWorkoutWindow");
+            // Kontrollera om användaren är admin
+            var currentUser = UserManager.GetUsers().FirstOrDefault(u => u.Username == Username);
+
+            //Meddelande om admin försöker lägga till träningspass
+            if (currentUser is AdminUser adminUser)
+            {
+                MessageBox.Show("Admin can not add workouts");
+                return;
+            }
+
             AddWorkoutWindow addWorkoutWindow = new AddWorkoutWindow(WorkoutManager);
             addWorkoutWindow.Show();
         }
