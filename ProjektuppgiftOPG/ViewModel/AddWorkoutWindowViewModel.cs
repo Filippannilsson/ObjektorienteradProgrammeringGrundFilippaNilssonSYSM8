@@ -114,31 +114,23 @@ namespace ProjektuppgiftOPG.ViewModel
             }
         }
 
-
-        private TimeSpan durationInput;
-        public TimeSpan DurationInput
+        private string durationInput;
+        public string DurationInput
         {
             get { return durationInput; }
             set
             {
+                // Validera att inmatningen är en giltig siffra
+                if (!IsValidNumber(value))
+                {
+                    MessageBox.Show("Duration must be a positive number");
+                    return;
+                }
+
                 durationInput = value;
                 OnPropertyChanged();
 
                 UpdateCalculatedCalories();
-            }
-        }
-
-        private string durationInputString;
-        public string DurationInputString
-        {
-            get { return durationInputString; }
-            set
-            {
-                durationInputString = value;
-                OnPropertyChanged();
-
-                // Konvertera strängen till TimeSpan
-                SetDurationFromString(value);
             }
         }
 
@@ -186,6 +178,7 @@ namespace ProjektuppgiftOPG.ViewModel
 
         }
 
+
         //Metod för att lägga till träningspass
         public void SaveWorkout(object parameter)
         {
@@ -200,23 +193,22 @@ namespace ProjektuppgiftOPG.ViewModel
 
             if (SelectedType == "Cardio")
             {
-                // Försök att konvertera DistanceInput till int
-                if (int.TryParse(DistanceInput, out int distance))
+                // Försök att konvertera DistanceInput och DurationInput till int
+                if (int.TryParse(DistanceInput, out int distance) && int.TryParse(DurationInput, out int duration))
                 {
-                    newWorkout = new CardioWorkout(DateInput, SelectedType, DurationInput,
+                    newWorkout = new CardioWorkout(DateInput, SelectedType, TimeSpan.FromMinutes(duration),
                         CalculatedCalories, NotesInput, distance);
                 }
             }
             else if (SelectedType == "Strength")
             {
-                // Försök att konvertera RepetitionsInput till int
-                if (int.TryParse(RepetitionsInput, out int repetitions))
+                // Försök att konvertera RepetitionsInput och DurationInput till int
+                if (int.TryParse(RepetitionsInput, out int repetitions) && int.TryParse(DurationInput, out int duration))
                 {
-                    newWorkout = new StrengthWorkout(DateInput, SelectedType, DurationInput,
+                    newWorkout = new StrengthWorkout(DateInput, SelectedType, TimeSpan.FromMinutes(duration),
                         CalculatedCalories, NotesInput, repetitions);
                 }
             }
-
             // Lägg till träningspasset i WorkoutManager
             WorkoutManager.AddWorkout(newWorkout);
 
@@ -224,19 +216,6 @@ namespace ProjektuppgiftOPG.ViewModel
             Application.Current.Windows.OfType<AddWorkoutWindow>().FirstOrDefault()?.Close();
         }
 
-        // Hjälpmetod för att konvertera sträng till TimeSpan
-        private void SetDurationFromString(string durationString)
-        {
-            if (int.TryParse(durationString, out int minutes))
-            {
-                DurationInput = TimeSpan.FromMinutes(minutes);
-            }
-            else
-            {
-                //Vid ogiltig inmatning, sätt till 0
-                DurationInput = TimeSpan.Zero;
-            }
-        }
 
         //Metod för att uppdatera antal brända kcal 
         private void UpdateCalculatedCalories()
@@ -246,20 +225,21 @@ namespace ProjektuppgiftOPG.ViewModel
             // Skapa en CardioWorkout eller StrengthWorkout baserat på vald typ
             if (SelectedType == "Cardio")
             {
-                // Försök göra om DistanceInput till int när mågot matats in
-                if (!string.IsNullOrWhiteSpace(DistanceInput) && int.TryParse(DistanceInput, out int distance))
+                // Försök göra om DistanceInput och DurationInput till int när mågot matats in
+                if (!string.IsNullOrWhiteSpace(DistanceInput) && int.TryParse(DistanceInput, out int distance)
+                    && (!string.IsNullOrWhiteSpace(DurationInput) && int.TryParse(DurationInput, out int duration)))
                 {
-                    newWorkout = new CardioWorkout(DateInput, SelectedType, DurationInput,
+                    newWorkout = new CardioWorkout(DateInput, SelectedType, TimeSpan.FromMinutes(duration),
                         CalculatedCalories, NotesInput, distance);
                 }
             }
             else if (SelectedType == "Strength")
             {
-                // Försök göra om RepetitionsInput och DUrationInput till int när mågot matats in
+                // Försök göra om RepetitionsInput och DurationInput till int när mågot matats in
                 if (!string.IsNullOrWhiteSpace(RepetitionsInput) && int.TryParse(RepetitionsInput, out int repetitions)
                     && (!string.IsNullOrWhiteSpace(DurationInput) && int.TryParse(DurationInput, out int duration)))
                 {
-                    newWorkout = new StrengthWorkout(DateInput, SelectedType, DurationInput,
+                    newWorkout = new StrengthWorkout(DateInput, SelectedType, TimeSpan.FromMinutes(duration),
                         CalculatedCalories, NotesInput, repetitions);
                 }
             }
@@ -271,6 +251,7 @@ namespace ProjektuppgiftOPG.ViewModel
             }
         }
 
+
         //Metod för att kontrollera om alla fält är ifyllda
         private bool CanSaveWorkout()
         {
@@ -281,7 +262,7 @@ namespace ProjektuppgiftOPG.ViewModel
             if (string.IsNullOrWhiteSpace(SelectedType))
                 return false;
 
-            if (DurationInput == TimeSpan.Zero)
+            if (string.IsNullOrWhiteSpace(DurationInput))
                 return false;
 
             if (string.IsNullOrWhiteSpace(NotesInput))
@@ -300,8 +281,6 @@ namespace ProjektuppgiftOPG.ViewModel
                 if (!int.TryParse(RepetitionsInput, out int repetitions) || repetitions <= 0)
                     return false;
             }
-
-
             // Om alla fält är giltiga
             return true;
         }

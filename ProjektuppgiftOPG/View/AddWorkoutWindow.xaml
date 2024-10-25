@@ -83,7 +83,7 @@
                             VerticalAlignment="Top" HorizontalAlignment="Left">
                     <Label Content="Duration (min):"
                            FontSize="14"/>
-                    <TextBox Text="{Binding DurationInputString, UpdateSourceTrigger=PropertyChanged}"
+                    <TextBox Text="{Binding DurationInput, UpdateSourceTrigger=PropertyChanged}"
                              Width="130" Height="25"/>
                     <Label Content="Calories burned:"
                            FontSize="14"/>
