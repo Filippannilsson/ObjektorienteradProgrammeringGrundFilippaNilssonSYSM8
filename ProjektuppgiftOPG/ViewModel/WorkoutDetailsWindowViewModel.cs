@@ -116,6 +116,7 @@ namespace ProjektuppgiftOPG.ViewModel
             {
                 isDistanceEnabled = value;
                 OnPropertyChanged();
+                OnPropertyChanged(nameof(IsDistanceEditable));
             }
         }
 
@@ -150,6 +151,7 @@ namespace ProjektuppgiftOPG.ViewModel
             {
                 isRepetitionsEnabled = value;
                 OnPropertyChanged();
+                OnPropertyChanged(nameof(IsRepetitionsEditable));
             }
         }
 
@@ -186,8 +188,14 @@ namespace ProjektuppgiftOPG.ViewModel
             {
                 isEditable = value;
                 OnPropertyChanged();
+                OnPropertyChanged(nameof(IsDistanceEditable));
+                OnPropertyChanged(nameof(IsRepetitionsEditable));
             }
         }
+
+        public bool IsDistanceEditable => IsEditable && IsDistanceEnabled;
+        public bool IsRepetitionsEditable => IsEditable && IsRepetitionsEnabled;
+
 
         //Lista över workout types
         public ObservableCollection<string> WorkoutTypes { get; set; }

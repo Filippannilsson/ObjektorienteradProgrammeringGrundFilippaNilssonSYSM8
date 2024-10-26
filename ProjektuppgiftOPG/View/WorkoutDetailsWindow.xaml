@@ -68,7 +68,7 @@
                                    FontSize="14" Width="130"/>
                         <TextBox Width="130"
                                  Text="{Binding DistanceInput, UpdateSourceTrigger=PropertyChanged}" 
-                                 IsEnabled="{Binding IsEditable}" />
+                                 IsEnabled="{Binding IsDistanceEditable}" />
                     </StackPanel>
 
                     
@@ -77,7 +77,7 @@
                                    FontSize="14" Width="130"/>
                         <TextBox Width="130"
                                  Text="{Binding RepetitionsInput, UpdateSourceTrigger=PropertyChanged}" 
-                                 IsEnabled="{Binding IsEditable}" />
+                                 IsEnabled="{Binding IsRepetitionsEditable}" />
                     </StackPanel>
 
                 </StackPanel>
