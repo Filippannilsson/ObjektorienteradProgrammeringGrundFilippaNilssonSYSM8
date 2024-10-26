@@ -163,8 +163,22 @@ namespace ProjektuppgiftOPG.ViewModel
 
             //Om träningspass är markerat, öppna OpenDetails
             WorkoutDetailsWindow workoutDetailsWindow = new WorkoutDetailsWindow(workout);
+
+            var viewModel = (WorkoutDetailsWindowViewModel)workoutDetailsWindow.DataContext;
+
+            // Abonnera på WorkoutSaved-händelsen
+            viewModel.WorkoutSaved += (sender, args) => UpdateWorkoutList();
+
+
             workoutDetailsWindow.Show();
 
+        }
+
+        // Metod för att uppdatera WorkoutList
+        private void UpdateWorkoutList()
+        {
+            // Filtrera om workoutList för att få de senaste träningspassen
+            FilterWorkouts();
         }
 
         //Metod för att ta bort ett träningspass

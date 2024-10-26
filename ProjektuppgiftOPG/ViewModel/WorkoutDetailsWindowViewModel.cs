@@ -200,6 +200,10 @@ namespace ProjektuppgiftOPG.ViewModel
         //Lista över workout types
         public ObservableCollection<string> WorkoutTypes { get; set; }
 
+        //Eventhandler för att kunna uppdatera WorkoutList när man sparar ändringar
+
+        public event EventHandler WorkoutSaved;
+
         //Knappar för kommando
         public ICommand EditWorkoutCommand => new RelayCommand(EditWorkout);
         public ICommand SaveWorkoutCommand => new RelayCommand(SaveWorkout);
@@ -238,6 +242,9 @@ namespace ProjektuppgiftOPG.ViewModel
             }
 
             IsEditable = false;
+
+            // Utlös händelsen för att meddela att workout har sparats
+            WorkoutSaved?.Invoke(this, EventArgs.Empty);
         }
     }
 }
