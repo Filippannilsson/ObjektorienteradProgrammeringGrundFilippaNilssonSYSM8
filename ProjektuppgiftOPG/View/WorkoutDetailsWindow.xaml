@@ -5,8 +5,116 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:ProjektuppgiftOPG.Windows"
         mc:Ignorable="d"
-        Title="WorkoutDetailsWindow" Height="450" Width="800">
+        Title="WorkoutDetailsWindow" Height="450" Width="800"
+                SnapsToDevicePixels="True" UseLayoutRounding="True">
     <Grid>
-        
+        <Grid.RowDefinitions>
+            <RowDefinition Height="15*"/>
+            <RowDefinition Height="85*"/>
+        </Grid.RowDefinitions>
+
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="15*"/>
+            <ColumnDefinition Width="85*"/>
+        </Grid.ColumnDefinitions>
+
+        <!-- Skapar rektanglar för att fylla i färg -->
+        <Rectangle Grid.Row="1" Grid.Column="0" Fill="#DC143C"/>
+        <Rectangle Grid.Row="0" Grid.Column="0" Fill="#FF6F0A1E"/>
+        <Rectangle Grid.Row="0" Grid.Column="1" Fill="#FFA00B29"/>
+        <Rectangle Grid.Row="1" Grid.Column="1" Fill="#D3D3D3"/>
+
+        <!-- Skapar fler rader och columner för att kunna anpassa designen bättre -->
+        <Grid Grid.Row="1" Grid.Column="1">
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="20*"/>
+                    <RowDefinition Height="70*"/>
+                    <RowDefinition Height="10*"/>
+                </Grid.RowDefinitions>
+
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="45*"/>
+                    <ColumnDefinition Width="10*"/>
+                    <ColumnDefinition Width="45*"/>
+                </Grid.ColumnDefinitions>
+
+                <Label Content="Workout details"
+                       Grid.ColumnSpan="3" 
+                       FontSize="30" FontFamily="Arial"
+                       Foreground="#DC143C" FontWeight="DemiBold"
+                       VerticalAlignment="Center" HorizontalAlignment="Center"/>
+
+
+                <StackPanel Grid.Row="1"
+                            VerticalAlignment="Top" HorizontalAlignment="Right">
+                    <Label Content="Date:"
+                           FontSize="14"/>
+                    <DatePicker SelectedDate="{Binding DateInput, UpdateSourceTrigger=PropertyChanged}" 
+                                Width="130" Height="25"/>
+                    <Label Content="Workout Type:"
+                           FontSize="14"/>
+                    <ComboBox Width="130"
+                              VerticalAlignment="Center"
+                              HorizontalAlignment="Center"
+                              ItemsSource="{Binding WorkoutTypes}" 
+                              SelectedItem="{Binding SelectedType, UpdateSourceTrigger=PropertyChanged}"
+                              Margin="5"/>
+                    <!-- Fält för Distance, inaktiverad tills "Cardio" är vald -->
+                    <StackPanel>
+                        <TextBlock Text="Distance (km):"
+                                   FontSize="14" Width="130"
+                                   />
+                        <TextBox Width="130"
+                                 Text="{Binding DistanceInput, UpdateSourceTrigger=PropertyChanged}" 
+                                 IsEnabled="{Binding IsDistanceEnabled}" />
+                    </StackPanel>
+
+                    <!-- Fält för Repetitions, inaktiverad tills "Strength" är vald -->
+                    <StackPanel>
+                        <TextBlock Text="Repetitions:" 
+                                   FontSize="14" Width="130"/>
+                        <TextBox Width="130"
+                                 Text="{Binding RepetitionsInput, UpdateSourceTrigger=PropertyChanged}" 
+                                 IsEnabled="{Binding IsRepetitionsEnabled}" />
+                    </StackPanel>
+
+                </StackPanel>
+
+                <StackPanel Grid.Row=" 1" Grid.Column="2"
+                            VerticalAlignment="Top" HorizontalAlignment="Left">
+                    <Label Content="Duration (min):"
+                           FontSize="14"/>
+                    <TextBox Text="{Binding DurationInput, UpdateSourceTrigger=PropertyChanged}"
+                             Width="130" Height="25"/>
+                    <Label Content="Calories burned:"
+                           FontSize="14"/>
+                    <TextBox Text="{Binding CalculatedCalories, Mode=OneWay}"
+                             Width="130" Height="25"
+                             IsReadOnly="True"/>
+                    <Label Content="Notes:"
+                           FontSize="14"/>
+                    <TextBox Text="{Binding NotesInput, UpdateSourceTrigger=PropertyChanged}"
+                             Width="130" Height="50"/>
+                </StackPanel>
+
+                <StackPanel Grid.Row="1" Grid.ColumnSpan="3"
+                            Orientation="Horizontal"
+                            VerticalAlignment="Bottom" HorizontalAlignment="Center">
+                    <Button Content="Edit"
+                            FontSize="15"
+                            Margin="10" Width="100" Height="30"
+                            Background="#FFAAACAA" FontWeight="DemiBold"
+                            Command="{Binding EditWorkoutCommand}"/>
+                    <Button Content="Save"
+                            FontSize="15"
+                            Margin="10" Width="100" Height="30"
+                            Background="#FFAAACAA" FontWeight="DemiBold"
+                            Command="{Binding SaveWorkoutCommand}"/>
+                </StackPanel>
+
+                
+            </Grid>
+        </Grid>
     </Grid>
 </Window>

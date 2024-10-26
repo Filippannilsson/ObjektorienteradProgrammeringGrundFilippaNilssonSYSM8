@@ -63,17 +63,19 @@
                     <!-- Fält för Distance, inaktiverad tills "Cardio" är vald -->
                     <StackPanel>
                         <TextBlock Text="Distance (km):"
-                                   FontSize="14"
+                                   FontSize="14" Width="130"
                                    />
-                        <TextBox Text="{Binding DistanceInput, UpdateSourceTrigger=PropertyChanged}" 
+                        <TextBox Width="130"
+                                 Text="{Binding DistanceInput, UpdateSourceTrigger=PropertyChanged}" 
                                  IsEnabled="{Binding IsDistanceEnabled}" />
                     </StackPanel>
 
                     <!-- Fält för Repetitions, inaktiverad tills "Strength" är vald -->
                     <StackPanel>
                         <TextBlock Text="Repetitions:" 
-                                   FontSize="14"/>
-                        <TextBox Text="{Binding RepetitionsInput, UpdateSourceTrigger=PropertyChanged}" 
+                                   FontSize="14" Width="130"/>
+                        <TextBox Width="130"
+                                 Text="{Binding RepetitionsInput, UpdateSourceTrigger=PropertyChanged}" 
                                  IsEnabled="{Binding IsRepetitionsEnabled}" />
                     </StackPanel>
 
