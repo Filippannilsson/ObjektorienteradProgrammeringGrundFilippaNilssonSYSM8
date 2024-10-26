@@ -51,7 +51,8 @@
                     <Label Content="Date:"
                            FontSize="14"/>
                     <DatePicker SelectedDate="{Binding DateInput, UpdateSourceTrigger=PropertyChanged}" 
-                                Width="130" Height="25"/>
+                                Width="130" Height="25"
+                                IsEnabled="{Binding IsEditable}"/>
                     <Label Content="Workout Type:"
                            FontSize="14"/>
                     <ComboBox Width="130"
@@ -59,6 +60,7 @@
                               HorizontalAlignment="Center"
                               ItemsSource="{Binding WorkoutTypes}" 
                               SelectedItem="{Binding SelectedType, UpdateSourceTrigger=PropertyChanged}"
+                              IsEnabled="{Binding IsEditable}"
                               Margin="5"/>
                     <!-- Fält för Distance, inaktiverad tills "Cardio" är vald -->
                     <StackPanel>
@@ -67,7 +69,7 @@
                                    />
                         <TextBox Width="130"
                                  Text="{Binding DistanceInput, UpdateSourceTrigger=PropertyChanged}" 
-                                 IsEnabled="{Binding IsDistanceEnabled}" />
+                                 IsEnabled="{Binding IsEditable}" />
                     </StackPanel>
 
                     <!-- Fält för Repetitions, inaktiverad tills "Strength" är vald -->
@@ -76,7 +78,7 @@
                                    FontSize="14" Width="130"/>
                         <TextBox Width="130"
                                  Text="{Binding RepetitionsInput, UpdateSourceTrigger=PropertyChanged}" 
-                                 IsEnabled="{Binding IsRepetitionsEnabled}" />
+                                 IsEnabled="{Binding IsEditable}" />
                     </StackPanel>
 
                 </StackPanel>
@@ -86,15 +88,18 @@
                     <Label Content="Duration (min):"
                            FontSize="14"/>
                     <TextBox Text="{Binding DurationInput, UpdateSourceTrigger=PropertyChanged}"
+                             IsEnabled="{Binding IsEditable}"
                              Width="130" Height="25"/>
                     <Label Content="Calories burned:"
                            FontSize="14"/>
                     <TextBox Text="{Binding CalculatedCalories, Mode=OneWay}"
+                             IsEnabled="{Binding IsEditable}"
                              Width="130" Height="25"
                              IsReadOnly="True"/>
                     <Label Content="Notes:"
                            FontSize="14"/>
                     <TextBox Text="{Binding NotesInput, UpdateSourceTrigger=PropertyChanged}"
+                             IsEnabled="{Binding IsEditable}"
                              Width="130" Height="50"/>
                 </StackPanel>
 

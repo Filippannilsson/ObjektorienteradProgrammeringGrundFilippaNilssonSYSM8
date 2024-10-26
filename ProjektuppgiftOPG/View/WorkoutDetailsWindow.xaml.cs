@@ -1,4 +1,6 @@
-﻿using System;
+﻿using ProjektuppgiftOPG.Model;
+using ProjektuppgiftOPG.ViewModel;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -21,10 +23,10 @@ namespace ProjektuppgiftOPG.Windows
             InitializeComponent();
         }
 
-        public WorkoutDetailsWindow(Model.Workout selectedWorkout)
+        public WorkoutDetailsWindow(Workout selectedWorkout)
         {
             InitializeComponent();
-            DataContext = new WorkoutDetailsWindow();
+            DataContext = new WorkoutDetailsWindowViewModel(selectedWorkout);
         }
     }
 }
