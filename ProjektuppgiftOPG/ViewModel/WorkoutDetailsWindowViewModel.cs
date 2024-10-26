@@ -222,7 +222,22 @@ namespace ProjektuppgiftOPG.ViewModel
 
         public void SaveWorkout(object parameter)
         {
+            // Uppdatera egenskaper
+            Workout.Date = DateInput ?? DateTime.Now;
+            Workout.Type = SelectedType;
+            Workout.Duration = TimeSpan.FromMinutes(DurationInput);
+            Workout.Notes = NotesInput;
 
+            if (Workout is CardioWorkout cardioWorkout)
+            {
+                cardioWorkout.Distance = DistanceInput;
+            }
+            else if (Workout is StrengthWorkout strengthWorkout)
+            {
+                strengthWorkout.Repetitions = RepetitionsInput;
+            }
+
+            IsEditable = false;
         }
     }
 }
