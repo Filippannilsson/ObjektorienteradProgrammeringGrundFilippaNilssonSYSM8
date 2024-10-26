@@ -115,6 +115,11 @@
                             Margin="10" Width="100" Height="30"
                             Background="#FFAAACAA" FontWeight="DemiBold"
                             Command="{Binding SaveWorkoutCommand}"/>
+                    <Button Content="Copy"
+                            FontSize="15"
+                            Margin="10" Width="100" Height="30"
+                            Background="#FFAAACAA" FontWeight="DemiBold"
+                            Command="{Binding CopyWorkoutCommand}"/>
                 </StackPanel>
 
                 

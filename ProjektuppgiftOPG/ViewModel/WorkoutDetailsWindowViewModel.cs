@@ -205,8 +205,9 @@ namespace ProjektuppgiftOPG.ViewModel
         public event EventHandler WorkoutSaved;
 
         //Knappar för kommando
-        public ICommand EditWorkoutCommand => new RelayCommand(EditWorkout);
-        public ICommand SaveWorkoutCommand => new RelayCommand(SaveWorkout);
+        public RelayCommand EditWorkoutCommand => new RelayCommand(EditWorkout);
+        public RelayCommand SaveWorkoutCommand => new RelayCommand(SaveWorkout);
+        public RelayCommand CopyWorkoutCommand => new RelayCommand(CopyWorkout);
 
         //Konstruktor
         public WorkoutDetailsWindowViewModel(Workout selectedWorkout)
@@ -245,6 +246,11 @@ namespace ProjektuppgiftOPG.ViewModel
 
             // Utlös händelsen för att meddela att workout har sparats
             WorkoutSaved?.Invoke(this, EventArgs.Empty);
+        }
+
+        public void CopyWorkout(object obj)
+        {
+            
         }
     }
 }
