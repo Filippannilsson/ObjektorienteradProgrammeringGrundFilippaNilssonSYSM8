@@ -129,11 +129,8 @@ namespace ProjektuppgiftOPG.ViewModel
         //Metod för att öppna UserDetailsWindow
         public void OpenUserWindow(object parameter)
         {
-            // Hämta den aktuella användaren
-            var currentUser = UserManager.GetUsers().FirstOrDefault(u => u.Username == Username);
-
             //Skapa instans av UserDetailsWindow
-            UserDetailsWindow userDetailsWindow = new UserDetailsWindow(currentUser.Username, currentUser.Country, currentUser.SecurityQuestion, currentUser.SecurityAnswer);
+            UserDetailsWindow userDetailsWindow = new UserDetailsWindow(UserManager, username);
 
 
             //Öppnar UserDetailsWindow

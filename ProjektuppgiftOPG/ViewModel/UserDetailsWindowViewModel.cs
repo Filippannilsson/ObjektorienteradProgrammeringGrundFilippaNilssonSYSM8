@@ -59,14 +59,6 @@ namespace ProjektuppgiftOPG.ViewModel
             }
         }
 
-        private string selectedQuestion;
-        public string SelectedQuestion { get; private set; }
-
-
-        private string answerInput;
-        public string AnswerInput { get; private set; }
-
-
         //Lista för länder att välja mellan
         public static ObservableCollection<string> Countries { get; set; }
 
@@ -74,21 +66,22 @@ namespace ProjektuppgiftOPG.ViewModel
         public RelayCommand SaveCommand => new RelayCommand(SaveUserDetails);
         public RelayCommand CancelCommand => new RelayCommand(Cancel);
 
-
+        public UserManager UserManager { get; }
+        private User currentUser { get; }
 
         //Konstruktor
-        public UserDetailsWindowViewModel(string currentUsername, string currentCountry, string selectedQuestion, string answerInput)
+        public UserDetailsWindowViewModel(UserManager userManager, string username)
         {
             //Skapa länder till comboboxen
             Countries = new ObservableCollection<string> { "Sweden", "Norway", "Denmark", "Finland", "Iceland" };
 
-            // Förifyll med nuvarande användarnamn och land
-            NewUsernameInput = currentUsername;
-            SelectedCountry = currentCountry;
+            UserManager = userManager;
+            currentUser = UserManager.GetUsers().FirstOrDefault(u => u.Username == username);
 
-            SelectedQuestion = selectedQuestion;
-            AnswerInput = answerInput;
 
+            // Förifyll med nuvarande användardata
+            NewUsernameInput = currentUser.Username;
+            SelectedCountry = currentUser.Country;
         }
 
         //Metoder
@@ -154,18 +147,16 @@ namespace ProjektuppgiftOPG.ViewModel
                 return;
             }
 
-            //Skapar en ny användare om lösenord är korrekt
-            User newUser = new User(newUsernameInput, newPasswordInput, selectedCountry, selectedQuestion, answerInput);
-
-            //Lägg till ny användare i användarlistan
-            UserManager.Users.Add(newUser);
+            //Uppdatera användarinfo
+            currentUser.Username = newUsernameInput;
+            currentUser.Password = newPasswordInput;
+            currentUser.Country = selectedCountry;
 
             MessageBox.Show("Account updated successfully");
 
             //Stänger ner UserDetailsWindow
             Application.Current.Windows.OfType<UserDetailsWindow>().FirstOrDefault()?.Close();
         }
-
 
         public void Cancel(object parameter)
         {

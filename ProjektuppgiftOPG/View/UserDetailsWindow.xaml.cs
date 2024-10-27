@@ -1,4 +1,5 @@
-﻿using ProjektuppgiftOPG.ViewModel;
+﻿using ProjektuppgiftOPG.Model;
+using ProjektuppgiftOPG.ViewModel;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -17,10 +18,10 @@ namespace ProjektuppgiftOPG.Windows
 {
     public partial class UserDetailsWindow : Window
     {
-        public UserDetailsWindow(string currentUsername, string currentCountry, string selectedQuestion, string answerInput)
+        public UserDetailsWindow(UserManager userManager, string username)
         {
             InitializeComponent();
-            DataContext = new UserDetailsWindowViewModel(currentUsername, currentCountry, selectedQuestion, answerInput);
+            DataContext = new UserDetailsWindowViewModel(userManager, username);
         }
     }
 }
