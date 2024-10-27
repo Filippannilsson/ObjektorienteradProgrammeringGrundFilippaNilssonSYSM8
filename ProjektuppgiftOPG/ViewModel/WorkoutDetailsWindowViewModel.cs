@@ -256,6 +256,9 @@ namespace ProjektuppgiftOPG.ViewModel
 
             // Utlös händelsen för att meddela att workout har sparats
             WorkoutSaved?.Invoke(this, EventArgs.Empty);
+
+            //Stänger ner fönstret
+            Application.Current.Windows.OfType<WorkoutDetailsWindow>().FirstOrDefault()?.Close();
         }
     }
 }

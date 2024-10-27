@@ -84,6 +84,8 @@ namespace ProjektuppgiftOPG.ViewModel
             SelectedCountry = currentUser.Country;
         }
 
+        public event EventHandler<string> UsernameUpdated;
+
         //Metoder
         public void SaveUserDetails(object parameter)
         {
@@ -151,6 +153,10 @@ namespace ProjektuppgiftOPG.ViewModel
             currentUser.Username = newUsernameInput;
             currentUser.Password = newPasswordInput;
             currentUser.Country = selectedCountry;
+
+            // Utlös händelsen för att meddela om användarnamnet har uppdaterats
+            UsernameUpdated?.Invoke(this, currentUser.Username);
+
 
             MessageBox.Show("Account updated successfully");
 

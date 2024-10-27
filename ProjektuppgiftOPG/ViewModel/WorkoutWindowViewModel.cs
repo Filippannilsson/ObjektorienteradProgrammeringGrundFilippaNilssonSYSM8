@@ -129,9 +129,15 @@ namespace ProjektuppgiftOPG.ViewModel
         //Metod för att öppna UserDetailsWindow
         public void OpenUserWindow(object parameter)
         {
-            //Skapa instans av UserDetailsWindow
+            //Skapa instans av UserDetailsWindow och ViewModel
             UserDetailsWindow userDetailsWindow = new UserDetailsWindow(UserManager, username);
+            UserDetailsWindowViewModel userDetailsViewModel = (UserDetailsWindowViewModel)userDetailsWindow.DataContext;
 
+            // Abonnera på UsernameUpdated-händelsen
+            userDetailsViewModel.UsernameUpdated += (sender, newUsername) =>
+            {
+                Username = newUsername; // Uppdatera Username-egenskapen
+            };
 
             //Öppnar UserDetailsWindow
             userDetailsWindow.Show();
