@@ -67,7 +67,8 @@
                                    />
                         <TextBox Width="130"
                                  Text="{Binding DistanceInput, UpdateSourceTrigger=PropertyChanged}" 
-                                 IsEnabled="{Binding IsDistanceEnabled}" />
+                                 IsEnabled="{Binding IsDistanceEnabled}"
+                                 PreviewTextInput="NumberOnly_PreviewTextInput"/>
                     </StackPanel>
 
                     <!-- Fält för Repetitions, inaktiverad tills "Strength" är vald -->
@@ -76,7 +77,8 @@
                                    FontSize="14" Width="130"/>
                         <TextBox Width="130"
                                  Text="{Binding RepetitionsInput, UpdateSourceTrigger=PropertyChanged}" 
-                                 IsEnabled="{Binding IsRepetitionsEnabled}" />
+                                 IsEnabled="{Binding IsRepetitionsEnabled}"
+                                 PreviewTextInput="NumberOnly_PreviewTextInput"/>
                     </StackPanel>
 
                 </StackPanel>
@@ -86,6 +88,7 @@
                     <Label Content="Duration (min):"
                            FontSize="14"/>
                     <TextBox Text="{Binding DurationInput, UpdateSourceTrigger=PropertyChanged}"
+                             PreviewTextInput="NumberOnly_PreviewTextInput"
                              Width="130" Height="25"/>
                     <Label Content="Calories burned:"
                            FontSize="14"/>

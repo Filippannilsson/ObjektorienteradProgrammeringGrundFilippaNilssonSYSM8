@@ -57,17 +57,8 @@ namespace ProjektuppgiftOPG.ViewModel
             get { return distanceInput; }
             set
             {
-                // Validera att inmatningen är en giltig siffra
-                if (!IsValidNumber(value))
-                {
-                    MessageBox.Show("Distance must be a positive number");
-                    return;
-                }
-
-
                 distanceInput = value;
                 OnPropertyChanged();
-
                 UpdateCalculatedCalories();
             }
         }
@@ -89,16 +80,8 @@ namespace ProjektuppgiftOPG.ViewModel
             get { return repetitionsInput; }
             set
             {
-                // Validera att inmatningen är en giltig siffra
-                if (!IsValidNumber(value))
-                {
-                    MessageBox.Show("Repetitions must be a positive number");
-                    return;
-                }
-
                 repetitionsInput = value;
                 OnPropertyChanged();
-
                 UpdateCalculatedCalories();
             }
         }
@@ -120,16 +103,8 @@ namespace ProjektuppgiftOPG.ViewModel
             get { return durationInput; }
             set
             {
-                // Validera att inmatningen är en giltig siffra
-                if (!IsValidNumber(value))
-                {
-                    MessageBox.Show("Duration must be a positive number");
-                    return;
-                }
-
                 durationInput = value;
                 OnPropertyChanged();
-
                 UpdateCalculatedCalories();
             }
         }
@@ -284,12 +259,5 @@ namespace ProjektuppgiftOPG.ViewModel
             // Om alla fält är giltiga
             return true;
         }
-
-        private bool IsValidNumber(string value)
-        {
-            // Kontrollerar om strängen är tom eller om den kan konverteras till ett icke-negativt heltal
-            return string.IsNullOrWhiteSpace(value) || (int.TryParse(value, out int number) && number >= 0);
-        }
-
     }
 }

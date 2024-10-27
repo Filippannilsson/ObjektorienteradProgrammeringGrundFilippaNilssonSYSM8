@@ -67,7 +67,8 @@
                         <TextBlock Text="Distance (km):"
                                    FontSize="14" Width="130"/>
                         <TextBox Width="130"
-                                 Text="{Binding DistanceInput, UpdateSourceTrigger=PropertyChanged}" 
+                                 Text="{Binding DistanceInput, UpdateSourceTrigger=PropertyChanged}"
+                                 PreviewTextInput="NumberOnly_PreviewTextInput"
                                  IsEnabled="{Binding IsDistanceEditable}" />
                     </StackPanel>
 
@@ -76,7 +77,8 @@
                         <TextBlock Text="Repetitions:" 
                                    FontSize="14" Width="130"/>
                         <TextBox Width="130"
-                                 Text="{Binding RepetitionsInput, UpdateSourceTrigger=PropertyChanged}" 
+                                 Text="{Binding RepetitionsInput, UpdateSourceTrigger=PropertyChanged}"
+                                 PreviewTextInput="NumberOnly_PreviewTextInput"
                                  IsEnabled="{Binding IsRepetitionsEditable}" />
                     </StackPanel>
 
@@ -87,6 +89,7 @@
                     <Label Content="Duration (min):"
                            FontSize="14"/>
                     <TextBox Text="{Binding DurationInput, UpdateSourceTrigger=PropertyChanged}"
+                             PreviewTextInput="NumberOnly_PreviewTextInput"
                              IsEnabled="{Binding IsEditable}"
                              Width="130" Height="25"/>
                     <Label Content="Calories burned:"
@@ -119,7 +122,7 @@
                             FontSize="15"
                             Margin="10" Width="100" Height="30"
                             Background="#FFAAACAA" FontWeight="DemiBold"
-                            Command="{Binding CopyWorkoutCommand}"/>
+                            Command="{Binding WorkoutCommand}"/>
                 </StackPanel>
 
                 
