@@ -79,7 +79,7 @@ namespace ProjektuppgiftOPG.ViewModel
             currentUser = UserManager.GetUsers().FirstOrDefault(u => u.Username == username);
 
 
-            // Förifyll med nuvarande användardata
+            //Fyll fält med nuvarande användardata
             NewUsernameInput = currentUser.Username;
             SelectedCountry = currentUser.Country;
         }
@@ -89,24 +89,37 @@ namespace ProjektuppgiftOPG.ViewModel
         //Metoder
         public void SaveUserDetails(object parameter)
         {
-            //Kontrollera om användarnamnet är upptaget
-            foreach (User user in UserManager.Users) //Hämtar lista från MainWindowViewModel
+            //Kontrollera om användarnamnet är nytt
+            bool usernameChanged = newUsernameInput != currentUser.Username;
+
+            if (usernameChanged)
             {
-                if (newUsernameInput == user.Username)
+                //Kontrollera om användarnamnet är upptaget
+                foreach (User user in UserManager.Users) //Hämtar lista från MainWindowViewModel
                 {
-                    MessageBox.Show("The username is already taken, try again");
-                    //Avbryt registrering om användarnamn är upptaget
+                    if (newUsernameInput == user.Username)
+                    {
+                        MessageBox.Show("The username is already taken, try again");
+                        //Avbryt registrering om användarnamn är upptaget
+                        return;
+                    }
+                }
+
+                //Kontrollera om användarnamnet är giltigt
+                if (newUsernameInput.Length < 3)
+                {
+                    MessageBox.Show("The username must be at least 3 characters long");
                     return;
                 }
-            }
 
-            //Kontrollera om användarnamnet är giltigt
-            if (newUsernameInput.Length < 3)
-            {
-                MessageBox.Show("The username must be at least 3 characters long");
-                return;
-            }
+                //Om användarnamnet är giltigt, uppdatera det
+                currentUser.Username = newUsernameInput;
 
+                // Utlös händelsen för att meddela om användarnamnet har uppdaterats
+                UsernameUpdated?.Invoke(this, currentUser.Username);
+
+            }
+            
             //Kontrollera om lösenordet är giltigt
 
             if (newPasswordInput.Length < 5)
@@ -150,13 +163,8 @@ namespace ProjektuppgiftOPG.ViewModel
             }
 
             //Uppdatera användarinfo
-            currentUser.Username = newUsernameInput;
             currentUser.Password = newPasswordInput;
             currentUser.Country = selectedCountry;
-
-            // Utlös händelsen för att meddela om användarnamnet har uppdaterats
-            UsernameUpdated?.Invoke(this, currentUser.Username);
-
 
             MessageBox.Show("Account updated successfully");
 
