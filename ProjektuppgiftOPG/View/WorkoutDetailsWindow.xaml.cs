@@ -23,10 +23,10 @@ namespace ProjektuppgiftOPG.Windows
             InitializeComponent();
         }
 
-        public WorkoutDetailsWindow(Workout selectedWorkout)
+        public WorkoutDetailsWindow(Workout selectedWorkout, WorkoutManager workoutManager)
         {
             InitializeComponent();
-            DataContext = new WorkoutDetailsWindowViewModel(selectedWorkout);
+            DataContext = new WorkoutDetailsWindowViewModel(selectedWorkout, workoutManager);
         }
     }
 }

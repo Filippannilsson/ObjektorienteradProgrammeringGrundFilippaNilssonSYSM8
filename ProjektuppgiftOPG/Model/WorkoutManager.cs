@@ -23,5 +23,34 @@ namespace ProjektuppgiftOPG.Model
         {
             Workouts.Add(workout);
         }
+
+        // Metod för att kopiera en workout
+        public Workout CopyWorkout(Workout originalWorkout)
+        {
+            if (originalWorkout is CardioWorkout cardioWorkout)
+            {
+                return new CardioWorkout(
+                    cardioWorkout.Date,
+                    cardioWorkout.Type,
+                    cardioWorkout.Duration,
+                    cardioWorkout.CaloriesBurned,
+                    cardioWorkout.Notes,
+                    cardioWorkout.Distance
+                );
+            }
+            else if (originalWorkout is StrengthWorkout strengthWorkout)
+            {
+                return new StrengthWorkout(
+                    strengthWorkout.Date,
+                    strengthWorkout.Type,
+                    strengthWorkout.Duration,
+                    strengthWorkout.CaloriesBurned,
+                    strengthWorkout.Notes,
+                    strengthWorkout.Repetitions
+                );
+            }
+
+            return null; // eller kasta ett undantag om workout-typen är okänd
+        }
     }
 }

@@ -1,11 +1,13 @@
 ﻿using ProjektuppgiftOPG.Model;
 using ProjektuppgiftOPG.MVVM;
+using ProjektuppgiftOPG.Windows;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
 using System.Windows.Input;
 
 namespace ProjektuppgiftOPG.ViewModel
@@ -49,6 +51,7 @@ namespace ProjektuppgiftOPG.ViewModel
             }
         }
 
+        
         public DateTime? DateInput
         {
             get { return Workout.Date; }
@@ -58,6 +61,7 @@ namespace ProjektuppgiftOPG.ViewModel
                 OnPropertyChanged();
             }
         }
+
 
         public string SelectedType
         {
@@ -193,6 +197,7 @@ namespace ProjektuppgiftOPG.ViewModel
             }
         }
 
+        //Avgör om distance eller repetitions ska vara aktivterade beroende på type
         public bool IsDistanceEditable => IsEditable && IsDistanceEnabled;
         public bool IsRepetitionsEditable => IsEditable && IsRepetitionsEnabled;
 
@@ -207,13 +212,15 @@ namespace ProjektuppgiftOPG.ViewModel
         //Knappar för kommando
         public RelayCommand EditWorkoutCommand => new RelayCommand(EditWorkout);
         public RelayCommand SaveWorkoutCommand => new RelayCommand(SaveWorkout);
-        public RelayCommand CopyWorkoutCommand => new RelayCommand(CopyWorkout);
 
+        public WorkoutManager WorkoutManager { get; set; }
+        
         //Konstruktor
-        public WorkoutDetailsWindowViewModel(Workout selectedWorkout)
+        public WorkoutDetailsWindowViewModel(Workout selectedWorkout, WorkoutManager workoutManager)
         {
             //Sätt workout till det valda träningspasset
             Workout = selectedWorkout;
+            WorkoutManager = workoutManager;
             WorkoutTypes = new ObservableCollection<string> { "Cardio", "Strength" };
             SelectedType = Workout.Type;
         }
@@ -246,11 +253,6 @@ namespace ProjektuppgiftOPG.ViewModel
 
             // Utlös händelsen för att meddela att workout har sparats
             WorkoutSaved?.Invoke(this, EventArgs.Empty);
-        }
-
-        public void CopyWorkout(object obj)
-        {
-            
         }
     }
 }

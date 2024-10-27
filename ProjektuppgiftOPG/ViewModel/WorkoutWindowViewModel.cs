@@ -151,6 +151,8 @@ namespace ProjektuppgiftOPG.ViewModel
             addWorkoutWindow.Show();
         }
 
+        public WorkoutManager workoutManager { get; set; }
+
         public void OpenDetails(Workout workout)
         {
             // Kontrollera om träningspass är markerat
@@ -161,8 +163,8 @@ namespace ProjektuppgiftOPG.ViewModel
                 return;
             }
 
-            //Om träningspass är markerat, öppna OpenDetails
-            WorkoutDetailsWindow workoutDetailsWindow = new WorkoutDetailsWindow(workout);
+            //Om träningspass är markerat, öppna WorkoutDetailsWindow
+            WorkoutDetailsWindow workoutDetailsWindow = new WorkoutDetailsWindow(workout, workoutManager);
 
             var viewModel = (WorkoutDetailsWindowViewModel)workoutDetailsWindow.DataContext;
 
