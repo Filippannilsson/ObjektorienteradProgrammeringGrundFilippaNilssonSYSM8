@@ -67,15 +67,23 @@ namespace ProjektuppgiftOPG.ViewModel
                 {
                     loginSuccessful = true;
 
-                    //Öppnar WorkoutsWindow och skicka med användarnamn
-                    WorkoutsWindow workoutsWindow = new WorkoutsWindow(UserManager, user.Workouts, username);
-                    workoutsWindow.Show();
+                    // Öppna TwoFactorWindow och skicka UserManager och användaren
+                    TwoFactorWindow twoFactorWindow = new TwoFactorWindow(UserManager, user);
+                    twoFactorWindow.Owner = Application.Current.MainWindow; // Sätter ägaren för fönstret
+                    bool? dialogResult = twoFactorWindow.ShowDialog(); // Öppnar TwoFactorWindow och väntar på att det stängs
 
-                    //Döljer MainWindow och rensar textboxarna
-                    Application.Current.MainWindow.Hide();
-                    Username = string.Empty;
-                    Password = string.Empty;
+                    // Om verifieringen lyckades är dialogResult true
+                    if (dialogResult == true)
+                    {
+                        // Öppnar WorkoutsWindow och skicka med användarnamn
+                        WorkoutsWindow workoutsWindow = new WorkoutsWindow(UserManager, user.Workouts, Username);
+                        workoutsWindow.Show();
 
+                        // Döljer MainWindow och rensar textboxarna
+                        Application.Current.MainWindow.Hide();
+                        Username = string.Empty;
+                        Password = string.Empty;
+                    }
                     break; //Bryt loopen om inloggning lyckas
                 }
             }
