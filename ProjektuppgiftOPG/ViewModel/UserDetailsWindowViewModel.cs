@@ -77,13 +77,18 @@ namespace ProjektuppgiftOPG.ViewModel
 
 
         //Konstruktor
-        public UserDetailsWindowViewModel(string selectedQuestion, string answerInput)
+        public UserDetailsWindowViewModel(string currentUsername, string currentCountry, string selectedQuestion, string answerInput)
         {
             //Skapa länder till comboboxen
             Countries = new ObservableCollection<string> { "Sweden", "Norway", "Denmark", "Finland", "Iceland" };
 
+            // Förifyll med nuvarande användarnamn och land
+            NewUsernameInput = currentUsername;
+            SelectedCountry = currentCountry;
+
             SelectedQuestion = selectedQuestion;
             AnswerInput = answerInput;
+
         }
 
         //Metoder

@@ -133,7 +133,7 @@ namespace ProjektuppgiftOPG.ViewModel
             var currentUser = UserManager.GetUsers().FirstOrDefault(u => u.Username == Username);
 
             //Skapa instans av UserDetailsWindow
-            UserDetailsWindow userDetailsWindow = new UserDetailsWindow(currentUser.SecurityQuestion, currentUser.SecurityAnswer);
+            UserDetailsWindow userDetailsWindow = new UserDetailsWindow(currentUser.Username, currentUser.Country, currentUser.SecurityQuestion, currentUser.SecurityAnswer);
 
 
             //Öppnar UserDetailsWindow
