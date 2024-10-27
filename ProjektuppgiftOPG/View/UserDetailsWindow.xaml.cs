@@ -17,10 +17,10 @@ namespace ProjektuppgiftOPG.Windows
 {
     public partial class UserDetailsWindow : Window
     {
-        public UserDetailsWindow()
+        public UserDetailsWindow(string selectedQuestion, string answerInput)
         {
             InitializeComponent();
-            DataContext = new UserDetailsWindowViewModel();
+            DataContext = new UserDetailsWindowViewModel(selectedQuestion, answerInput);
         }
     }
 }

@@ -129,8 +129,14 @@ namespace ProjektuppgiftOPG.ViewModel
         //Metod för att öppna UserDetailsWindow
         public void OpenUserWindow(object parameter)
         {
+            // Hämta den aktuella användaren
+            var currentUser = UserManager.GetUsers().FirstOrDefault(u => u.Username == Username);
+
+            //Skapa instans av UserDetailsWindow
+            UserDetailsWindow userDetailsWindow = new UserDetailsWindow(currentUser.SecurityQuestion, currentUser.SecurityAnswer);
+
+
             //Öppnar UserDetailsWindow
-            UserDetailsWindow userDetailsWindow = new UserDetailsWindow();
             userDetailsWindow.Show();
         }
 
@@ -149,7 +155,7 @@ namespace ProjektuppgiftOPG.ViewModel
 
             // Skapa instans av AddWorkoutWindow och ViewModel
             AddWorkoutWindow addWorkoutWindow = new AddWorkoutWindow(WorkoutManager);
-            var addWorkoutViewModel = (AddWorkoutWindowViewModel)addWorkoutWindow.DataContext;
+            AddWorkoutWindowViewModel addWorkoutViewModel = (AddWorkoutWindowViewModel)addWorkoutWindow.DataContext;
 
             // Abonnera på WorkoutSaved-händelsen för att uppdatera WorkoutList
             addWorkoutViewModel.WorkoutSaved += (sender, args) => UpdateWorkoutList();
