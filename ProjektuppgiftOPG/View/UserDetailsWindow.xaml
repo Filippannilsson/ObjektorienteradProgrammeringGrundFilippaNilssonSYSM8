@@ -5,8 +5,90 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:ProjektuppgiftOPG.Windows"
         mc:Ignorable="d"
-        Title="UserDetailsWindow" Height="450" Width="800">
+        Title="UserDetailsWindow" Height="450" Width="800"        
+        SnapsToDevicePixels="True" UseLayoutRounding="True">
     <Grid>
-        
+        <Grid.RowDefinitions>
+            <RowDefinition Height="15*"/>
+            <RowDefinition Height="85*"/>
+        </Grid.RowDefinitions>
+
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="15*"/>
+            <ColumnDefinition Width="85*"/>
+        </Grid.ColumnDefinitions>
+
+        <!-- Skapar rektanglar för att fylla i färg -->
+        <Rectangle Grid.Row="1" Grid.Column="0" Fill="#DC143C"/>
+        <Rectangle Grid.Row="0" Grid.Column="0" Fill="#FF6F0A1E"/>
+        <Rectangle Grid.Row="0" Grid.Column="1" Fill="#FFA00B29"/>
+        <Rectangle Grid.Row="1" Grid.Column="1" Fill="#D3D3D3"/>
+
+        <!-- Skapar fler rader och columner för att kunna anpassa designen bättre -->
+        <Grid Grid.Row="1" Grid.Column="1">
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="25*"/>
+                    <RowDefinition Height="65*"/>
+                    <RowDefinition Height="10*"/>
+                </Grid.RowDefinitions>
+
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="45*"/>
+                    <ColumnDefinition Width="10*"/>
+                    <ColumnDefinition Width="45*"/>
+                </Grid.ColumnDefinitions>
+
+                <Label Content="User details"
+                       Grid.ColumnSpan="3" 
+                       FontSize="30" FontFamily="Arial"
+                       Foreground="#DC143C" FontWeight="DemiBold"
+                       VerticalAlignment="Center" HorizontalAlignment="Center"/>
+
+                <StackPanel Grid.Row="1"
+                            VerticalAlignment="Top" HorizontalAlignment="Right">
+                    <Label Content="Fill in a new username:"
+                           FontSize="14"
+                           VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                    <TextBox Text="{Binding NewUsernameInput, UpdateSourceTrigger=PropertyChanged}"
+                             Width="140" Height="25"/>
+                    <Label Content="Create a new password:"
+                           FontSize="14"
+                           VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                    <TextBox Text="{Binding NewPasswordInput, UpdateSourceTrigger=PropertyChanged}"
+                             Width="140" Height="25"
+                             Margin="0,0,0,5"/>
+                    <Label Content="Repeat new password:"
+                           FontSize="14"
+                           VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                    <TextBox Text="{Binding RepeatedPasswordInput, UpdateSourceTrigger=PropertyChanged}"
+                             Width="140" Height="25"
+                             Margin="0,0,0,5"/>
+
+                </StackPanel>
+                <StackPanel Grid.Row="1" Grid.Column="2"
+                            VerticalAlignment="Top" HorizontalAlignment="Left">
+                    <Label Content="Select your country:"
+                           FontSize="14"
+                           VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                    <ComboBox Width="140"
+                              VerticalAlignment="Center"
+                              HorizontalAlignment="Center"
+                              ItemsSource="{Binding Countries}" 
+                              SelectedItem="{Binding SelectedCountry}"
+                              Margin="5"/>
+                    <Button Content="Save"
+                            FontSize="15"
+                            Margin="10" Width="140" Height="30"
+                            Background="#D3D3D3" FontWeight="DemiBold"
+                            Command="{Binding SaveCommand}"/>
+                    <Button Content="Cancel"
+                            FontSize="15"
+                            Margin="10" Width="140" Height="30"
+                            Background="#D3D3D3" FontWeight="DemiBold"
+                            Command="{Binding CancelCommand}"/>
+                </StackPanel>
+            </Grid>
+        </Grid>
     </Grid>
 </Window>
