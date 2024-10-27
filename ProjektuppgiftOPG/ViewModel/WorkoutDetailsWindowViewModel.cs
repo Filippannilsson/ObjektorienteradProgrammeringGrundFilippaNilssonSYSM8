@@ -108,6 +108,7 @@ namespace ProjektuppgiftOPG.ViewModel
                 {
                     cardioWorkout.Distance = value;
                     OnPropertyChanged();
+                    OnPropertyChanged(nameof(CalculatedCalories));
                 }
             }
         }
@@ -143,6 +144,7 @@ namespace ProjektuppgiftOPG.ViewModel
                 {
                     strengthWorkout.Repetitions = value;
                     OnPropertyChanged();
+                    OnPropertyChanged(nameof(CalculatedCalories));
                 }
             }
         }
@@ -166,12 +168,13 @@ namespace ProjektuppgiftOPG.ViewModel
             {
                 Workout.Duration = TimeSpan.FromMinutes(value);
                 OnPropertyChanged();
+                OnPropertyChanged(nameof(CalculatedCalories));
             }
         }
 
         public int CalculatedCalories
         {
-            get { return Workout.CaloriesBurned; }
+            get { return Workout.CalculateCaloriesBurned(); }
         }
 
         public string NotesInput
