@@ -134,6 +134,10 @@ namespace ProjektuppgiftOPG.ViewModel
         //Lista för workout types att välja mellan
         public static ObservableCollection<string> WorkoutTypes { get; set; }
 
+        //Eventhandler för att kunna uppdatera WorkoutList när man sparar ändringar
+
+        public event EventHandler WorkoutSaved;
+
         //Kommando för knapp
         public RelayCommand AddWorkoutCommand => new RelayCommand(SaveWorkout);
 
@@ -186,6 +190,10 @@ namespace ProjektuppgiftOPG.ViewModel
             }
             // Lägg till träningspasset i WorkoutManager
             WorkoutManager.AddWorkout(newWorkout);
+
+
+            // Utlös händelsen för att meddela att workout har sparats
+            WorkoutSaved?.Invoke(this, EventArgs.Empty);
 
             // Stäng fönstret efter att ha lagt till
             Application.Current.Windows.OfType<AddWorkoutWindow>().FirstOrDefault()?.Close();
@@ -259,5 +267,7 @@ namespace ProjektuppgiftOPG.ViewModel
             // Om alla fält är giltiga
             return true;
         }
+
+
     }
 }

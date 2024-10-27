@@ -147,7 +147,14 @@ namespace ProjektuppgiftOPG.ViewModel
                 return;
             }
 
+            // Skapa instans av AddWorkoutWindow och ViewModel
             AddWorkoutWindow addWorkoutWindow = new AddWorkoutWindow(WorkoutManager);
+            var addWorkoutViewModel = (AddWorkoutWindowViewModel)addWorkoutWindow.DataContext;
+
+            // Abonnera på WorkoutSaved-händelsen för att uppdatera WorkoutList
+            addWorkoutViewModel.WorkoutSaved += (sender, args) => UpdateWorkoutList();
+
+            //Öppna AddWorkout
             addWorkoutWindow.Show();
         }
 
