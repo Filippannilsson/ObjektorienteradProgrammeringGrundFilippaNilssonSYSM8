@@ -100,6 +100,13 @@ namespace ProjektuppgiftOPG.ViewModel
                 }
             }
 
+            //Kontrollera om användarnamnet är giltigt
+            if (newUsernameInput.Length < 3)
+            {
+                MessageBox.Show("The username must be at least 3 characters long");
+                return;
+            }
+
             //Kontrollera om lösenordet är giltigt
 
             if (newPasswordInput.Length < 5)
@@ -157,7 +164,8 @@ namespace ProjektuppgiftOPG.ViewModel
 
         public void Cancel(object parameter)
         {
-
+            // Stäng fönstret utan att spara några ändringar
+            Application.Current.Windows.OfType<UserDetailsWindow>().FirstOrDefault()?.Close();
         }
     }
 }
