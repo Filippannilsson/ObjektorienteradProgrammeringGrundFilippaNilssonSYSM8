@@ -104,6 +104,13 @@ namespace ProjektuppgiftOPG.ViewModel
             }
             set
             {
+                // Använd IsValidNumber för att validera
+                if (!IsValidNumber(value))
+                {
+                    MessageBox.Show("Distance must be a positive number");
+                    return;
+                }
+
                 if (Workout is CardioWorkout cardioWorkout)
                 {
                     cardioWorkout.Distance = value;
@@ -140,6 +147,13 @@ namespace ProjektuppgiftOPG.ViewModel
             }
             set
             {
+                // Använd IsValidNumber för att validera
+                if (!IsValidNumber(value))
+                {
+                    MessageBox.Show("Repetitions must be a positive number");
+                    return;
+                }
+
                 if (Workout is StrengthWorkout strengthWorkout)
                 {
                     strengthWorkout.Repetitions = value;
@@ -166,6 +180,13 @@ namespace ProjektuppgiftOPG.ViewModel
             get { return (int)Workout.Duration.TotalMinutes; }
             set
             {
+                // Använd IsValidNumber för att validera
+                if (!IsValidNumber(value))
+                {
+                    MessageBox.Show("Duration must be a positive number");
+                    return;
+                }
+
                 Workout.Duration = TimeSpan.FromMinutes(value);
                 OnPropertyChanged();
                 OnPropertyChanged(nameof(CalculatedCalories));
@@ -256,6 +277,12 @@ namespace ProjektuppgiftOPG.ViewModel
 
             // Utlös händelsen för att meddela att workout har sparats
             WorkoutSaved?.Invoke(this, EventArgs.Empty);
+        }
+
+        private bool IsValidNumber(int value)
+        {
+            // Kontrollerar om strängen är tom eller om den kan konverteras till ett icke-negativt heltal
+            return value >= 0;
         }
     }
 }
