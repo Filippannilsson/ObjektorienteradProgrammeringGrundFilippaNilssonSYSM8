@@ -19,10 +19,10 @@ namespace ProjektuppgiftOPG.Windows
 {
     public partial class WorkoutsWindow : Window
     {
-        public WorkoutsWindow(UserManager usermanager, ObservableCollection<Workout> workouts, string username)
+        public WorkoutsWindow(UserManager usermanager, ObservableCollection<Workout> workouts, string username, WorkoutManager workoutManager)
         {
             InitializeComponent();
-            DataContext = new WorkoutWindowViewModel(usermanager, workouts, username);
+            DataContext = new WorkoutWindowViewModel(usermanager, workouts, username, workoutManager);
 
             // Lägg till en händelsehanterare för stängning av fönster
             this.Closing += WorkoutsWindowClosing;
@@ -38,5 +38,5 @@ namespace ProjektuppgiftOPG.Windows
         }
     }
 
-    
+
 }

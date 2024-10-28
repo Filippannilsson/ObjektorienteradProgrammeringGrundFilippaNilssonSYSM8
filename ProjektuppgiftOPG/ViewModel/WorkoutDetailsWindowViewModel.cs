@@ -51,7 +51,7 @@ namespace ProjektuppgiftOPG.ViewModel
             }
         }
 
-        
+
         public DateTime? DateInput
         {
             get { return Workout.Date; }
@@ -215,17 +215,23 @@ namespace ProjektuppgiftOPG.ViewModel
         //Knappar för kommando
         public RelayCommand EditWorkoutCommand => new RelayCommand(EditWorkout);
         public RelayCommand SaveWorkoutCommand => new RelayCommand(SaveWorkout);
+        public RelayCommand CopyWorkoutCommand => new RelayCommand(CopyWorkout);
+
 
         public WorkoutManager WorkoutManager { get; set; }
-        
+
         //Konstruktor
         public WorkoutDetailsWindowViewModel(Workout selectedWorkout, WorkoutManager workoutManager)
         {
             //Sätt workout till det valda träningspasset
             Workout = selectedWorkout;
+
+            //Tilldela WorkoutManager 
             WorkoutManager = workoutManager;
+
             WorkoutTypes = new ObservableCollection<string> { "Cardio", "Strength" };
             SelectedType = Workout.Type;
+
         }
 
         //Metoder
@@ -259,6 +265,20 @@ namespace ProjektuppgiftOPG.ViewModel
 
             //Stänger ner fönstret
             Application.Current.Windows.OfType<WorkoutDetailsWindow>().FirstOrDefault()?.Close();
+        }
+
+        public void CopyWorkout(object parameter)
+        {
+            Workout copiedWorkout = WorkoutManager.CopyWorkout(Workout);
+
+            if (copiedWorkout != null)
+            {
+                MessageBox.Show("Copy was succesfull! The copied workout is added to templates");
+            }
+            else
+            {
+                MessageBox.Show("Failed to copy");
+            }
         }
     }
 }

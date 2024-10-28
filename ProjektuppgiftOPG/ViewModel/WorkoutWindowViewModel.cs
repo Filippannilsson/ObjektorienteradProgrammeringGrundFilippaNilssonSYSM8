@@ -101,11 +101,11 @@ namespace ProjektuppgiftOPG.ViewModel
         public WorkoutManager WorkoutManager { get; set; }
 
         //Konstruktor
-        public WorkoutWindowViewModel(UserManager userManager, ObservableCollection<Workout> workouts, string username)
+        public WorkoutWindowViewModel(UserManager userManager, ObservableCollection<Workout> workouts, string username, WorkoutManager workoutManager)
         {
             UserManager = userManager;
             Username = username;
-            WorkoutManager = new WorkoutManager(workouts);
+            WorkoutManager = workoutManager;
 
             AvailableWorkoutTypes = new ObservableCollection<string> { "All workouts", "Cardio", "Strength" };
 
@@ -166,9 +166,6 @@ namespace ProjektuppgiftOPG.ViewModel
             //Öppna AddWorkout
             addWorkoutWindow.Show();
         }
-
-        public WorkoutManager workoutManager { get; set; }
-
         public void OpenDetails(Workout workout)
         {
             // Kontrollera om träningspass är markerat
@@ -180,7 +177,7 @@ namespace ProjektuppgiftOPG.ViewModel
             }
 
             //Om träningspass är markerat, öppna WorkoutDetailsWindow
-            WorkoutDetailsWindow workoutDetailsWindow = new WorkoutDetailsWindow(workout, workoutManager);
+            WorkoutDetailsWindow workoutDetailsWindow = new WorkoutDetailsWindow(workout, WorkoutManager);
 
             WorkoutDetailsWindowViewModel workoutDetailsViewModel = (WorkoutDetailsWindowViewModel)workoutDetailsWindow.DataContext;
 

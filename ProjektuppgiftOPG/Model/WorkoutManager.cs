@@ -12,6 +12,9 @@ namespace ProjektuppgiftOPG.Model
         // Lista över träningspass
         public ObservableCollection<Workout> Workouts { get; set; }
 
+        //Lista över kopierade träningspass
+        public ObservableCollection<Workout> WorkoutTemplates { get; set; } = new ObservableCollection<Workout>();
+
         // Konstruktor
         public WorkoutManager(ObservableCollection<Workout> workouts)
         {
@@ -25,32 +28,27 @@ namespace ProjektuppgiftOPG.Model
         }
 
         // Metod för att kopiera en workout
-        public Workout CopyWorkout(Workout originalWorkout)
+        public Workout CopyWorkout(Workout workout)
         {
-            if (originalWorkout is CardioWorkout cardioWorkout)
+            Workout copiedWorkout = null;
+
+            if (workout is CardioWorkout cardioWorkout)
             {
-                return new CardioWorkout(
-                    cardioWorkout.Date,
-                    cardioWorkout.Type,
-                    cardioWorkout.Duration,
-                    cardioWorkout.CaloriesBurned,
-                    cardioWorkout.Notes,
-                    cardioWorkout.Distance
-                );
+                copiedWorkout = new CardioWorkout(workout.Date, workout.Type, workout.Duration, workout.CaloriesBurned, workout.Notes, cardioWorkout.Distance);
             }
-            else if (originalWorkout is StrengthWorkout strengthWorkout)
+            else if (workout is StrengthWorkout strengthWorkout)
             {
-                return new StrengthWorkout(
-                    strengthWorkout.Date,
-                    strengthWorkout.Type,
-                    strengthWorkout.Duration,
-                    strengthWorkout.CaloriesBurned,
-                    strengthWorkout.Notes,
-                    strengthWorkout.Repetitions
-                );
+                copiedWorkout = new StrengthWorkout(workout.Date, workout.Type, workout.Duration, workout.CaloriesBurned, workout.Notes, strengthWorkout.Repetitions);
             }
 
-            return null; // eller kasta ett undantag om workout-typen är okänd
+
+            //Lägg till kopia som mall i listan
+            if (copiedWorkout != null)
+            {
+                WorkoutTemplates.Add(copiedWorkout);
+            }
+
+            return copiedWorkout;
         }
     }
 }

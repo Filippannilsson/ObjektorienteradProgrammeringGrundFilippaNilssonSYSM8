@@ -18,9 +18,9 @@ namespace ProjektuppgiftOPG.ViewModel
     {
         //Egenskaper
         private string username;
-        public string Username 
-        { 
-            get { return username; } 
+        public string Username
+        {
+            get { return username; }
             set
             {
                 username = value;
@@ -45,11 +45,14 @@ namespace ProjektuppgiftOPG.ViewModel
         public RelayCommand ResetCommand => new RelayCommand(ResetPassword);
 
 
-        public UserManager UserManager; 
+        public UserManager UserManager { get; set; }
+        public WorkoutManager WorkoutManager { get; set; }
+
         // Konstruktor
         public MainWindowViewModel()
         {
-            UserManager = new UserManager(); 
+            UserManager = new UserManager();
+            WorkoutManager = new WorkoutManager(new ObservableCollection<Workout>());
         }
 
         //Metoder
@@ -75,8 +78,8 @@ namespace ProjektuppgiftOPG.ViewModel
                     // Om verifieringen lyckades är dialogResult true
                     if (dialogResult == true)
                     {
-                        // Öppnar WorkoutsWindow och skicka med användarnamn
-                        WorkoutsWindow workoutsWindow = new WorkoutsWindow(UserManager, user.Workouts, Username);
+                        // Öppnar WorkoutsWindow
+                        WorkoutsWindow workoutsWindow = new WorkoutsWindow(UserManager, user.Workouts, Username, new WorkoutManager(user.Workouts));
                         workoutsWindow.Show();
 
                         // Döljer MainWindow och rensar textboxarna
@@ -100,7 +103,7 @@ namespace ProjektuppgiftOPG.ViewModel
             registerWindow.Show();
         }
 
-        public void ResetPassword (object parameter)
+        public void ResetPassword(object parameter)
         {
             ResetPasswordWindow resetPasswordWindow = new ResetPasswordWindow();
             resetPasswordWindow.Show();

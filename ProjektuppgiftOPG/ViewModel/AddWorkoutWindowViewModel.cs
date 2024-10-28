@@ -131,8 +131,27 @@ namespace ProjektuppgiftOPG.ViewModel
             }
         }
 
+        private Workout selectedTemplate;
+        public Workout SelectedTemplate
+        {
+            get { return selectedTemplate; }
+            set
+            {
+                selectedTemplate = value;
+                OnPropertyChanged();
+                if (selectedTemplate != null)
+                {
+                    LoadTemplate(selectedTemplate);
+                }
+            }
+        }
+
+
         //Lista för workout types att välja mellan
         public static ObservableCollection<string> WorkoutTypes { get; set; }
+
+        // Lista över kopierade träningspass som mallar
+        public ObservableCollection<Workout> WorkoutTemplates { get; set; }
 
         //Eventhandler för att kunna uppdatera WorkoutList när man sparar ändringar
 
@@ -151,6 +170,9 @@ namespace ProjektuppgiftOPG.ViewModel
 
             //Skapa alternativ till comboboxen
             WorkoutTypes = new ObservableCollection<string> { "Cardio", "Strength" };
+
+            //Tilldela listan av kopierade mallar från WorkoutManager
+            WorkoutTemplates = WorkoutManager.WorkoutTemplates;
 
             //Sätter dagens datum som standardvärde
             DateInput = DateTime.Now;
@@ -266,6 +288,26 @@ namespace ProjektuppgiftOPG.ViewModel
             }
             // Om alla fält är giltiga
             return true;
+        }
+
+        // Metod för att fylla i formulärfält från en vald template
+        private void LoadTemplate(Workout template)
+        {
+            DateInput = template.Date;
+            SelectedType = template.Type;
+            DurationInput = template.Duration.TotalMinutes.ToString();
+            NotesInput = template.Notes;
+
+            if (template is CardioWorkout cardio)
+            {
+                DistanceInput = cardio.Distance.ToString();
+                RepetitionsInput = "0";
+            }
+            else if (template is StrengthWorkout strength)
+            {
+                RepetitionsInput = strength.Repetitions.ToString();
+                DistanceInput = "0";
+            }
         }
 
 
