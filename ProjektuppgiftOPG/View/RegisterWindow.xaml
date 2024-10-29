@@ -29,8 +29,8 @@
             <Grid>
                 <Grid.RowDefinitions>
                     <RowDefinition Height="25*"/>
-                    <RowDefinition Height="65*"/>
-                    <RowDefinition Height="10*"/>
+                    <RowDefinition Height="50*"/>
+                    <RowDefinition Height="25*"/>
                 </Grid.RowDefinitions>
 
                 <Grid.ColumnDefinitions>
@@ -92,12 +92,15 @@
                            VerticalAlignment="Center" HorizontalAlignment="Center"/>
                     <TextBox Text="{Binding AnswerInput, UpdateSourceTrigger=PropertyChanged}"
                              Width="180" Height="25"/>
-                    <Button Content="Register"
-                            FontSize="15"
-                            Margin="20" Width="100" Height="30"
-                            Background="#D3D3D3" FontWeight="DemiBold"
-                            Command="{Binding RegisterCommand}"/>
-                </StackPanel>
+                    </StackPanel>
+
+                <Button Grid.Row="2" Grid.ColumnSpan="3"
+                        VerticalAlignment="Top"
+                        Content="Register"
+                        FontSize="15"
+                        Margin="20" Width="100" Height="30"
+                        Background="#FFAAACAA" FontWeight="DemiBold"
+                        Command="{Binding RegisterCommand}"/>
             </Grid>
         </Grid>
     </Grid>

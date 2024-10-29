@@ -80,12 +80,12 @@
                     <Button Content="Save"
                             FontSize="15"
                             Margin="10" Width="140" Height="30"
-                            Background="#D3D3D3" FontWeight="DemiBold"
+                            Background="#FFAAACAA" FontWeight="DemiBold"
                             Command="{Binding SaveCommand}"/>
                     <Button Content="Cancel"
                             FontSize="15"
                             Margin="10" Width="140" Height="30"
-                            Background="#D3D3D3" FontWeight="DemiBold"
+                            Background="#FFAAACAA" FontWeight="DemiBold"
                             Command="{Binding CancelCommand}"/>
                 </StackPanel>
             </Grid>

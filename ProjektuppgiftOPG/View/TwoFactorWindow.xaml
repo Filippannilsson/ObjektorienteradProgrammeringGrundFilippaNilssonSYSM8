@@ -29,8 +29,8 @@
             <Grid>
                 <Grid.RowDefinitions>
                     <RowDefinition Height="25*"/>
-                    <RowDefinition Height="45*"/>
-                    <RowDefinition Height="30*"/>
+                    <RowDefinition Height="35*"/>
+                    <RowDefinition Height="40*"/>
                 </Grid.RowDefinitions>
 
                 <Label Content="Two-Factor Authentication"
@@ -39,26 +39,28 @@
                        Foreground="#DC143C" FontWeight="DemiBold"
                        VerticalAlignment="Center" HorizontalAlignment="Center"/>
 
-                <StackPanel Grid.Row="1" Grid.Column="2">
+                <StackPanel Grid.Row="1" Grid.Column="2" 
+                            VerticalAlignment="Center">
                     <Label Content="Verification code:"
                            FontSize="14"
                            VerticalAlignment="Center" HorizontalAlignment="Center"/>
                     <TextBox Text="{Binding VerificationCode, UpdateSourceTrigger=PropertyChanged}"
                              Width="140" Height="25"/>
-
-                    <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
-                        <Button Content="Request code"
-                                FontSize="15"
-                                Margin="10" Width="140" Height="30"
-                                Background="#D3D3D3" FontWeight="DemiBold"
-                                Command="{Binding SendCommand}"/>
-                        <Button Content="Confirm"
-                                FontSize="15"
-                                Margin="10" Width="140" Height="30"
-                                Background="#D3D3D3" FontWeight="DemiBold"
-                                Command="{Binding ConfirmCommand}"/>
-                    </StackPanel>
-
+                </StackPanel>
+                
+                <StackPanel Grid.Row="2"
+                            Orientation="Horizontal" HorizontalAlignment="Center"
+                            VerticalAlignment="Top">
+                    <Button Content="Request code"
+                            FontSize="15"
+                            Margin="10" Width="140" Height="30"
+                            Background="#FFAAACAA" FontWeight="DemiBold"
+                            Command="{Binding SendCommand}"/>
+                    <Button Content="Confirm"
+                            FontSize="15"
+                            Margin="10" Width="140" Height="30"
+                            Background="#FFAAACAA" FontWeight="DemiBold"
+                            Command="{Binding ConfirmCommand}"/>
                 </StackPanel>
             </Grid>
         </Grid>
