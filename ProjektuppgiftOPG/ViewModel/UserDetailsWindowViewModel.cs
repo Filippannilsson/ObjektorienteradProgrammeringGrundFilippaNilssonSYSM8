@@ -84,6 +84,7 @@ namespace ProjektuppgiftOPG.ViewModel
             SelectedCountry = currentUser.Country;
         }
 
+        //Eventhandler för att uppdatera användarnamn
         public event EventHandler<string> UsernameUpdated;
 
         //Metoder
@@ -95,13 +96,12 @@ namespace ProjektuppgiftOPG.ViewModel
             if (usernameChanged)
             {
                 //Kontrollera om användarnamnet är upptaget
-                foreach (User user in UserManager.Users) //Hämtar lista från MainWindowViewModel
+                foreach (User user in UserManager.Users)
                 {
                     if (newUsernameInput == user.Username)
                     {
                         MessageBox.Show("The username is already taken, try again");
-                        //Avbryt registrering om användarnamn är upptaget
-                        return;
+                        return; //Avbryt registrering om användarnamn är upptaget
                     }
                 }
 

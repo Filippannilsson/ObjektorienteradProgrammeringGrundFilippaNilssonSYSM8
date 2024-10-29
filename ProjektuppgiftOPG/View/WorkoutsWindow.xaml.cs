@@ -37,6 +37,4 @@ namespace ProjektuppgiftOPG.Windows
             }
         }
     }
-
-
 }

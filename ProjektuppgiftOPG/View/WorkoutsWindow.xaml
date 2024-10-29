@@ -88,8 +88,12 @@
             <!-- Filtersektion -->
             <StackPanel Grid.Column="1" Margin="10">
                 <TextBlock Text="Filter workout list"/>
-                <DatePicker SelectedDate="{Binding SelectedDate}"/>
-
+                <StackPanel Orientation="Horizontal">
+                    <DatePicker SelectedDate="{Binding SelectedDate}"
+                                Width="220"/>
+                    <Button Content="Clear Date" Command="{Binding ClearDateCommand}"
+                            Width="60" Margin="2"/>
+                </StackPanel>
                 <TextBlock Text="Workout type:"/>
                 <ComboBox ItemsSource="{Binding AvailableWorkoutTypes}"
                           SelectedItem="{Binding SelectedWorkoutType}"/>

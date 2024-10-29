@@ -96,6 +96,7 @@ namespace ProjektuppgiftOPG.ViewModel
         public RelayCommand RemoveCommand => new RelayCommand(RemoveWorkOut);
         public RelayCommand InfoCommand => new RelayCommand(ShowInfo);
         public RelayCommand SignOutCommand => new RelayCommand(SignOut);
+        public RelayCommand ClearDateCommand => new RelayCommand(ClearDate);
 
         public UserManager UserManager { get; set; }
         public WorkoutManager WorkoutManager { get; set; }
@@ -316,6 +317,12 @@ namespace ProjektuppgiftOPG.ViewModel
 
             //Uppdatera listan
             WorkoutList = new ObservableCollection<Workout>(filteredWorkouts);
+        }
+
+        //Metod för att nollställa datum vid filtrering
+        private void ClearDate(object parameter)
+        {
+            SelectedDate = null;
         }
     }
 }
