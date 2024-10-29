@@ -274,6 +274,9 @@ namespace ProjektuppgiftOPG.ViewModel
             if (copiedWorkout != null)
             {
                 MessageBox.Show("Copy was succesfull! The copied workout is added to templates");
+
+                //Stänger ner fönstret
+                Application.Current.Windows.OfType<WorkoutDetailsWindow>().FirstOrDefault()?.Close();
             }
             else
             {

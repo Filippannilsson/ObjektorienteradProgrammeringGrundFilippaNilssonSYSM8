@@ -26,5 +26,11 @@ namespace ProjektuppgiftOPG.Model
             double caloriesPerMinute = 5; //Uppskattat antal kalorier brända per minut
             return (int)(caloriesPerMinute * Duration.TotalMinutes);
         }
+
+        // ToString()-metod för att visa information i ListBox
+        public override string ToString()
+        {
+            return $"{Type} - {Date:d}, {Repetitions} km";
+        }
     }
 }

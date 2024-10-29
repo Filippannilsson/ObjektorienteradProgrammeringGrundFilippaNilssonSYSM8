@@ -25,5 +25,11 @@ namespace ProjektuppgiftOPG.Model
             int caloriesPerKm = 80; //Uppskattat antal kcal/km
             return (int)(Distance * caloriesPerKm);
         }
+
+        // ToString()-metod för att visa information i ListBox
+        public override string ToString()
+        {
+            return $"{Type} - {Date:d}, {Distance} km";
+        }
     }
 }

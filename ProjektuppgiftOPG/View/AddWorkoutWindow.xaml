@@ -107,7 +107,7 @@
                            FontSize="14"/>
                     <ListBox ItemsSource="{Binding WorkoutTemplates}"
                              SelectedItem="{Binding SelectedTemplate, UpdateSourceTrigger=PropertyChanged}"
-                             Height="150" Width="150"/>
+                             Height="150" Width="180"/>
                 </StackPanel>
 
                 <Button Grid.Row="1" Grid.ColumnSpan="3"
