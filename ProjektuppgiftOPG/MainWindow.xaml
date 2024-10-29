@@ -7,6 +7,7 @@
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800"
         SnapsToDevicePixels="True" UseLayoutRounding="True">
+    <!-- Yttre grid -->
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="15*"/>
@@ -24,7 +25,7 @@
         <Rectangle Grid.Row="0" Grid.Column="1" Fill="#FFA00B29"/>
         <Rectangle Grid.Row="1" Grid.Column="1" Fill="#D3D3D3"/>
 
-        <!-- Skapar fler rader och columner för att kunna anpassa designen bättre -->
+        <!-- Inre grid -->
         <Grid Grid.Row="1" Grid.Column="1">
             <Grid>
                 <Grid.RowDefinitions>
@@ -41,17 +42,19 @@
 
                 <Rectangle Grid.Row="1" Grid.Column="1" Fill="#FFAAACAA"/>
 
+                <!-- Rubrik -->
                 <Label Grid.ColumnSpan="3"
                        Content="Fit-Track"
                        FontSize="50" FontFamily="Arial"
                        Foreground="#DC143C" FontStyle="Italic"
                        VerticalAlignment="Center" HorizontalAlignment="Center" FontWeight="Bold"/>
+                
+                <!-- Inloggningsmall -->
                 <StackPanel Grid.Row="1" Grid.Column="1"
                             VerticalAlignment="Center">
                     <Label Content="Username:"
                            FontSize="14"
-                           VerticalAlignment="Center" HorizontalAlignment="Center"
-                           />
+                           VerticalAlignment="Center" HorizontalAlignment="Center"/>
                     <TextBox Width="130" Height="25"
                              Text="{Binding Username, UpdateSourceTrigger=PropertyChanged}"/>
                     <Label Content="Password:"

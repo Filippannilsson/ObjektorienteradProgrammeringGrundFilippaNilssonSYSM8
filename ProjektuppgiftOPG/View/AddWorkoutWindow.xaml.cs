@@ -25,7 +25,7 @@ namespace ProjektuppgiftOPG.Windows
             DataContext = new AddWorkoutWindowViewModel(workoutManager);
         }
 
-        // Metod som begränsar inmatning till endast siffror
+        // Metod som begränsar inmatning i textbox till endast siffror
         private void NumberOnly_PreviewTextInput(object sender, TextCompositionEventArgs e)
         {
             // Regular expression som tillåter endast siffror

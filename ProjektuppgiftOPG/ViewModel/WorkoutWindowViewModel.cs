@@ -98,6 +98,7 @@ namespace ProjektuppgiftOPG.ViewModel
         public RelayCommand SignOutCommand => new RelayCommand(SignOut);
         public RelayCommand ClearDateCommand => new RelayCommand(ClearDate);
 
+        //Initierar UserManager och WorkoutManager
         public UserManager UserManager { get; set; }
         public WorkoutManager WorkoutManager { get; set; }
 
@@ -112,17 +113,18 @@ namespace ProjektuppgiftOPG.ViewModel
 
             AvailableDurations = new ObservableCollection<string> { "All durations", "0-30 min", "31-60 min", "> 60 min" };
 
-            // Kontrollera om användaren är admin
+            //Hämta träningspass till lista
+            // Kontrollera om inloggade användaren är admin
             var currentUser = UserManager.GetUsers().FirstOrDefault(u => u.Username == username);
             if (currentUser is AdminUser)
             {
-                // Hämta alla träningspass från alla användare
+                //Hämta alla träningspass från alla användare
                 WorkoutList = new ObservableCollection<Workout>(
                     UserManager.Users.SelectMany(u => u.Workouts));
             }
             else
             {
-                // Om inte admin, använd den specifika användarens träningspass
+                //Om inloggad användare inte är admin, använd användarens träningspass
                 WorkoutList = workouts;
             }
         }
@@ -150,9 +152,9 @@ namespace ProjektuppgiftOPG.ViewModel
             // Kontrollera om användaren är admin
             var currentUser = UserManager.GetUsers().FirstOrDefault(u => u.Username == Username);
 
-            //Meddelande om admin försöker lägga till träningspass
             if (currentUser is AdminUser adminUser)
             {
+                //Meddelande om admin försöker lägga till träningspass
                 MessageBox.Show("Admin can not add workouts");
                 return;
             }
@@ -167,6 +169,8 @@ namespace ProjektuppgiftOPG.ViewModel
             //Öppna AddWorkout
             addWorkoutWindow.Show();
         }
+
+        //Metod för att öppna WorkoutDetailsWindow
         public void OpenDetails(Workout workout)
         {
             // Kontrollera om träningspass är markerat
@@ -177,17 +181,15 @@ namespace ProjektuppgiftOPG.ViewModel
                 return;
             }
 
-            //Om träningspass är markerat, öppna WorkoutDetailsWindow
+            //Om träningspass är markerat, skapa instans av WorkoutDetailsWindow och ViewModel
             WorkoutDetailsWindow workoutDetailsWindow = new WorkoutDetailsWindow(workout, WorkoutManager);
-
             WorkoutDetailsWindowViewModel workoutDetailsViewModel = (WorkoutDetailsWindowViewModel)workoutDetailsWindow.DataContext;
 
             // Abonnera på WorkoutSaved-händelsen för att uppdatera WorkoutList
             workoutDetailsViewModel.WorkoutSaved += (sender, args) => UpdateWorkoutList();
 
-
+            //Öppna WorkoutDetailsWindow
             workoutDetailsWindow.Show();
-
         }
 
         // Metod för att uppdatera WorkoutList
@@ -248,7 +250,12 @@ namespace ProjektuppgiftOPG.ViewModel
         //Metod för att visa info om företaget
         public void ShowInfo(object parameter)
         {
-            MessageBox.Show("Här står lite info om Fit-track");
+            MessageBox.Show("Fit-Track is an app designed to help you manage " +
+                "your workouts. You can:\n\n" +
+                "* Add new workouts\n" +
+                "* View detailed information about your workouts\n" +
+                "* Edit and remove workouts\n" +
+                "* Use the filter function to find specific workouts\n");
         }
 
         //Metod för att logga ut
@@ -268,7 +275,7 @@ namespace ProjektuppgiftOPG.ViewModel
 
         public void FilterWorkouts()
         {
-            // Kontrollera om den inloggade användaren är admin
+            //Hämta den inloggade användaren
             var currentUser = UserManager.GetUsers().FirstOrDefault(u => u.Username == Username);
 
             //Skapa en lista för filtrering
@@ -276,12 +283,12 @@ namespace ProjektuppgiftOPG.ViewModel
 
             if (currentUser is AdminUser)
             {
-                // Om admin, hämta alla användares träningspass
+                //Om inloggad användare är admin, hämta alla användares träningspass
                 filteredWorkouts = UserManager.Users.SelectMany(u => u.Workouts).ToList();
             }
             else
             {
-                // Om inte admin, filtrera endast användarens träningspass
+                //Om inloggad användare inte är admin, filtrera endast användarens träningspass
                 filteredWorkouts = WorkoutManager.Workouts.ToList();
             }
 

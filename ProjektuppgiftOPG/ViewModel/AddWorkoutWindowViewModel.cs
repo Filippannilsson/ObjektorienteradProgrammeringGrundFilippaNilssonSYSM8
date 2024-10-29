@@ -146,7 +146,6 @@ namespace ProjektuppgiftOPG.ViewModel
             }
         }
 
-
         //Lista för workout types att välja mellan
         public static ObservableCollection<string> WorkoutTypes { get; set; }
 
@@ -183,6 +182,7 @@ namespace ProjektuppgiftOPG.ViewModel
         //Metod för att lägga till träningspass
         public void SaveWorkout(object parameter)
         {
+            //Kontrollera om alla fält är ifyllda
             if (!CanSaveWorkout())
             {
                 MessageBox.Show("Please fill in all information");
@@ -213,14 +213,12 @@ namespace ProjektuppgiftOPG.ViewModel
             // Lägg till träningspasset i WorkoutManager
             WorkoutManager.AddWorkout(newWorkout);
 
-
             // Utlös händelsen för att meddela att workout har sparats
             WorkoutSaved?.Invoke(this, EventArgs.Empty);
 
             // Stäng fönstret efter att ha lagt till
             Application.Current.Windows.OfType<AddWorkoutWindow>().FirstOrDefault()?.Close();
         }
-
 
         //Metod för att uppdatera antal brända kcal 
         private void UpdateCalculatedCalories()
@@ -255,7 +253,6 @@ namespace ProjektuppgiftOPG.ViewModel
                 CalculatedCalories = newWorkout.CalculateCaloriesBurned();
             }
         }
-
 
         //Metod för att kontrollera om alla fält är ifyllda
         private bool CanSaveWorkout()
@@ -309,7 +306,5 @@ namespace ProjektuppgiftOPG.ViewModel
                 DistanceInput = "0";
             }
         }
-
-
     }
 }

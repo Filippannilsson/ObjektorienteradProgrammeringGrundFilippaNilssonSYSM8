@@ -7,6 +7,7 @@
         mc:Ignorable="d"
         Title="WorkoutDetailsWindow" Height="450" Width="800"
                 SnapsToDevicePixels="True" UseLayoutRounding="True">
+    <!-- Yttre grid -->
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="15*"/>
@@ -24,7 +25,7 @@
         <Rectangle Grid.Row="0" Grid.Column="1" Fill="#FFA00B29"/>
         <Rectangle Grid.Row="1" Grid.Column="1" Fill="#D3D3D3"/>
 
-        <!-- Skapar fler rader och columner för att kunna anpassa designen bättre -->
+        <!-- Inre grid -->
         <Grid Grid.Row="1" Grid.Column="1">
             <Grid>
                 <Grid.RowDefinitions>
@@ -44,7 +45,6 @@
                        FontSize="30" FontFamily="Arial"
                        Foreground="#DC143C" FontWeight="DemiBold"
                        VerticalAlignment="Center" HorizontalAlignment="Center"/>
-
 
                 <StackPanel Grid.Row="1"
                             VerticalAlignment="Top" HorizontalAlignment="Right">
@@ -105,6 +105,7 @@
                              Width="130" Height="50"/>
                 </StackPanel>
 
+                <!-- Knappar -->
                 <StackPanel Grid.Row="1" Grid.ColumnSpan="3"
                             Orientation="Horizontal"
                             VerticalAlignment="Bottom" HorizontalAlignment="Center">
@@ -124,8 +125,6 @@
                             Background="#FFAAACAA" FontWeight="DemiBold"
                             Command="{Binding CopyWorkoutCommand}"/>
                 </StackPanel>
-
-
             </Grid>
         </Grid>
     </Grid>

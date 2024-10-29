@@ -7,6 +7,7 @@
         mc:Ignorable="d"
         Title="RegisterWindow" Height="450" Width="800"
         SnapsToDevicePixels="True" UseLayoutRounding="True">
+    <!-- Yttre grid -->
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="15*"/>
@@ -24,7 +25,7 @@
         <Rectangle Grid.Row="0" Grid.Column="1" Fill="#FFA00B29"/>
         <Rectangle Grid.Row="1" Grid.Column="1" Fill="#D3D3D3"/>
 
-        <!-- Skapar fler rader och columner för att kunna anpassa designen bättre -->
+        <!-- Inre grid -->
         <Grid Grid.Row="1" Grid.Column="1">
             <Grid>
                 <Grid.RowDefinitions>
@@ -39,13 +40,13 @@
                     <ColumnDefinition Width="45*"/>
                 </Grid.ColumnDefinitions>
 
+                <!-- Rubrik -->
                 <Label Content="Create account"
                        Grid.ColumnSpan="3" 
                        FontSize="30" FontFamily="Arial"
                        Foreground="#DC143C" FontWeight="DemiBold"
                        VerticalAlignment="Center" HorizontalAlignment="Center"/>
 
-               
                 <StackPanel Grid.Row="1"
                             VerticalAlignment="Top" HorizontalAlignment="Right">
                     <Label Content="Create a username:"
@@ -94,6 +95,7 @@
                              Width="180" Height="25"/>
                     </StackPanel>
 
+                <!-- Knapp för att registrera -->
                 <Button Grid.Row="2" Grid.ColumnSpan="3"
                         VerticalAlignment="Top"
                         Content="Register"

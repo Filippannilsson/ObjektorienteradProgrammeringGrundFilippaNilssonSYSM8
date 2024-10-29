@@ -7,6 +7,7 @@
         mc:Ignorable="d"
         Title="AddWorkoutWindow" Height="450" Width="800"        
         SnapsToDevicePixels="True" UseLayoutRounding="True">
+    <!-- Yttre grid -->
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="15*"/>
@@ -24,7 +25,7 @@
         <Rectangle Grid.Row="0" Grid.Column="1" Fill="#FFA00B29"/>
         <Rectangle Grid.Row="1" Grid.Column="1" Fill="#D3D3D3"/>
 
-        <!-- Skapar fler rader och columner för att kunna anpassa designen bättre -->
+        <!-- Inre grid -->
         <Grid Grid.Row="1" Grid.Column="1">
             <Grid>
                 <Grid.RowDefinitions>
@@ -44,7 +45,6 @@
                        FontSize="30" FontFamily="Arial"
                        Foreground="#DC143C" FontWeight="DemiBold"
                        VerticalAlignment="Center" HorizontalAlignment="Center"/>
-
 
                 <StackPanel Grid.Row="1"
                             VerticalAlignment="Top" HorizontalAlignment="Right">
@@ -100,7 +100,8 @@
                     <TextBox Text="{Binding NotesInput, UpdateSourceTrigger=PropertyChanged}"
                              Width="130" Height="50"/>
                 </StackPanel>
-
+                
+                <!-- Listbox för kopierade träningspass -->
                 <StackPanel Grid.Row="1" Grid.Column="2">
                     <Label Content="Templates:"
                            HorizontalAlignment="Center"
@@ -110,6 +111,7 @@
                              Height="150" Width="180"/>
                 </StackPanel>
 
+                <!-- Knapp för att spara -->
                 <Button Grid.Row="1" Grid.ColumnSpan="3"
                         Content="Add workout" 
                         VerticalAlignment="Bottom"

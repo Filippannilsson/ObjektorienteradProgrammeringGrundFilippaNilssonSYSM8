@@ -70,10 +70,14 @@ namespace ProjektuppgiftOPG.ViewModel
                 {
                     loginSuccessful = true;
 
-                    // Öppna TwoFactorWindow och skicka UserManager och användaren
+                    //Skapa TwoFactorWindow och skicka UserManager och användaren
                     TwoFactorWindow twoFactorWindow = new TwoFactorWindow(UserManager, user);
-                    twoFactorWindow.Owner = Application.Current.MainWindow; // Sätter ägaren för fönstret
-                    bool? dialogResult = twoFactorWindow.ShowDialog(); // Öppnar TwoFactorWindow och väntar på att det stängs
+
+                    //Sätter MainWindow som ägare över TwoFactorWindow för att hantera fönster korrekt
+                    twoFactorWindow.Owner = Application.Current.MainWindow;
+
+                    //Öppnar TwoFactorWindow som modal dialog, lagra resultatet i dialogResult
+                    bool? dialogResult = twoFactorWindow.ShowDialog(); 
 
                     // Om verifieringen lyckades är dialogResult true
                     if (dialogResult == true)
@@ -97,12 +101,14 @@ namespace ProjektuppgiftOPG.ViewModel
             }
         }
 
+        //Metod för att öppna RegisterWindow
         public void Register(object parameter)
         {
             RegisterWindow registerWindow = new RegisterWindow();
             registerWindow.Show();
         }
 
+        //Metod för att öppna ResetPasswordWindow
         public void ResetPassword(object parameter)
         {
             ResetPasswordWindow resetPasswordWindow = new ResetPasswordWindow();

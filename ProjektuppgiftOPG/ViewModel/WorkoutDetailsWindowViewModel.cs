@@ -243,7 +243,26 @@ namespace ProjektuppgiftOPG.ViewModel
 
         public void SaveWorkout(object parameter)
         {
-            // Uppdatera egenskaper
+            //Kontrollera om värden är giltiga
+            if (Workout is CardioWorkout && DistanceInput == 0)
+            {
+                MessageBox.Show("Distance can not be 0");
+                return;
+            }
+
+            if (Workout is StrengthWorkout && RepetitionsInput == 0)
+            {
+                MessageBox.Show("Repetitions can not be 0");
+                return;
+            }
+
+            if (DurationInput == 0)
+            {
+                MessageBox.Show("Duration can not be 0");
+                return;
+            }
+
+            //Uppdatera egenskaper
             Workout.Date = DateInput ?? DateTime.Now;
             Workout.Type = SelectedType;
             Workout.Duration = TimeSpan.FromMinutes(DurationInput);
@@ -260,7 +279,7 @@ namespace ProjektuppgiftOPG.ViewModel
 
             IsEditable = false;
 
-            // Utlös händelsen för att meddela att workout har sparats
+            //Utlös händelsen för att meddela att workout har sparats
             WorkoutSaved?.Invoke(this, EventArgs.Empty);
 
             //Stänger ner fönstret

@@ -91,9 +91,8 @@ namespace ProjektuppgiftOPG.ViewModel
             "What is the name of your first pet?"
         };
 
-        //Kommando för knapparna
+        //Kommando för knappar
         public RelayCommand RegisterCommand => new RelayCommand(RegisterNewUser);
-
 
         //Konstruktor
         public RegisterWindowViewModel()
@@ -107,18 +106,22 @@ namespace ProjektuppgiftOPG.ViewModel
         public void RegisterNewUser(object parameter)
         {
             //Kontrollera om användarnamnet är upptaget
-            foreach (User user in UserManager.Users) //Hämtar lista från MainWindowViewModel
+            foreach (User user in UserManager.Users)
             {
                 if (usernameInput == user.Username)
                 {
                     MessageBox.Show("The username is already taken, try again");
-                    //Avbryt registrering om användarnamn är upptaget
-                    return;
+                    return; 
                 }
             }
 
-            //Kontrollera om lösenordet är giltigt
+            //Kontrollera om användarnamnet är tillräckligt långt
+            if (usernameInput.Length < 3)
+            {
+                MessageBox.Show("The username must be at least 3 characters long");
+            }
 
+            //Kontrollera om lösenordet är tillräckligt långt
             if (passwordInput.Length < 8)
             {
                 MessageBox.Show("The password must be at least 8 characters long");
