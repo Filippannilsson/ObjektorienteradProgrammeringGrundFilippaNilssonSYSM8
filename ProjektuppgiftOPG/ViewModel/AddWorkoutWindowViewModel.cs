@@ -164,7 +164,6 @@ namespace ProjektuppgiftOPG.ViewModel
         //Konstruktor
         public AddWorkoutWindowViewModel(WorkoutManager workoutManager)
         {
-
             WorkoutManager = workoutManager;
 
             //Skapa alternativ till comboboxen
@@ -175,7 +174,6 @@ namespace ProjektuppgiftOPG.ViewModel
 
             //Sätter dagens datum som standardvärde
             DateInput = DateTime.Now;
-
         }
 
 

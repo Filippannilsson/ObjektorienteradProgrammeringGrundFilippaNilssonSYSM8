@@ -53,6 +53,7 @@ namespace ProjektuppgiftOPG.ViewModel
         public ObservableCollection<string> AvailableWorkoutTypes { get; set; }
         public ObservableCollection<string> AvailableDurations { get; set; }
 
+        //Egenskaper för filtrering
         private DateTime? selectedDate;
         public DateTime? SelectedDate
         {
@@ -302,7 +303,6 @@ namespace ProjektuppgiftOPG.ViewModel
             if (!string.IsNullOrEmpty(SelectedWorkoutType) && SelectedWorkoutType != "All workouts")
             {
                 filteredWorkouts = filteredWorkouts.Where(w => w.Type == SelectedWorkoutType).ToList();
-
             }
 
             // Filtrera efter varaktighet

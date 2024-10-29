@@ -27,7 +27,7 @@ namespace ProjektuppgiftOPG.Model
             return (int)(caloriesPerMinute * Duration.TotalMinutes);
         }
 
-        // ToString()-metod för att visa information i ListBox
+        //Metod för att visa information i Template-ListBox
         public override string ToString()
         {
             return $"{Type} - {Date:d}, {Repetitions} km";
