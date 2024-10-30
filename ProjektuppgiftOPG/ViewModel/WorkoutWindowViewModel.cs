@@ -115,7 +115,7 @@ namespace ProjektuppgiftOPG.ViewModel
             AvailableDurations = new ObservableCollection<string> { "All durations", "0-30 min", "31-60 min", "> 60 min" };
 
             //Hämta träningspass till lista
-            // Kontrollera om inloggade användaren är admin
+            //Kontrollera om inloggade användaren är admin
             var currentUser = UserManager.GetUsers().FirstOrDefault(u => u.Username == username);
             if (currentUser is AdminUser)
             {
@@ -137,7 +137,7 @@ namespace ProjektuppgiftOPG.ViewModel
             UserDetailsWindow userDetailsWindow = new UserDetailsWindow(UserManager, username);
             UserDetailsWindowViewModel userDetailsViewModel = (UserDetailsWindowViewModel)userDetailsWindow.DataContext;
 
-            // Abonnera på UsernameUpdated-händelsen
+            //Abonnera på UsernameUpdated-händelsen
             userDetailsViewModel.UsernameUpdated += (sender, newUsername) =>
             {
                 Username = newUsername; // Uppdatera Username-egenskapen
@@ -150,7 +150,7 @@ namespace ProjektuppgiftOPG.ViewModel
         //Metod för att öppna AddWorkoutWindow
         public void AddWorkOut(object parameter)
         {
-            // Kontrollera om användaren är admin
+            //Kontrollera om användaren är admin
             var currentUser = UserManager.GetUsers().FirstOrDefault(u => u.Username == Username);
 
             if (currentUser is AdminUser adminUser)
@@ -160,11 +160,11 @@ namespace ProjektuppgiftOPG.ViewModel
                 return;
             }
 
-            // Skapa instans av AddWorkoutWindow och ViewModel
+            //Skapa instans av AddWorkoutWindow och ViewModel
             AddWorkoutWindow addWorkoutWindow = new AddWorkoutWindow(WorkoutManager);
             AddWorkoutWindowViewModel addWorkoutViewModel = (AddWorkoutWindowViewModel)addWorkoutWindow.DataContext;
 
-            // Abonnera på WorkoutSaved-händelsen för att uppdatera WorkoutList
+            //Abonnera på WorkoutSaved-händelsen för att uppdatera WorkoutList
             addWorkoutViewModel.WorkoutSaved += (sender, args) => UpdateWorkoutList();
 
             //Öppna AddWorkout
@@ -174,10 +174,10 @@ namespace ProjektuppgiftOPG.ViewModel
         //Metod för att öppna WorkoutDetailsWindow
         public void OpenDetails(Workout workout)
         {
-            // Kontrollera om träningspass är markerat
+            //Kontrollera om träningspass är markerat
             if (workout == null)
             {
-                // Om inget träningspass är markerat, visa varningsmeddelande
+                //Om inget träningspass är markerat, visa varningsmeddelande
                 MessageBox.Show("Please select a workout");
                 return;
             }
@@ -186,7 +186,7 @@ namespace ProjektuppgiftOPG.ViewModel
             WorkoutDetailsWindow workoutDetailsWindow = new WorkoutDetailsWindow(workout, WorkoutManager);
             WorkoutDetailsWindowViewModel workoutDetailsViewModel = (WorkoutDetailsWindowViewModel)workoutDetailsWindow.DataContext;
 
-            // Abonnera på WorkoutSaved-händelsen för att uppdatera WorkoutList
+            //Abonnera på WorkoutSaved-händelsen för att uppdatera WorkoutList
             workoutDetailsViewModel.WorkoutSaved += (sender, args) => UpdateWorkoutList();
 
             //Öppna WorkoutDetailsWindow

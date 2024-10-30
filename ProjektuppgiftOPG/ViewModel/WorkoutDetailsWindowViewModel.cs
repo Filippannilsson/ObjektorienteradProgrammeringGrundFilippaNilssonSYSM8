@@ -50,8 +50,6 @@ namespace ProjektuppgiftOPG.ViewModel
                 }
             }
         }
-
-
         public DateTime? DateInput
         {
             get { return Workout.Date; }
@@ -61,8 +59,6 @@ namespace ProjektuppgiftOPG.ViewModel
                 OnPropertyChanged();
             }
         }
-
-
         public string SelectedType
         {
             get { return Workout.Type; }
@@ -88,7 +84,6 @@ namespace ProjektuppgiftOPG.ViewModel
                 }
             }
         }
-
         public int DistanceInput
         {
             get
@@ -279,7 +274,7 @@ namespace ProjektuppgiftOPG.ViewModel
 
             IsEditable = false;
 
-            //Utlös händelsen för att meddela att workout har sparats
+            //Utlös händelsen i WorkoutsWindow för att meddela att workout har sparats
             WorkoutSaved?.Invoke(this, EventArgs.Empty);
 
             //Stänger ner fönstret

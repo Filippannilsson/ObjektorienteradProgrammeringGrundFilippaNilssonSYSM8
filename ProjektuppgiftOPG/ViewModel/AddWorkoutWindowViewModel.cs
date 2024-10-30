@@ -211,7 +211,7 @@ namespace ProjektuppgiftOPG.ViewModel
             // Lägg till träningspasset i WorkoutManager
             WorkoutManager.AddWorkout(newWorkout);
 
-            // Utlös händelsen för att meddela att workout har sparats
+            // Utlös händelsen i WorkoutsWindow för att meddela att workout har sparats
             WorkoutSaved?.Invoke(this, EventArgs.Empty);
 
             // Stäng fönstret efter att ha lagt till
