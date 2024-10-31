@@ -47,22 +47,22 @@
 
                 <StackPanel Grid.Row="1"
                             VerticalAlignment="Top" HorizontalAlignment="Right">
-                    <Label Content="Fill in a new username:"
+                    <Label Content="Fill in/change username:"
                            FontSize="14"
                            VerticalAlignment="Center" HorizontalAlignment="Center"/>
                     <TextBox Text="{Binding NewUsernameInput, UpdateSourceTrigger=PropertyChanged}"
-                             Width="140" Height="25"/>
+                             Width="150" Height="25"/>
                     <Label Content="Create a new password:"
                            FontSize="14"
                            VerticalAlignment="Center" HorizontalAlignment="Center"/>
                     <TextBox Text="{Binding NewPasswordInput, UpdateSourceTrigger=PropertyChanged}"
-                             Width="140" Height="25"
+                             Width="150" Height="25"
                              Margin="0,0,0,5"/>
                     <Label Content="Repeat new password:"
                            FontSize="14"
                            VerticalAlignment="Center" HorizontalAlignment="Center"/>
                     <TextBox Text="{Binding ConfirmPasswordInput, UpdateSourceTrigger=PropertyChanged}"
-                             Width="140" Height="25"
+                             Width="150" Height="25"
                              Margin="0,0,0,5"/>
 
                 </StackPanel>
