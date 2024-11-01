@@ -55,7 +55,7 @@ namespace ProjektuppgiftOPG.ViewModel
             get { return Workout.Date; }
             set
             {
-                Workout.Date = value ?? DateTime.Now; // Använd nuvarande datum om inget värde sätts
+                Workout.Date = value ?? DateTime.Now; //Använd nuvarande datum om inget värde sätts
                 OnPropertyChanged();
             }
         }
@@ -72,14 +72,14 @@ namespace ProjektuppgiftOPG.ViewModel
                 {
                     IsDistanceEnabled = true;
                     IsRepetitionsEnabled = false;
-                    // Rensa repetitions
+                    //Rensa repetitions
                     RepetitionsInput = 0;
                 }
                 else if (Workout.Type == "Strength")
                 {
                     IsDistanceEnabled = false;
                     IsRepetitionsEnabled = true;
-                    // Rensa distance
+                    //Rensa distance
                     DistanceInput = 0;
                 }
             }
@@ -254,6 +254,12 @@ namespace ProjektuppgiftOPG.ViewModel
             if (DurationInput == 0)
             {
                 MessageBox.Show("Duration can not be 0");
+                return;
+            }
+
+            if (string.IsNullOrWhiteSpace(NotesInput))
+            {
+                MessageBox.Show("Notes can not be empty");
                 return;
             }
 

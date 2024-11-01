@@ -90,6 +90,16 @@ namespace ProjektuppgiftOPG.ViewModel
         //Metoder
         public void SaveUserDetails(object parameter)
         {
+            // Kontrollera om alla obligatoriska fält är ifyllda
+            if (string.IsNullOrWhiteSpace(NewUsernameInput) ||
+                string.IsNullOrWhiteSpace(NewPasswordInput) ||
+                string.IsNullOrWhiteSpace(ConfirmPasswordInput) ||
+                string.IsNullOrWhiteSpace(SelectedCountry))
+            {
+                MessageBox.Show("Please fill in all information");
+                return;
+            }
+
             //Kontrollera om användarnamnet är nytt
             bool usernameChanged = newUsernameInput != currentUser.Username;
 

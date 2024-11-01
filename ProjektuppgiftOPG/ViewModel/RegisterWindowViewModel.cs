@@ -105,6 +105,18 @@ namespace ProjektuppgiftOPG.ViewModel
         //Metod för att registera ny användare
         public void RegisterNewUser(object parameter)
         {
+            //Kontrollera om alla fält är ifyllda
+            if (string.IsNullOrWhiteSpace(usernameInput) ||
+                string.IsNullOrWhiteSpace(passwordInput) ||
+                string.IsNullOrWhiteSpace(repeatedPasswordInput) ||
+                string.IsNullOrWhiteSpace(selectedCountry) ||
+                string.IsNullOrWhiteSpace(selectedQuestion) ||
+                string.IsNullOrWhiteSpace(answerInput))
+            {
+                MessageBox.Show("Please fill in all information");
+                return;
+            }
+
             //Kontrollera om användarnamnet är upptaget
             foreach (User user in UserManager.Users)
             {

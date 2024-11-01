@@ -79,6 +79,17 @@ namespace ProjektuppgiftOPG.ViewModel
         //Metod för att återställa lösenord
         private void ResetPassword(object parameter)
         {
+            //Kontrollera om alla fält är ifyllda
+            if (string.IsNullOrWhiteSpace(usernameResetInput) ||
+                string.IsNullOrWhiteSpace(selectedSecurityQuestion) ||
+                string.IsNullOrWhiteSpace(securityAnswerInput) ||
+                string.IsNullOrWhiteSpace(newPasswordInput) ||
+                string.IsNullOrWhiteSpace(repeatedPasswordInput))
+            {
+                MessageBox.Show("Please fill in all information");
+                return;
+            }
+
             //Skapa variabel för att se om användare finns
             bool userExists = false;
 
