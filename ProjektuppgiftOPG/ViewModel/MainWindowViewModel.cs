@@ -106,6 +106,9 @@ namespace ProjektuppgiftOPG.ViewModel
         {
             RegisterWindow registerWindow = new RegisterWindow();
             registerWindow.Show();
+
+            // Döljer MainWindow
+            Application.Current.MainWindow.Hide();
         }
 
         //Metod för att öppna ResetPasswordWindow

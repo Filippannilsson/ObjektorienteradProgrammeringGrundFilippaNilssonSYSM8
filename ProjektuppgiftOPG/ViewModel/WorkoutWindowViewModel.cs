@@ -262,12 +262,12 @@ namespace ProjektuppgiftOPG.ViewModel
         //Metod för att logga ut
         public void SignOut(object parameter)
         {
-            //Stänger WorkoutWindow och går tillbaka till MainWindow
+            //Visa MainWindow om det är dolt
             MainWindow mainWindow = Application.Current.Windows.OfType<MainWindow>().FirstOrDefault();
 
             if (mainWindow != null)
             {
-                mainWindow.Show(); //Visa MainWindow igen
+                mainWindow.Show();
             }
 
             //Stänger ner WorkoutsWindow

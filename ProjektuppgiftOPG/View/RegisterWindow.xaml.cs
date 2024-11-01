@@ -21,6 +21,19 @@ namespace ProjektuppgiftOPG.Windows
         {
             InitializeComponent();
             DataContext = new RegisterWindowViewModel();
+
+            //Lägg till en händelsehanterare för stängning av fönster
+            this.Closing += RegisterWindowClosing;
+        }
+
+        private void RegisterWindowClosing(object sender, System.ComponentModel.CancelEventArgs e)
+        {
+            //Om MainWindow fortfarande är öppen, visa det
+            if (Application.Current.Windows.OfType<MainWindow>().Any())
+            {
+                //Gör MainWindow synlig igen
+                Application.Current.Windows.OfType<MainWindow>().FirstOrDefault()?.Show();
+            }
         }
     }
 }

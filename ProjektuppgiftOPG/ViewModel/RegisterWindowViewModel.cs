@@ -170,8 +170,17 @@ namespace ProjektuppgiftOPG.ViewModel
 
             MessageBox.Show("Registration successfull");
 
+            //Visa MainWindow om det är dolt
+            MainWindow mainWindow = Application.Current.Windows.OfType<MainWindow>().FirstOrDefault();
+
+            if (mainWindow != null)
+            {
+                mainWindow.Show();
+            }
+
             //Stänger ner RegisterWindow
             Application.Current.Windows.OfType<RegisterWindow>().FirstOrDefault()?.Close();
+
         }
     }
 }
