@@ -9,13 +9,13 @@ namespace ProjektuppgiftOPG.Model
 {
     public class WorkoutManager
     {
-        // Lista över träningspass
+        //Lista över träningspass
         public ObservableCollection<Workout> Workouts { get; set; }
 
         //Lista över kopierade träningspass
         public ObservableCollection<Workout> WorkoutTemplates { get; set; } = new ObservableCollection<Workout>();
 
-        // Konstruktor
+        //Konstruktor
         public WorkoutManager(ObservableCollection<Workout> workouts)
         {
             Workouts = workouts;
@@ -27,7 +27,7 @@ namespace ProjektuppgiftOPG.Model
             Workouts.Add(workout);
         }
 
-        // Metod för att kopiera en workout
+        //Metod för att kopiera en workout
         public Workout CopyWorkout(Workout workout)
         {
             Workout copiedWorkout = null;
